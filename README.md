@@ -1,6 +1,6 @@
 # ServiceFlow
 
-## One-minute introduction
+## introduction
 
 ServiceFlow is a proposed service-management playground for learning how connected work can replace scattered email, spreadsheets, chat messages, and one-off applications. Its core benefit is simple: a request enters once, the right people receive structured work, approvals and service targets move with it, and everyone sees the same status and history. Employees get a clear self-service experience; agents get prioritized queues and complete context; administrators can model repeatable workflows; leaders can see demand, performance, risk, and improvement opportunities.
 
@@ -19,6 +19,8 @@ The expected result is faster learning, clearer process design, safer demonstrat
 Select the image to play or download the MP4. An accessible [caption file](video/serviceflow-overview.vtt) and [narration transcript](video/serviceflow-overview-transcript.md) are also available.
 
 ## Why ServiceFlow
+
+[Service Flow Demo](https://www.xenhey.com/api/store/9265F98264404F199941D2F7ABBC5052)
 
 Disconnected service work creates duplicate data entry, weak ownership, inconsistent approvals, missed targets, and limited reporting. ServiceFlow proposes one coherent experience around a shared record lifecycle.
 
