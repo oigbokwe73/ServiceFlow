@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
+  <title id="title">ServiceFlow request journey</title><desc id="desc">Seven connected stages from discovery to measurement.</desc>
+  <defs><marker id="a" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0 0L11 5.5L0 11z" fill="#60a5fa"/></marker></defs>
+  <rect width="1600" height="560" rx="28" fill="#172554"/><text x="70" y="82" font-family="Arial" font-size="38" font-weight="700" fill="white">One record, one visible journey</text><text x="70" y="122" font-family="Arial" font-size="20" fill="#bfdbfe">A common lifecycle supports consistent reporting while each domain keeps the fields it needs.</text>
+  <g stroke="#60a5fa" stroke-width="5" marker-end="url(#a)"><path d="M245 300H305"/><path d="M455 300H515"/><path d="M665 300H725"/><path d="M875 300H935"/><path d="M1085 300H1145"/><path d="M1295 300H1355"/></g>
+  <g font-family="Arial" text-anchor="middle">
+    <g><circle cx="170" cy="300" r="76" fill="#dbeafe"/><text x="170" y="291" font-size="20" font-weight="700" fill="#172554">Discover</text><text x="170" y="320" font-size="15" fill="#475569">service + knowledge</text></g>
+    <g><circle cx="380" cy="300" r="76" fill="#ccfbf1"/><text x="380" y="291" font-size="20" font-weight="700" fill="#172554">Intake</text><text x="380" y="320" font-size="15" fill="#475569">context + evidence</text></g>
+    <g><circle cx="590" cy="300" r="76" fill="#ede9fe"/><text x="590" y="291" font-size="20" font-weight="700" fill="#172554">Validate</text><text x="590" y="320" font-size="15" fill="#475569">quality + policy</text></g>
+    <g><circle cx="800" cy="300" r="76" fill="#ffedd5"/><text x="800" y="291" font-size="20" font-weight="700" fill="#172554">Approve</text><text x="800" y="320" font-size="15" fill="#475569">risk + decision</text></g>
+    <g><circle cx="1010" cy="300" r="76" fill="#fee2e2"/><text x="1010" y="291" font-size="20" font-weight="700" fill="#172554">Fulfill</text><text x="1010" y="320" font-size="15" fill="#475569">tasks + targets</text></g>
+    <g><circle cx="1220" cy="300" r="76" fill="#dcfce7"/><text x="1220" y="291" font-size="20" font-weight="700" fill="#172554">Confirm</text><text x="1220" y="320" font-size="15" fill="#475569">outcome + closure</text></g>
+    <g><circle cx="1430" cy="300" r="76" fill="#fef3c7"/><text x="1430" y="291" font-size="20" font-weight="700" fill="#172554">Measure</text><text x="1430" y="320" font-size="15" fill="#475569">KPI + improve</text></g>
+  </g>
+</svg>

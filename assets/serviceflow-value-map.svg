@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">ServiceFlow value map</title>
+  <desc id="desc">Four user groups connect through ServiceFlow to measurable service outcomes.</desc>
+  <defs><filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity=".12"/></filter></defs>
+  <rect width="1400" height="760" rx="28" fill="#f5f7ff"/>
+  <text x="70" y="80" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#172554">One connected service experience</text>
+  <text x="70" y="120" font-family="Arial, sans-serif" font-size="20" fill="#475569">People work from shared context while the platform turns activity into outcomes.</text>
+  <g filter="url(#shadow)"><circle cx="700" cy="385" r="135" fill="#1d4ed8"/><circle cx="700" cy="385" r="105" fill="#172554"/></g>
+  <text x="700" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="white">ServiceFlow</text>
+  <text x="700" y="411" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#bfdbfe">shared records + workflows</text>
+  <g stroke="#60a5fa" stroke-width="5" fill="none"><path d="M585 320 L425 235"/><path d="M815 320 L975 235"/><path d="M585 450 L425 535"/><path d="M815 450 L975 535"/></g>
+  <g font-family="Arial, sans-serif" filter="url(#shadow)">
+    <rect x="90" y="155" width="350" height="170" rx="22" fill="white"/><circle cx="140" cy="205" r="25" fill="#dbeafe"/><text x="140" y="213" text-anchor="middle" font-size="22" fill="#1d4ed8">1</text><text x="185" y="205" font-size="26" font-weight="700" fill="#172554">Requesters</text><text x="130" y="250" font-size="18" fill="#475569">Easy intake and clear status</text><text x="130" y="282" font-size="18" font-weight="700" fill="#047857">Lower effort</text>
+    <rect x="960" y="155" width="350" height="170" rx="22" fill="white"/><circle cx="1010" cy="205" r="25" fill="#ccfbf1"/><text x="1010" y="213" text-anchor="middle" font-size="22" fill="#0f766e">2</text><text x="1055" y="205" font-size="26" font-weight="700" fill="#172554">Agents</text><text x="1000" y="250" font-size="18" fill="#475569">Prioritized work with context</text><text x="1000" y="282" font-size="18" font-weight="700" fill="#047857">Faster resolution</text>
+    <rect x="90" y="455" width="350" height="170" rx="22" fill="white"/><circle cx="140" cy="505" r="25" fill="#ede9fe"/><text x="140" y="513" text-anchor="middle" font-size="22" fill="#7c3aed">3</text><text x="185" y="505" font-size="26" font-weight="700" fill="#172554">Process owners</text><text x="130" y="550" font-size="18" fill="#475569">Visible rules and simulations</text><text x="130" y="582" font-size="18" font-weight="700" fill="#047857">Safer improvement</text>
+    <rect x="960" y="455" width="350" height="170" rx="22" fill="white"/><circle cx="1010" cy="505" r="25" fill="#ffedd5"/><text x="1010" y="513" text-anchor="middle" font-size="22" fill="#c2410c">4</text><text x="1055" y="505" font-size="26" font-weight="700" fill="#172554">Leaders</text><text x="1000" y="550" font-size="18" fill="#475569">Trusted trends and drill-through</text><text x="1000" y="582" font-size="18" font-weight="700" fill="#047857">Better decisions</text>
+  </g>
+</svg>
