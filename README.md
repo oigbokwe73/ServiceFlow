@@ -12,6 +12,12 @@ The expected result is faster learning, clearer process design, safer demonstrat
 
 > **Status:** This folder is a product and experience blueprint. It defines the proposed Playground, visual language, architecture, journeys, guardrails, and delivery roadmap; it is not yet a deployed application.
 
+## Watch the one-minute overview
+
+[![Play the ServiceFlow overview video](assets/serviceflow-hero.png)](video/serviceflow-overview.mp4)
+
+Select the image to play or download the MP4. An accessible [caption file](video/serviceflow-overview.vtt) and [narration transcript](video/serviceflow-overview-transcript.md) are also available.
+
 ## Why ServiceFlow
 
 Disconnected service work creates duplicate data entry, weak ownership, inconsistent approvals, missed targets, and limited reporting. ServiceFlow proposes one coherent experience around a shared record lifecycle.
@@ -188,9 +194,15 @@ ServiceFlow/
 │   ├── serviceflow-playground-lifecycle.svg
 │   ├── serviceflow-request-journey.svg
 │   └── serviceflow-value-map.svg
-└── docs/
-    ├── image-prompts.md
-    └── playground-blueprint.md
+├── docs/
+│   ├── image-prompts.md
+│   └── playground-blueprint.md
+├── scripts/
+│   └── build-video.ps1
+└── video/
+    ├── serviceflow-overview.mp4
+    ├── serviceflow-overview.vtt
+    └── serviceflow-overview-transcript.md
 ```
 
 A future application implementation should add modular `js/modules/`, `js/services/`, versioned `data/` scenario packs, verification tests, and deterministic publication records. Shared API, storage, form, table, toast, session, and workflow services should remain the only seams used by feature pages.
