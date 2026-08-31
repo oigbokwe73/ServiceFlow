@@ -14,9 +14,11 @@ The expected result is faster learning, clearer process design, safer demonstrat
 
 ## Watch the one-minute overview
 
-[![Play the ServiceFlow overview video](assets/serviceflow-hero.png)](video/serviceflow-overview.mp4)
+[![Animated preview of the ServiceFlow overview video](video/serviceflow-overview-preview.gif)](https://github.com/oigbokwe73/ServiceFlow/blob/main/video/serviceflow-overview.mp4)
 
-Select the image to play or download the MP4. An accessible [caption file](video/serviceflow-overview.vtt) and [narration transcript](video/serviceflow-overview-transcript.md) are also available.
+[▶ Play the narrated video in GitHub's player](https://github.com/oigbokwe73/ServiceFlow/blob/main/video/serviceflow-overview.mp4)
+
+The animated preview plays directly in this README. Select it—or the play link—to open the 1080p narrated MP4 in GitHub's native file viewer. A [direct MP4 download](https://raw.githubusercontent.com/oigbokwe73/ServiceFlow/main/video/serviceflow-overview.mp4), accessible [caption file](video/serviceflow-overview.vtt), and [narration transcript](video/serviceflow-overview-transcript.md) are also available.
 
 ## Why ServiceFlow
 
@@ -203,6 +205,7 @@ ServiceFlow/
 │   └── build-video.ps1
 └── video/
     ├── serviceflow-overview.mp4
+    ├── serviceflow-overview-preview.gif
     ├── serviceflow-overview.vtt
     └── serviceflow-overview-transcript.md
 ```

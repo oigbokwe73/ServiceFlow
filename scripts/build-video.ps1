@@ -95,3 +95,12 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 & $FfprobePath -v error -show_entries format=duration,size -of default=noprint_wrappers=1 $outputPath
+
+$previewPath = Join-Path $videoRoot "serviceflow-overview-preview.gif"
+& $FfmpegPath -y -i $outputPath `
+    -vf "fps=2,scale=720:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3" `
+    -loop 0 $previewPath
+
+if ($LASTEXITCODE -ne 0) {
+    throw "FFmpeg failed to create the inline GitHub preview."
+}
