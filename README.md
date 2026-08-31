@@ -6,12 +6,6 @@ ServiceFlow is a proposed service-management playground for learning how connect
 
 The concept is informed by the platform patterns ServiceNow describes for IT service management: a shared data model, AI, workflow automation, self-service, and coordinated resolution of requests, incidents, problems, and changes. ServiceNow also demonstrates the value of a protected developer sandbox where ideas can be tested without affecting a customer instance. ServiceFlow applies those ideas to an approachable, synthetic-data environment: choose a persona, load a scenario, submit or route work, inspect every step, experiment safely, and reset when finished.
 
-The expected result is faster learning, clearer process design, safer demonstrations, and a practical bridge from a prototype to an enterprise implementation. ServiceFlow is an independent concept and is not a ServiceNow product, implementation, or substitute.
-
-![ServiceFlow concept: people, services, workflows, and insights connected in one platform](assets/serviceflow-hero.png)
-
-> **Status:** This folder is a product and experience blueprint. It defines the proposed Playground, visual language, architecture, journeys, guardrails, and delivery roadmap; it is not yet a deployed application.
-
 ## Watch the one-minute overview
 
 [![Animated preview of the ServiceFlow overview video](video/serviceflow-overview-preview.gif)](https://github.com/oigbokwe73/ServiceFlow/blob/main/video/serviceflow-overview.mp4)
