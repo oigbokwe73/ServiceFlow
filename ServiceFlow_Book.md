@@ -3394,3 +3394,1031 @@ Its core capabilities include:
 A successful workspace helps agents identify the right work, understand its context, take the next action, and preserve a reliable history.
 
 The next chapter examines Customer Experience and shows how customer profiles, cases, entitlements, communication channels, fulfillment, and feedback form a connected service journey.
+
+# Chapter 6  
+# Customer Experience
+
+Customer service extends beyond answering questions and closing cases.
+
+A customer may contact an organization to report a problem, request a service, question a charge, replace a product, schedule work, or understand an entitlement. Resolving the issue may require participation from support, engineering, finance, field service, account management, and operations.
+
+The customer sees one organization. The platform must therefore connect the departments, records, communications, and decisions involved in delivering the outcome.
+
+ServiceFlow’s Customer Experience workspace demonstrates this connected approach. It organizes customer information into a guided journey:
+
+**Discover → Request → Validate → Approve → Fulfill → Confirm → Survey**
+
+Each step presents information relevant to that stage while keeping the complete customer record connected.
+
+## 6.1 The purpose of customer experience management
+
+Customer experience management coordinates every interaction that affects the customer’s perception of the organization.
+
+A customer may judge the experience based on:
+
+- How easy it is to request help
+- How quickly the organization responds
+- Whether the agent understands the account
+- Whether the customer must repeat information
+- How clearly progress is communicated
+- Whether promised deadlines are met
+- Whether the final outcome addresses the actual need
+- How the organization responds when something goes wrong
+
+A service platform should help employees provide a consistent experience even when several teams participate.
+
+A useful customer-service environment combines:
+
+- Customer profiles
+- Accounts and contacts
+- Products and services
+- Contracts and entitlements
+- Case intake
+- Assignment
+- Communication history
+- Service commitments
+- Fulfillment tasks
+- Approvals
+- Related records
+- Resolution
+- Confirmation
+- Feedback
+
+Without these relationships, agents see only a ticket. With them, agents can understand the customer.
+
+## 6.2 Customer accounts and contacts
+
+A customer account represents the organization or household receiving services. A contact represents an individual associated with that account.
+
+The distinction allows the platform to manage relationships such as:
+
+```text
+Customer account
+├── Primary contact
+├── Billing contact
+├── Technical contact
+├── Executive sponsor
+└── Authorized requesters
+```
+
+An account record may contain:
+
+- Account name
+- Account number
+- Customer type
+- Industry
+- Region
+- Service tier
+- Account owner
+- Contract status
+- Risk status
+- Preferred communication channel
+- Active products
+- Open cases
+- Satisfaction trend
+
+A contact record may contain:
+
+- Name
+- Email address
+- Phone number
+- Job title
+- Department
+- Account
+- Preferred language
+- Preferred channel
+- Time zone
+- Authorization status
+
+### Consistent customer data
+
+Customer names used in forms and tables should come from a shared data source. Maintaining separate lists in different pages creates inconsistent spelling, duplicates, and broken relationships.
+
+ServiceFlow aggregates customer data so that dropdowns, forms, and record tables use consistent names.
+
+When a customer is selected, the form can populate related information such as:
+
+- Primary contact
+- Communication channel
+- Service
+- Account owner
+- Existing case history
+
+This reduces manual entry and improves data quality.
+
+## 6.3 The customer journey
+
+A customer journey describes the complete sequence of interactions required to achieve an outcome.
+
+ServiceFlow divides the journey into seven stages.
+
+### Discover
+
+The organization identifies the customer, account, contact, need, sentiment, and communication preference.
+
+### Request
+
+The customer’s requested service or reported problem is documented.
+
+### Validate
+
+Identity, entitlement, completeness, and risk are checked.
+
+### Approve
+
+A responsible person evaluates requests that require authorization.
+
+### Fulfill
+
+The organization performs the work and coordinates assignments.
+
+### Confirm
+
+The customer verifies whether the expected outcome was achieved.
+
+### Survey
+
+The organization gathers satisfaction, effort, and feedback information.
+
+The stages create a consistent structure while allowing each case to follow the path appropriate to its type.
+
+## 6.4 Discovering the customer need
+
+The Discover stage establishes who the customer is and what they are trying to accomplish.
+
+Relevant information includes:
+
+- Journey or case number
+- Customer account
+- Primary contact
+- Preferred channel
+- Journey owner
+- Priority
+- State
+- Desired completion date
+- Customer need
+- Initial sentiment
+
+### Customer identification
+
+The platform should distinguish between:
+
+- Authenticated customer
+- Known contact
+- Authorized representative
+- Anonymous customer
+- Partner or reseller
+- Internal employee acting for a customer
+
+The identification method affects which information can be disclosed and which actions the person can request.
+
+### Understanding the need
+
+Customers do not always describe their needs using internal service terminology.
+
+A customer might say:
+
+> Our operations team cannot submit orders from the mobile application.
+
+Internally, the organization may classify this as a production incident affecting an installed product and a specific API service.
+
+The intake experience should preserve the customer’s description while allowing agents to add structured classification.
+
+### Sentiment
+
+Initial sentiment can help agents adjust communication and prioritization.
+
+Possible values include:
+
+- Positive
+- Neutral
+- Concerned
+- Frustrated
+
+Sentiment should not replace priority or impact assessment. A calm customer may still be experiencing a critical issue, while a frustrated customer may be reporting a relatively small problem.
+
+It is an additional signal, not the sole decision factor.
+
+## 6.5 Capturing the request
+
+The Request stage records the service or outcome the customer expects.
+
+The intake can include:
+
+- Requested service
+- Request type
+- Description
+- Desired result
+- Business impact
+- Affected users
+- Affected product
+- Location
+- Required completion date
+- Supporting documents
+
+Request types might include:
+
+- Service request
+- Incident
+- Question
+- Complaint
+- Product issue
+- Billing inquiry
+- Return
+- Warranty claim
+- Field-service request
+
+### Preserve the customer’s language
+
+The customer’s original description should be retained even after the record is classified.
+
+Agents may add a structured summary, but replacing the customer’s words can remove important context.
+
+For example:
+
+**Customer description**
+
+> Drivers cannot complete deliveries because the scanning screen closes whenever they upload a photo.
+
+**Structured summary**
+
+> Mobile delivery application crashes during proof-of-delivery image upload.
+
+Both are useful. The first captures the experience; the second supports routing and reporting.
+
+## 6.6 Validating identity and entitlement
+
+Before delivering some services, the organization must confirm that the customer is authorized to receive them.
+
+Validation may include:
+
+- Identity verification
+- Contact authorization
+- Active contract
+- Product ownership
+- Warranty status
+- Subscription level
+- Support tier
+- Service location
+- Payment status
+- Request completeness
+- Risk review
+
+### Entitlements
+
+An entitlement defines what support or service the customer can receive.
+
+It may determine:
+
+- Available support channels
+- Hours of coverage
+- Response targets
+- Resolution targets
+- Included services
+- Number of support cases
+- Onsite-service eligibility
+- Replacement rights
+- Escalation paths
+- Additional charges
+
+The entitlement should be linked to the account, product, contract, or service.
+
+### Entitlement outcomes
+
+Possible validation results include:
+
+- Verified
+- Pending review
+- Not entitled
+- Expired
+- Exception approved
+
+A customer who is not entitled should still receive a clear explanation and an available next step. The platform might offer a paid service, account review, or escalation process.
+
+## 6.7 Products and installed assets
+
+Customer support often depends on understanding which product or service the customer uses.
+
+An installed-product record can contain:
+
+- Product name
+- Model
+- Serial number
+- Version
+- Installation date
+- Location
+- Warranty
+- Support contract
+- Service history
+- Configuration
+- Current status
+
+This context helps agents determine:
+
+- Whether the issue affects a supported version
+- Whether a warranty applies
+- Which technical team owns the product
+- Whether similar cases exist
+- Which replacement parts are compatible
+- Whether an upgrade is required
+
+### Customer asset history
+
+A complete history can include:
+
+- Previous cases
+- Repairs
+- Replacements
+- Maintenance visits
+- Configuration changes
+- Known defects
+- Warranty claims
+- Product upgrades
+
+Agents should not need to ask the customer for information already available in the platform.
+
+## 6.8 Case creation and classification
+
+A customer case is the primary record used to coordinate service activity.
+
+A case may contain:
+
+- Case number
+- Customer account
+- Contact
+- Channel
+- Subject
+- Description
+- Product or service
+- Case type
+- Category
+- Priority
+- State
+- Assigned group
+- Assigned agent
+- Entitlement
+- SLA
+- Customer sentiment
+- Related records
+- Resolution
+- Closure information
+
+Classification supports routing and reporting. It should be specific enough to guide action without forcing agents to navigate an excessive category hierarchy.
+
+### Case priority
+
+Customer-case priority may consider:
+
+- Business impact
+- Number of users affected
+- Service availability
+- Customer tier
+- Contract commitments
+- Safety or regulatory exposure
+- Availability of a workaround
+- Time sensitivity
+
+Customer importance can affect service commitments, but priority should not ignore actual impact.
+
+## 6.9 Omnichannel intake
+
+Customers may contact the organization through:
+
+- Web portal
+- Email
+- Phone
+- Chat
+- Mobile application
+- Social messaging
+- API
+- Partner portal
+- Field technician
+- Account representative
+
+A connected platform should preserve continuity across channels.
+
+For example, a customer may begin with a chatbot, continue through a live agent, receive an email update, and confirm completion in the portal. These interactions should remain associated with the same case.
+
+### Channel history
+
+The record should preserve:
+
+- Channel used
+- Time of contact
+- Participant
+- Message or summary
+- Direction
+- Attachments
+- Result
+- Next action
+
+This prevents the customer from repeating the same information when switching channels.
+
+## 6.10 Approval in the customer journey
+
+Some customer requests require approval.
+
+Examples include:
+
+- Account credit
+- Refund
+- Replacement outside warranty
+- Contract exception
+- Expedited service
+- Data correction
+- Service cancellation
+- High-cost field visit
+- Custom configuration
+
+The approver should receive:
+
+- Customer and account
+- Requested action
+- Contract or entitlement
+- Financial value
+- Business justification
+- Risk
+- Previous exceptions
+- Supporting documents
+- Agent recommendation
+
+### Approval decisions
+
+ServiceFlow supports decisions such as:
+
+- Approved
+- Rejected
+- More Information Required
+
+The decision should include the approver, date, notes, and resulting action.
+
+A rejected request should not produce a vague customer message. The communication should explain the outcome, applicable policy, and any available alternative.
+
+## 6.11 Fulfillment
+
+Fulfillment converts the approved customer need into completed work.
+
+The stage may include:
+
+- Assignment group
+- Assigned user
+- Fulfillment notes
+- Completion date
+- Supporting attachments
+- Related tasks
+- Supplier activities
+- Field-service work
+- Customer communications
+
+### Cross-department fulfillment
+
+A single case may require several teams.
+
+Consider a customer requesting replacement equipment:
+
+1. Customer service validates the entitlement.
+2. Technical support confirms the failure.
+3. Finance approves an exception.
+4. Inventory reserves the replacement.
+5. Logistics arranges shipment.
+6. A field technician performs installation.
+7. Customer service confirms the outcome.
+
+The case should remain the coordinating record even when specialized tasks are created for each team.
+
+### Fulfillment tasks
+
+Each task should define:
+
+- Required action
+- Owner
+- Due date
+- Dependencies
+- Instructions
+- Completion criteria
+- Work notes
+- Outcome
+
+Completing one task should update the overall case without prematurely closing it.
+
+## 6.12 Customer communication
+
+Customers value accurate and proactive communication.
+
+A communication plan should define:
+
+- Who receives updates
+- Which events trigger a message
+- Which channel is used
+- Who owns the communication
+- How frequently updates are provided
+- What information can be disclosed
+
+Useful communication events include:
+
+- Case received
+- Agent assigned
+- More information required
+- Approval requested
+- Request approved
+- Work scheduled
+- Technician dispatched
+- Delay identified
+- Service restored
+- Case resolved
+- Confirmation requested
+
+### Communicate even when there is no resolution
+
+Silence creates uncertainty.
+
+If investigation continues, an update can still explain:
+
+- What has been checked
+- What is being investigated
+- Which team is engaged
+- Whether impact has changed
+- When the next update will arrive
+
+A predictable update schedule can be more reassuring than repeated messages saying that no solution has been found.
+
+## 6.13 Customer-visible and internal information
+
+Customer cases often contain information intended for different audiences.
+
+### Customer-visible information
+
+This can include:
+
+- Status updates
+- Requested actions
+- Appointment details
+- Resolution
+- Confirmation request
+- Approved documents
+- Public comments
+
+### Internal information
+
+This can include:
+
+- Investigation notes
+- Security indicators
+- Internal escalation
+- Contract interpretation
+- Pricing discussion
+- Agent coaching
+- Legal review
+- Root-cause analysis
+
+The platform should clearly distinguish between these categories. An agent should not accidentally publish an internal note to the customer.
+
+## 6.14 Attachments and evidence
+
+Customers and agents may upload:
+
+- Screenshots
+- Invoices
+- Contracts
+- Error logs
+- Product photos
+- Proof of purchase
+- Diagnostic exports
+- Approval documents
+- Images of damaged equipment
+
+ServiceFlow restricts uploads to supported document and image formats. Files are stored locally under the logged-in profile and associated with the exact customer record.
+
+The file list updates when the user changes records. A document attached to one case is not displayed on another case.
+
+### Sensitive documents
+
+Customer documents may contain personal, financial, contractual, or technical information.
+
+A production platform should add controls for:
+
+- Authorization
+- Encryption
+- Malware scanning
+- Retention
+- Classification
+- Download restrictions
+- Audit history
+- Data residency
+- Legal hold
+- Secure deletion
+
+## 6.15 Confirmation
+
+The Confirm stage determines whether the customer’s need was satisfied.
+
+ServiceFlow can capture:
+
+- Outcome
+- Customer confirmation status
+- Resolution summary
+- Completion date
+- Remaining limitations
+- Follow-up requirement
+
+Possible outcomes include:
+
+- Completed
+- Partially completed
+- Unable to complete
+
+Customer confirmation may be:
+
+- Confirmed
+- Pending
+- Disputed
+
+### Disputed outcomes
+
+If the customer disputes the resolution, the case should return to active work.
+
+The record should retain:
+
+- Previous resolution
+- Customer response
+- Dispute reason
+- Reopened date
+- New owner
+- Next action
+
+The organization should not erase the original attempt. The history can reveal why the first resolution was inadequate.
+
+## 6.16 Survey and feedback
+
+The Survey stage measures the customer’s experience after the outcome.
+
+ServiceFlow can capture:
+
+- Satisfaction score
+- Customer-effort score
+- Follow-up requirement
+- Written feedback
+
+### Satisfaction
+
+Satisfaction asks how the customer feels about the service received.
+
+A common scale is:
+
+1. Very dissatisfied
+2. Dissatisfied
+3. Neutral
+4. Satisfied
+5. Very satisfied
+
+### Customer effort
+
+Customer effort asks how easy or difficult it was to achieve the result.
+
+Possible values include:
+
+- Very easy
+- Easy
+- Neutral
+- Difficult
+- Very difficult
+
+A customer may be satisfied with a helpful agent but still report high effort because the process required repeated contacts.
+
+### Feedback text
+
+Written feedback can identify issues that a score cannot explain.
+
+Themes may include:
+
+- Communication
+- Speed
+- Agent knowledge
+- Product quality
+- Portal usability
+- Repeated information
+- Appointment reliability
+- Resolution quality
+
+Feedback should be linked to improvement activity when appropriate.
+
+## 6.17 Relevant tabs and process context
+
+The Customer Experience page displays only the information relevant to the active journey step.
+
+When the user selects Discover, the page shows customer and need information. When Fulfill is selected, it shows assignments and fulfillment details. Survey presents satisfaction and feedback fields.
+
+This reduces cognitive load and helps the user understand what must be completed at each stage.
+
+The underlying record still retains information from every stage. Hiding a field from the current view does not delete its value.
+
+### Preserving information when switching steps
+
+Step changes should not reset the form or replace user-entered data.
+
+ServiceFlow preserves information locally as the user progresses. The selected step and record context should remain stable during editing.
+
+This is especially important when a customer journey contains many fields. Losing information after a step change would make the experience unreliable.
+
+## 6.18 Customer records and local precedence
+
+ServiceFlow provides realistic customer records with human-readable customer names.
+
+When the Customer Experience page loads, it combines:
+
+- Published customer data
+- Locally created records
+- Locally edited records
+
+If identifiers match, the local version takes priority.
+
+This means an agent can update a customer journey and immediately see the edited values in the table and form.
+
+### Record links
+
+Each customer record in a table should link back to its form using query parameters.
+
+The record link allows the platform to:
+
+- Identify the selected customer journey
+- Load all available fields
+- Select the appropriate process step
+- Display related attachments
+- Preserve edit mode
+
+Direct record URLs also support bookmarks and shared operational links.
+
+## 6.19 Customer journey sample data
+
+The ServiceFlow playground includes sample customer data for training and demonstration.
+
+Sample records should vary across:
+
+- Customer names
+- Accounts
+- Channels
+- Services
+- Priorities
+- Journey stages
+- Sentiment
+- Assigned agents
+- Entitlement states
+- Approval outcomes
+- Fulfillment status
+- Satisfaction scores
+
+Dates should remain within the current rolling period used by the application.
+
+The user can load sample information into a form, edit it, and save it under the local profile.
+
+Sample data should be realistic enough to demonstrate the process but should not represent actual customer information.
+
+## 6.20 Escalation and complaints
+
+Some customer cases require escalation because of:
+
+- Severe business impact
+- Repeated failure
+- Missed commitment
+- Executive concern
+- Regulatory exposure
+- Contract dispute
+- Safety issue
+- Negative sentiment
+- Unresolved complaint
+
+An escalation should define:
+
+- Escalation reason
+- Severity
+- Escalation owner
+- Stakeholders
+- Communication frequency
+- Required decision
+- Recovery plan
+- Target date
+
+### Complaint management
+
+A complaint is more than a negative comment. It may require a controlled process involving customer service, management, legal, compliance, or product leadership.
+
+A complaint record can include:
+
+- Customer statement
+- Product or service involved
+- Previous related cases
+- Desired remedy
+- Investigation
+- Policy review
+- Decision
+- Customer communication
+- Corrective action
+
+Complaints can reveal systemic service issues and should contribute to improvement efforts.
+
+## 6.21 Proactive service
+
+A mature customer-service platform does not always wait for the customer to report a problem.
+
+Proactive service can begin when the organization detects:
+
+- Product failure
+- Service degradation
+- Delivery delay
+- Warranty issue
+- Security exposure
+- Contract milestone
+- Maintenance requirement
+- Customer-risk indicator
+
+The platform can create a case, notify affected customers, and begin remediation.
+
+For example, if monitoring detects a service disruption affecting several customer accounts, ServiceFlow could associate impacted customers with a major operational record and generate targeted communications.
+
+Proactive service demonstrates awareness and can reduce inbound demand.
+
+## 6.22 Customer health
+
+Customer health summarizes the condition of the relationship.
+
+Signals can include:
+
+- Open case volume
+- Case severity
+- SLA breaches
+- Escalations
+- Satisfaction trend
+- Product usage
+- Renewal status
+- Contract value
+- Payment status
+- Complaint frequency
+- Service availability
+- Engagement level
+
+Health should not be reduced to one unexplained score. Users should be able to understand which factors produced the result.
+
+A declining health indicator may prompt:
+
+- Account review
+- Proactive outreach
+- Executive engagement
+- Service-improvement plan
+- Training
+- Product review
+- Contract discussion
+
+## 6.23 An end-to-end customer example
+
+Consider a customer whose warehouse-scanning system fails during peak operations.
+
+### Discover
+
+The agent identifies the account, primary contact, preferred communication channel, affected location, and initial sentiment.
+
+The customer is frustrated because shipping operations are delayed.
+
+### Request
+
+The case records:
+
+- Mobile scanning failure
+- Affected warehouse
+- Number of users affected
+- Application version
+- Business impact
+- Screenshots
+- Desired restoration time
+
+### Validate
+
+The platform confirms:
+
+- The contact is authorized.
+- The customer has active premium support.
+- The affected product is covered.
+- The request is complete.
+- The case qualifies for a high-priority response.
+
+### Approve
+
+An emergency replacement device falls outside standard inventory policy. A service manager approves the exception.
+
+### Fulfill
+
+Technical support identifies a failed local gateway. Field service dispatches a technician with replacement hardware.
+
+The case coordinates technical work, field activity, customer updates, and the approval decision.
+
+### Confirm
+
+The customer tests the scanners after replacement and confirms that warehouse operations have resumed.
+
+### Survey
+
+The customer provides a high satisfaction score but reports that the initial diagnostic questions required too much repetition.
+
+The service owner uses that feedback to improve the intake form and preserve device information automatically in future cases.
+
+## 6.24 Measuring customer experience
+
+Useful customer-experience measures include:
+
+- First-response time
+- Resolution time
+- SLA attainment
+- Case backlog
+- Escalation rate
+- Reopen rate
+- Transfer rate
+- First-contact resolution
+- Customer satisfaction
+- Customer effort
+- Complaint volume
+- Entitlement exceptions
+- Communication frequency
+- Time waiting for customer
+- Time waiting for internal teams
+
+Measures should be segmented by:
+
+- Customer
+- Service
+- Product
+- Channel
+- Priority
+- Region
+- Assignment group
+- Contract
+- Case type
+
+### Avoiding misleading metrics
+
+A fast closure time may look positive even if customers repeatedly reopen cases.
+
+A low escalation rate may indicate strong service, or it may indicate that agents are failing to recognize serious issues.
+
+Customer metrics should therefore be reviewed together and connected to detailed records.
+
+## 6.25 Improving the customer journey
+
+Customer-experience improvement should be based on evidence.
+
+Sources include:
+
+- Survey responses
+- Case activity
+- Search behavior
+- Contact reasons
+- Reopen patterns
+- SLA breaches
+- Complaint themes
+- Approval delays
+- Fulfillment bottlenecks
+- Agent feedback
+- Product defects
+
+Improvement actions might include:
+
+- Simplifying intake
+- Adding knowledge
+- Improving entitlement data
+- Automating validation
+- Reducing approval steps
+- Correcting routing
+- Providing proactive updates
+- Improving product telemetry
+- Training agents
+- Redesigning fulfillment tasks
+
+The platform should connect insights to accountable improvement work.
+
+## Chapter summary
+
+Customer Experience connects the customer’s need with the people and processes required to deliver an outcome.
+
+Its core capabilities include:
+
+- Customer accounts and contacts
+- Consistent customer data
+- Discover, Request, Validate, Approve, Fulfill, Confirm, and Survey stages
+- Identity and entitlement validation
+- Products and installed assets
+- Customer cases
+- Omnichannel communication
+- Approvals and exceptions
+- Cross-department fulfillment
+- Customer-visible and internal information
+- Record-specific attachments
+- Confirmation and dispute handling
+- Satisfaction and effort measurement
+- Relevant step-based forms
+- Local record precedence
+- Escalations and complaints
+- Proactive service
+- Customer-health indicators
+- Journey analytics
+
+A successful customer-service platform prevents organizational complexity from becoming the customer’s burden.
+
+The next chapter examines ServiceFlow administration and profiles, including user identity, preferences, local storage, dataset management, record ownership, session behavior, and platform configuration.
