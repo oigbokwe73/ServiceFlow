@@ -7823,3 +7823,1290 @@ Its major capabilities include:
 - Change-performance measures
 
 The next chapter examines incident, major-incident, and problem management, showing how ServiceFlow connects rapid service restoration with root-cause analysis and permanent corrective action.
+
+# Chapter 10  
+# Incident, Major-Incident, and Problem Management
+
+Service disruptions require both urgency and discipline.
+
+When a user cannot connect to a network, an application stops responding, or a critical business service becomes unavailable, the immediate objective is to restore normal operation. The organization may not yet understand the root cause, but it must reduce business impact as quickly as possible.
+
+After service is restored, a different kind of work may be required. Teams investigate why the failure occurred, identify recurring patterns, document workarounds, and implement permanent corrective actions.
+
+ServiceFlow separates these responsibilities into three connected processes:
+
+- **Incident Management** restores normal service.
+- **Major-Incident Management** coordinates the response to severe disruption.
+- **Problem Management** identifies and addresses underlying causes.
+
+These processes use different records, but they should remain linked throughout the service lifecycle.
+
+## 10.1 Understanding the three processes
+
+An incident, major incident, and problem are related but not interchangeable.
+
+### Incident
+
+An incident is an unplanned interruption or reduction in the quality of a service.
+
+Examples include:
+
+- A user cannot access email.
+- A payment application produces errors.
+- A printer is unavailable.
+- A network connection is unstable.
+- A customer cannot submit an order.
+- A scheduled integration fails.
+
+The objective of incident management is to restore service quickly.
+
+### Major incident
+
+A major incident is a high-impact incident requiring an elevated and coordinated response.
+
+Examples include:
+
+- Enterprise authentication outage
+- Customer-facing platform failure
+- Widespread network disruption
+- Critical security-related interruption
+- Payroll system outage during processing
+- Production data corruption
+
+The objective is rapid restoration combined with structured coordination and communication.
+
+### Problem
+
+A problem represents the underlying cause—or potential cause—of one or more incidents.
+
+Examples include:
+
+- Memory leak causing repeated application failures
+- Defective network firmware
+- Incorrect deployment procedure
+- Capacity limitation
+- Intermittent database deadlock
+- Unsupported software dependency
+
+The objective of problem management is to prevent recurrence or reduce future impact.
+
+## 10.2 How the records relate
+
+A simple relationship may look like this:
+
+```text
+Multiple incidents
+       ↓
+Major incident
+       ↓
+Problem investigation
+       ↓
+Known error and workaround
+       ↓
+Change request
+       ↓
+Permanent correction
+       ↓
+Knowledge article
+```
+
+Not every incident becomes a major incident, and not every incident requires a problem record.
+
+A problem should be considered when:
+
+- The incident is severe.
+- The incident repeats.
+- The cause is unknown.
+- A workaround is required.
+- The failure affects an important service.
+- A permanent correction requires change control.
+- Trend analysis identifies a recurring pattern.
+
+The records should link to one another so that agents can understand the complete history.
+
+## 10.3 Incident intake
+
+The incident form captures the information required to assess and restore service.
+
+Important fields include:
+
+- Incident number
+- Caller or requester
+- Contact method
+- Short description
+- Detailed description
+- Category
+- Subcategory
+- Business service
+- Configuration item
+- Location
+- Impact
+- Urgency
+- Calculated priority
+- Assignment group
+- Assigned agent
+- Attachments
+- Watch list
+- Customer-visible comments
+- Internal work notes
+- Related incident
+- Related problem
+- Related change
+- SLA target
+- Due date
+- Resolution code
+- Resolution notes
+- State
+
+### Incident number
+
+The incident number provides a stable reference.
+
+Example:
+
+```text
+INC-10482
+```
+
+It should appear in notifications, tables, relationships, and record links.
+
+### Caller and requester
+
+The caller is the person reporting the issue. The affected user may be someone else.
+
+For example, a manager may report that a new employee cannot access required applications.
+
+The form should distinguish between:
+
+- Reported by
+- Affected user
+- Customer contact
+- Watch list
+
+### Contact method
+
+Contact method helps the organization understand how incidents enter the service process.
+
+Possible values include:
+
+- Portal
+- Email
+- Phone
+- Chat
+- API
+- Monitoring
+
+This information can support channel-performance analysis.
+
+## 10.4 Writing a useful incident description
+
+The short description should summarize the observable problem.
+
+Weak:
+
+> System issue
+
+Better:
+
+> VPN authentication fails after password reset
+
+The detailed description should answer:
+
+- What happened?
+- What was expected?
+- When did it begin?
+- Who is affected?
+- Which service or device is involved?
+- Is an error message visible?
+- What has already been attempted?
+- Is a workaround available?
+
+The description should report symptoms rather than assume a cause.
+
+For example:
+
+> Users receive a gateway timeout when submitting payroll changes.
+
+This is more reliable than:
+
+> The database server is broken.
+
+The second statement may be an incorrect diagnosis.
+
+## 10.5 Classification
+
+Classification helps route the incident and identify patterns.
+
+Typical categories include:
+
+- Hardware
+- Software
+- Network
+- Access
+- Security
+- Facilities
+
+Subcategories provide additional detail.
+
+For Network, examples might include:
+
+- Wireless
+- VPN
+- DNS
+- Routing
+- Connectivity
+- Performance
+
+Classification should support operational decisions. If agents frequently choose “Other,” the category model may need improvement.
+
+## 10.6 Service and configuration context
+
+An incident should identify the affected business service when possible.
+
+Examples include:
+
+- Payroll
+- Customer ordering
+- Email
+- Identity and access
+- Warehouse management
+- Financial reporting
+
+The configuration item identifies the technical component involved.
+
+Examples include:
+
+- Application
+- Server
+- Database
+- Cloud resource
+- Network device
+- Integration
+- User device
+
+Service and CI information helps teams:
+
+- Route work
+- Understand impact
+- Find related incidents
+- Detect major incidents
+- Assess change risk
+- Analyze recurring failures
+
+## 10.7 Impact, urgency, and priority
+
+Incident priority should reflect business need rather than the requester’s level of frustration.
+
+### Impact
+
+Impact measures the scope of the disruption.
+
+Possible values include:
+
+- High
+- Medium
+- Low
+
+High impact may involve:
+
+- Critical business service
+- Multiple locations
+- Large user population
+- Significant financial risk
+- Regulatory exposure
+- No available workaround
+
+### Urgency
+
+Urgency measures how quickly service must be restored.
+
+High urgency may apply when:
+
+- Business operations are stopped.
+- A deadline is imminent.
+- The issue is rapidly worsening.
+- Safety or security is affected.
+- A contractual commitment is at risk.
+
+### Calculated priority
+
+ServiceFlow can calculate priority from impact and urgency.
+
+For example:
+
+| Impact | Urgency | Priority |
+|---|---|---|
+| High | High | P1 Critical |
+| High | Medium | P2 High |
+| Medium | High | P2 High |
+| Medium | Medium | P3 Moderate |
+| Low | Medium | P4 Low |
+| Low | Low | P5 Planning |
+
+The calculated priority can be reviewed, but adjustments should require justification.
+
+## 10.8 The incident lifecycle
+
+A typical incident lifecycle is:
+
+**New → Assigned → In Progress → Pending → Resolved → Closed**
+
+### New
+
+The incident has been created but not yet accepted by a responsible agent.
+
+Required information should be sufficient for triage.
+
+### Assigned
+
+The incident has an assignment group or agent.
+
+Ownership should be clear, even if investigation has not begun.
+
+### In Progress
+
+An agent is actively investigating or working to restore service.
+
+Work notes should document meaningful actions.
+
+### Pending
+
+Progress is paused while waiting for another person or event.
+
+The pending reason should be specific:
+
+- Waiting for requester
+- Waiting for supplier
+- Waiting for change
+- Waiting for scheduled window
+- Waiting for another team
+
+### Resolved
+
+The agent believes service has been restored or the incident has otherwise been completed.
+
+Resolution information must be recorded.
+
+### Closed
+
+The resolution has been confirmed or the confirmation period has expired.
+
+Closed records should normally become read-only except for authorized corrections.
+
+## 10.9 Assignment and escalation
+
+Assignment places the incident with the responsible team.
+
+Routing can use:
+
+- Category
+- Service
+- Configuration item
+- Location
+- Customer
+- Priority
+- Required skill
+- Support schedule
+
+### Functional escalation
+
+Functional escalation transfers or engages a team with specialized expertise.
+
+For example:
+
+```text
+Service Desk → Network Operations → Cloud Platform
+```
+
+Repeated transfer should be avoided. Swarming can allow specialists to contribute without removing ownership from the original agent.
+
+### Hierarchical escalation
+
+Hierarchical escalation engages management because of:
+
+- High impact
+- Imminent SLA breach
+- Customer escalation
+- Resource constraint
+- Cross-team delay
+- Repeated failure
+- Regulatory risk
+
+Escalation should create action, not merely visibility.
+
+## 10.10 Investigation and diagnosis
+
+Investigation attempts to understand the incident and identify a path to restoration.
+
+Useful activities include:
+
+- Reproduce the issue
+- Review recent changes
+- Examine logs
+- Check monitoring
+- Compare affected and unaffected users
+- Validate configuration
+- Test connectivity
+- Search knowledge
+- Review related incidents
+- Contact the requester
+- Engage specialists
+
+Work notes should preserve the sequence of investigation.
+
+### Diagnostic information
+
+A useful diagnostic record may include:
+
+- Test performed
+- Time
+- Result
+- Interpretation
+- Next action
+- Person responsible
+
+This prevents teams from repeating the same unsuccessful work.
+
+## 10.11 Workarounds
+
+A workaround reduces or removes the incident’s impact without correcting the underlying cause.
+
+Examples include:
+
+- Restarting a service
+- Routing traffic to another system
+- Using a manual process
+- Clearing a local cache
+- Reverting a configuration
+- Using an alternative application
+
+A workaround can support rapid restoration while problem management pursues a permanent solution.
+
+It should include:
+
+- Conditions where it applies
+- Steps
+- Risks
+- Expected result
+- Limitations
+- Owner
+- Review date
+
+Workarounds can be published as knowledge when appropriate.
+
+## 10.12 Resolution
+
+Resolution records how the incident was completed.
+
+ServiceFlow resolution codes can include:
+
+- Solved permanently
+- Workaround
+- Duplicate
+- User error
+- No fault found
+
+Resolution notes should explain:
+
+- What caused the observed issue, if known
+- What action restored service
+- How restoration was validated
+- Whether a workaround remains
+- Whether follow-up is required
+- Which related records were created
+
+A resolution such as “Fixed” provides little value.
+
+Better:
+
+> Removed the expired VPN profile, generated a new profile, and confirmed successful authentication with the user. A problem record was opened to investigate why password resets do not refresh the profile automatically.
+
+## 10.13 Reopening incidents
+
+An incident may reopen when:
+
+- The issue returns.
+- The solution did not work.
+- Service remains degraded.
+- The affected user disputes the resolution.
+- The workaround fails.
+
+The record should capture:
+
+- Reopen reason
+- Reopened by
+- Reopen time
+- Current impact
+- Current priority
+- Updated assignment
+
+Reopening should preserve the earlier resolution and activity history.
+
+## 10.14 Major-incident identification
+
+A major incident requires an elevated response.
+
+Major-incident criteria may consider:
+
+- Critical service unavailable
+- Large user population affected
+- Significant customer impact
+- Revenue loss
+- Safety concern
+- Regulatory exposure
+- Executive attention
+- No workaround
+- Prolonged outage
+- Multiple locations
+
+The declaration process should be fast and clearly owned.
+
+### Declaration authority
+
+Organizations should define who can declare a major incident.
+
+Possible roles include:
+
+- Service desk lead
+- Incident manager
+- Operations manager
+- Service owner
+- On-call commander
+
+Delaying declaration can delay coordination and communication.
+
+## 10.15 Major-incident intake
+
+The major-incident record includes information beyond a standard incident.
+
+Fields may include:
+
+- Major-incident number
+- Executive summary
+- Business impact
+- Affected services
+- Affected locations
+- Incident commander
+- Technical lead
+- Communications lead
+- Resolver groups
+- Timeline
+- Bridge-call details
+- Stakeholders
+- Status-update history
+- Workaround
+- Estimated recovery
+- Related incidents
+- Post-incident actions
+- State
+- Attachments
+
+### Executive summary
+
+The executive summary should state:
+
+- What is affected
+- Business impact
+- Current status
+- Workaround
+- Estimated recovery
+- Next update
+
+It should avoid unnecessary technical detail.
+
+### Business-impact statement
+
+A useful statement quantifies impact when possible.
+
+Example:
+
+> The customer-ordering service is unavailable in North America. Approximately 1,800 users cannot submit or modify orders. Existing warehouse operations continue, but new orders are delayed.
+
+## 10.16 The major-incident lifecycle
+
+A typical major-incident lifecycle is:
+
+**Declared → Mobilize → Investigate → Recover → Review → Closed**
+
+### Declared
+
+The organization recognizes that major-incident procedures are required.
+
+### Mobilize
+
+Response roles, communication channels, and resolver teams are activated.
+
+### Investigate
+
+Teams examine evidence, test hypotheses, and coordinate restoration.
+
+### Recover
+
+Service is restored or stabilized.
+
+### Review
+
+The organization reconstructs the event and identifies follow-up actions.
+
+### Closed
+
+The post-incident requirements are complete and ownership of follow-up work is established.
+
+## 10.17 Major-incident roles
+
+A major incident requires clear responsibilities.
+
+### Incident commander
+
+The incident commander coordinates the overall response.
+
+Responsibilities include:
+
+- Establish objectives
+- Maintain decision authority
+- Coordinate teams
+- Remove blockers
+- Confirm priorities
+- Determine escalation
+- Approve recovery direction
+
+### Technical lead
+
+The technical lead coordinates investigation and restoration.
+
+Responsibilities include:
+
+- Direct technical analysis
+- Assign diagnostic work
+- Evaluate recovery options
+- Confirm validation
+- Explain technical risk
+
+### Communications lead
+
+The communications lead manages stakeholder updates.
+
+Responsibilities include:
+
+- Identify audiences
+- Prepare messages
+- Maintain update frequency
+- Confirm message accuracy
+- Coordinate customer and executive communication
+
+One person may perform several roles during a smaller event, but responsibilities should remain explicit.
+
+## 10.18 Major-incident coordination
+
+A response may involve:
+
+- Service Desk
+- Application Support
+- Network Operations
+- Database Administration
+- Cloud Platform
+- Security Operations
+- Vendor Support
+- Customer Service
+- Business Leadership
+
+The major-incident record provides the common operational context.
+
+### Response bridge
+
+A bridge can be a telephone call, online meeting, chat channel, or coordinated workspace.
+
+Bridge information should include:
+
+- Connection details
+- Start time
+- Participants
+- Decisions
+- Assigned actions
+- Update schedule
+
+### Action tracking
+
+Each action should have:
+
+- Description
+- Owner
+- Target time
+- Status
+- Result
+
+Unassigned actions are likely to be delayed or duplicated.
+
+## 10.19 Major-incident communications
+
+Communication is a core part of major-incident management.
+
+Stakeholders may include:
+
+- Affected employees
+- Customers
+- Service owners
+- Executives
+- Regulators
+- Partners
+- Suppliers
+- Support teams
+
+### Update structure
+
+A consistent update can include:
+
+1. Current status
+2. Business impact
+3. Work completed
+4. Current investigation
+5. Workaround
+6. Estimated recovery
+7. Next update time
+
+If no recovery estimate is available, the update should say so directly rather than presenting an unsupported time.
+
+### Communication frequency
+
+Frequency should reflect severity and audience.
+
+For example:
+
+- Technical team: continuous collaboration
+- Service owner: every 15 minutes
+- Executives: every 30 minutes
+- Customers: every hour or on significant change
+
+The schedule should be defined during mobilization.
+
+## 10.20 Recovery and validation
+
+Recovery restores the affected service.
+
+Possible actions include:
+
+- Restart
+- Failover
+- Rollback
+- Traffic redirection
+- Capacity increase
+- Configuration correction
+- Emergency change
+- Vendor intervention
+- Data restoration
+
+Service restoration should be validated through:
+
+- Monitoring
+- Transaction tests
+- User confirmation
+- Log review
+- Performance checks
+- Data-integrity checks
+- Customer confirmation
+
+A service should not be declared restored solely because one technical component appears healthy.
+
+## 10.21 Post-incident review
+
+A post-incident review examines what happened and how the response can improve.
+
+It should address:
+
+- Timeline
+- Detection
+- Initial symptoms
+- Business impact
+- Contributing factors
+- Decisions
+- Restoration actions
+- Communication
+- What worked
+- What did not work
+- Follow-up actions
+- Owners and dates
+
+The review should focus on learning rather than blame.
+
+### Review outputs
+
+Possible outputs include:
+
+- Problem record
+- Change request
+- Monitoring improvement
+- Runbook update
+- Knowledge article
+- Training
+- Capacity work
+- Vendor action
+- Architecture improvement
+- Communication-template update
+
+The review is incomplete until follow-up actions have accountable owners.
+
+## 10.22 Problem management
+
+Problem management investigates causes and prevents recurrence.
+
+It includes both:
+
+- Reactive problem management
+- Proactive problem management
+
+### Reactive problem management
+
+Reactive work begins after one or more incidents.
+
+Examples include:
+
+- Repeated application crashes
+- Major-incident follow-up
+- Frequent authentication failures
+- Recurring network instability
+
+### Proactive problem management
+
+Proactive work begins before a severe incident occurs.
+
+It may use:
+
+- Trend analysis
+- Monitoring anomalies
+- Capacity data
+- Error logs
+- Change-failure patterns
+- Vendor notices
+- Security findings
+- Recurring service-desk contacts
+
+The goal is to remove risk before it causes greater disruption.
+
+## 10.23 Problem intake
+
+The ServiceFlow problem form can include:
+
+- Problem number
+- Title
+- Description
+- Problem coordinator
+- Assignment group
+- Priority
+- Related incidents
+- Affected services and CIs
+- Symptoms
+- Five Whys
+- Fishbone categories
+- Timeline analysis
+- Contributing factors
+- Evidence
+- Root-cause statement
+- Workaround
+- Known-error status
+- Corrective actions
+- Action owner
+- Due date
+- Related change
+- Business impact
+- Review date
+- Closure code
+- State
+
+This structure separates symptom documentation from root-cause analysis and permanent correction.
+
+## 10.24 The problem lifecycle
+
+A typical problem lifecycle is:
+
+**Draft → Assess → RCA → Known Error → Corrective Action → Closed**
+
+### Draft
+
+The problem is identified and documented.
+
+### Assess
+
+The team evaluates impact, priority, scope, and investigation value.
+
+### RCA
+
+Root-cause analysis is in progress.
+
+### Known Error
+
+A cause or contributing condition is understood and a workaround may be available.
+
+### Corrective Action
+
+Permanent remediation is being planned or implemented.
+
+### Closed
+
+The organization has completed the required corrective work or formally accepted the remaining risk.
+
+## 10.25 Root-cause analysis
+
+Root-cause analysis seeks to explain why the failure occurred.
+
+The objective is not to assign personal blame. It is to identify the technical, procedural, organizational, and environmental conditions that allowed the failure.
+
+ServiceFlow provides several RCA information areas.
+
+### Five Whys
+
+The Five Whys method repeatedly asks why an event occurred.
+
+Example:
+
+1. Why could users not access payroll?  
+   The authentication gateway rejected valid sessions.
+
+2. Why did it reject valid sessions?  
+   Its certificate had expired.
+
+3. Why did the certificate expire?  
+   The renewal process did not update the gateway.
+
+4. Why did the renewal process omit the gateway?  
+   The gateway was missing from the certificate inventory.
+
+5. Why was it missing?  
+   The service-deployment process did not register certificate dependencies.
+
+The likely corrective action is not simply to replace the certificate. It should also improve inventory and deployment controls.
+
+### Fishbone analysis
+
+A fishbone analysis groups contributing factors into categories such as:
+
+- People
+- Process
+- Technology
+- Tools
+- Environment
+- Suppliers
+- Measurement
+- Governance
+
+This helps teams look beyond the most visible technical failure.
+
+### Timeline analysis
+
+A timeline reconstructs:
+
+- Changes
+- Alerts
+- Symptoms
+- User reports
+- Decisions
+- Actions
+- Recovery
+- Communications
+
+Timeline analysis can reveal detection delays, decision gaps, and dependencies.
+
+## 10.26 Root cause and contributing factors
+
+A root cause is the condition that, if corrected, would prevent or significantly reduce recurrence.
+
+Contributing factors made the incident more likely, more severe, or more difficult to resolve.
+
+For example:
+
+**Root cause**
+
+> The authentication gateway certificate was absent from the managed certificate inventory.
+
+**Contributing factors**
+
+- No expiration alert
+- Manual deployment process
+- Incomplete ownership data
+- Runbook omitted certificate validation
+- Monitoring checked gateway availability but not certificate age
+
+Corrective actions should address both the root cause and significant contributing factors.
+
+## 10.27 Known errors
+
+A known error is a problem with an understood cause or documented workaround.
+
+The status can include:
+
+- Not assessed
+- Proposed
+- Confirmed
+
+A known-error record should contain:
+
+- Symptoms
+- Affected services
+- Cause
+- Workaround
+- Limitations
+- Risk
+- Related incidents
+- Permanent-fix status
+
+Agents can use known errors to restore service more quickly when incidents recur.
+
+## 10.28 Corrective actions
+
+Corrective actions reduce or remove the underlying risk.
+
+Examples include:
+
+- Software correction
+- Infrastructure replacement
+- Configuration standard
+- Monitoring improvement
+- Automation
+- Process change
+- Documentation
+- Training
+- Supplier action
+- Capacity increase
+
+Each corrective action should have:
+
+- Description
+- Owner
+- Due date
+- Status
+- Validation criteria
+- Related change
+- Expected benefit
+
+Technical corrective actions that affect production should normally be implemented through change management.
+
+## 10.29 Problem closure
+
+A problem should close only when its closure criteria are satisfied.
+
+Closure codes may include:
+
+- Fixed
+- Accepted risk
+- Duplicate
+- No issue found
+
+Closure information should explain:
+
+- Root cause
+- Corrective work
+- Related change
+- Validation
+- Remaining risk
+- Review date
+- Knowledge produced
+
+Accepted risk should identify who accepted it and why.
+
+## 10.30 Knowledge creation
+
+Incident and problem work should contribute to reusable knowledge.
+
+Potential articles include:
+
+- User troubleshooting
+- Agent resolution
+- Workaround
+- Known error
+- Recovery procedure
+- Diagnostic checklist
+- Major-incident playbook
+
+Knowledge can reduce resolution time and prevent repeated investigation.
+
+The article should be reviewed, approved, owned, and scheduled for future review.
+
+## 10.31 Attachments and evidence
+
+Incident, major-incident, and problem records may include:
+
+- Screenshots
+- Log extracts
+- Monitoring graphs
+- Error reports
+- Diagnostic files
+- Timeline documents
+- Architecture diagrams
+- Vendor analysis
+- Review notes
+- Test evidence
+
+ServiceFlow stores allowed files under the logged-in profile and exact record identifier.
+
+Evidence attached to a problem should not automatically appear on every related incident. Each relationship should be intentional.
+
+## 10.32 Local editing and data precedence
+
+When a record opens for editing, ServiceFlow merges published and locally saved information.
+
+The local version takes priority when record identifiers match.
+
+The form should display all saved information across its relevant sections, including:
+
+- Primary details
+- Investigation
+- Assignment
+- Related records
+- Resolution
+- Closure
+- Attachment identifier
+- Audit metadata
+
+The correct lifecycle step should become active based on the saved state.
+
+## 10.33 Sample data
+
+Sample data should demonstrate realistic scenarios.
+
+Incident samples can vary by:
+
+- Service
+- Category
+- Impact
+- Urgency
+- Priority
+- State
+- Assignment group
+- Resolution
+
+Major-incident samples can vary by:
+
+- Affected service
+- Location
+- Business impact
+- Command roles
+- Estimated recovery
+- Response stage
+
+Problem samples can vary by:
+
+- Recurring symptoms
+- Related incidents
+- RCA method
+- Known-error status
+- Corrective action
+- Closure outcome
+
+All sample dates should remain within the platform’s current rolling period.
+
+## 10.34 Performance measures
+
+### Incident measures
+
+- Incident volume
+- First-response time
+- Mean time to restore
+- SLA attainment
+- Reopen rate
+- Reassignment rate
+- First-contact resolution
+- Backlog age
+- Customer satisfaction
+
+### Major-incident measures
+
+- Detection time
+- Declaration time
+- Mobilization time
+- Restoration time
+- Communication timeliness
+- Number of affected users
+- Business downtime
+- Review completion
+- Follow-up completion
+
+### Problem measures
+
+- Problems opened
+- Recurring-incident reduction
+- Time to identify root cause
+- Known errors created
+- Corrective actions overdue
+- Problems closed
+- Incidents linked to problems
+- Permanent-fix effectiveness
+
+Metrics should encourage restoration, learning, and prevention rather than premature closure.
+
+## 10.35 End-to-end example
+
+Consider repeated failures in a customer-ordering application.
+
+### Initial incidents
+
+Users report that order submission intermittently fails. Service Desk incidents are assigned to application support.
+
+Agents provide a workaround: users can save the order and resubmit after several minutes.
+
+### Major incident
+
+Failure volume increases and the service becomes unavailable across multiple regions.
+
+A major incident is declared. An incident commander, technical lead, and communications lead are assigned.
+
+### Recovery
+
+The team identifies database connection exhaustion and restarts the affected application services. Order submission recovers.
+
+### Problem investigation
+
+A problem record links the major incident and earlier related incidents.
+
+Timeline analysis identifies increasing connection use after a recent software release.
+
+The Five Whys analysis determines that a connection-management defect was not detected because the performance test used insufficient transaction volume.
+
+### Known error
+
+The cause is documented. The restart procedure becomes a temporary workaround.
+
+### Corrective change
+
+A change request is created to deploy a software correction and expand performance testing.
+
+The change is implemented successfully.
+
+### Closure
+
+The problem closes after monitoring confirms stable connection usage and no recurrence during the review period.
+
+A knowledge article documents the diagnostic symptoms and temporary workaround.
+
+## Chapter summary
+
+Incident, major-incident, and problem management work together to restore service and prevent recurrence.
+
+Their core capabilities include:
+
+- Structured incident intake
+- Classification
+- Service and CI relationships
+- Impact, urgency, and calculated priority
+- Assignment and escalation
+- Investigation and diagnosis
+- Workarounds
+- Resolution and reopening
+- Major-incident declaration
+- Command roles
+- Coordinated technical response
+- Stakeholder communication
+- Recovery validation
+- Post-incident review
+- Reactive and proactive problem management
+- Root-cause analysis
+- Five Whys
+- Fishbone analysis
+- Timeline analysis
+- Known errors
+- Corrective actions
+- Change relationships
+- Knowledge creation
+- Record-specific evidence
+- Local record precedence
+- Operational performance measures
+
+The next chapter examines Workflow Designer and shows how ServiceFlow converts process requirements into visual steps, conditions, assignments, outcomes, and reusable JSON definitions.
