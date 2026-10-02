@@ -936,3 +936,809 @@ Its major components include:
 Together, these components transform a collection of pages into a connected service environment.
 
 The next chapter examines the service lifecycle in greater depth—from initial demand and validation through assignment, approval, fulfillment, confirmation, closure, and continuous improvement.
+
+# Chapter 3  
+# The Service Lifecycle
+
+Every service record represents a journey.
+
+A user identifies a need, provides information, waits for a response, participates in decisions, and eventually receives an outcome. Behind that visible experience, agents validate data, establish priority, assign ownership, request approvals, perform tasks, communicate progress, and document the result.
+
+The service lifecycle provides a repeatable structure for managing this journey from beginning to end.
+
+ServiceFlow uses lifecycle stages to make work visible and manageable. The stages vary by business process, but most service journeys contain the same fundamental activities:
+
+1. Submission
+2. Validation
+3. Classification and prioritization
+4. Assignment
+5. Approval
+6. Fulfillment or resolution
+7. Confirmation
+8. Closure
+9. Measurement and improvement
+
+A lifecycle should not be treated as a decorative progress indicator. Each stage represents a business state with defined information, responsibilities, decisions, and outcomes.
+
+## 3.1 Beginning with demand
+
+A service journey begins when a person, system, or business event identifies a need.
+
+The source of that demand might be:
+
+- An employee requesting equipment
+- A customer reporting a service problem
+- A monitoring system detecting an outage
+- A manager requesting access for a new employee
+- A technician proposing an infrastructure change
+- A risk owner identifying a compliance issue
+- A human resources team beginning an onboarding process
+- A scheduled maintenance event
+- An API submitting a record from another application
+
+The source affects how the record is created, but it should not prevent the organization from applying a consistent service process.
+
+### Human-generated demand
+
+A person may submit a request through a portal, catalog item, intake form, email, chat, telephone call, or agent-assisted interaction.
+
+Self-service forms should collect enough information to begin the process without overwhelming the requester. The form should use familiar business language and reveal additional fields only when they become relevant.
+
+For example, a software-access request might initially ask for:
+
+- The person needing access
+- The requested application
+- The business reason
+- The required access level
+- The needed-by date
+- The approving manager
+
+If the requester selects privileged access, the form can request additional justification, duration, and security approval information.
+
+### System-generated demand
+
+Automated systems can also create service records. Monitoring tools may detect failures, security tools may identify vulnerabilities, or scheduled processes may generate maintenance tasks.
+
+System-generated records should include:
+
+- The source system
+- The event or trigger
+- Detection time
+- Affected service or asset
+- Severity
+- Supporting technical data
+- Correlation information
+- A stable external identifier
+
+Capturing the source makes it possible to trace the record back to the event that created it and prevent unnecessary duplicates.
+
+## 3.2 Submission and intake
+
+The submission stage converts an unstructured need into a structured record.
+
+A successful intake experience should answer five questions:
+
+1. Who needs the service?
+2. What is being requested or reported?
+3. Why is it needed?
+4. When is it needed?
+5. What supporting information is available?
+
+The answers become the initial record.
+
+### Designing the right questions
+
+An intake form should ask only questions that contribute to routing, evaluation, fulfillment, or reporting.
+
+Every field should have a clear purpose. If a field is never used to make a decision, perform work, communicate with the requester, or measure an outcome, it may not belong on the form.
+
+Questions should be organized in a logical order:
+
+- Requester information
+- Service selection
+- Description of the need
+- Business impact
+- Timing
+- Ownership or location
+- Supporting documents
+- Confirmation
+
+Labels should be specific. “Description” is less helpful than “Describe the issue and the result you expected.” “Date” is less helpful than “Date access is required.”
+
+### Drafts and form recovery
+
+Users may not have all the required information when they begin. ServiceFlow allows a draft to be stored locally under the logged-in profile.
+
+Draft saving supports several useful behaviors:
+
+- The user can leave and return later.
+- Partially completed information is not lost.
+- A complex request can be prepared before submission.
+- Sample data can be loaded and modified.
+- The form can recover after navigation or refresh.
+
+A draft should be clearly distinguished from a submitted record. Saving a draft does not mean the organization has accepted responsibility for fulfilling the request.
+
+### Required fields
+
+Required fields establish the minimum information needed to continue.
+
+When a user attempts to save an incomplete form, ServiceFlow displays a toast notification and identifies missing required information. The entered values remain available so the user can correct the form.
+
+Required-field validation should occur before serialization and persistence. This prevents incomplete data from being treated as a valid submission.
+
+### Attachments
+
+Supporting documents may be essential to a request. Examples include:
+
+- Business justification
+- Screenshots
+- Error logs
+- Architecture diagrams
+- Approval evidence
+- Spreadsheets
+- Implementation plans
+- Contracts
+- Compliance evidence
+- Images from a field-service visit
+
+ServiceFlow validates permitted file types and stores accepted files locally using the browser Cache API.
+
+Each attachment is associated with the logged-in profile and a specific record identifier. An attachment should only be visible while viewing the record to which it belongs.
+
+This rule is essential. A page-level file list could accidentally display a document belonging to another request. Record-level isolation protects context and reduces the risk of unintended disclosure.
+
+## 3.3 Validation
+
+After submission, the record must be checked before work begins.
+
+Validation determines whether the request is complete, understandable, eligible, and ready for processing.
+
+Common validation checks include:
+
+- Required information is present.
+- The requester’s identity is known.
+- The selected service exists.
+- The user is eligible for the service.
+- The request is not a duplicate.
+- Dates are reasonable.
+- Attachments use allowed formats.
+- The requested item is available.
+- The affected service or asset can be identified.
+- Required relationships are valid.
+- The request falls within the team’s responsibility.
+
+Validation may be automated, performed by an agent, or use a combination of both.
+
+### Automated validation
+
+A workflow can evaluate predictable conditions:
+
+- Is the requested date in the future?
+- Is the cost center active?
+- Does the requester belong to an eligible group?
+- Is manager approval required?
+- Does the asset exist?
+- Is the selected configuration item active?
+- Does the attachment satisfy file restrictions?
+- Does another open record have the same external identifier?
+
+Automated validation reduces repetitive work, but it should provide understandable messages when a condition fails.
+
+### Human validation
+
+Human review is necessary when the request requires interpretation.
+
+An agent may need to determine:
+
+- Whether the description is sufficiently clear
+- Whether the request belongs to the selected category
+- Whether the proposed solution is appropriate
+- Whether the business justification supports the request
+- Whether risk has been evaluated correctly
+- Whether additional stakeholders should participate
+
+If more information is required, the record can enter a pending state while the requester responds.
+
+## 3.4 Classification and prioritization
+
+Classification organizes records so they can be routed, reported, and managed consistently.
+
+A record may be classified by:
+
+- Service
+- Category
+- Subcategory
+- Request type
+- Customer
+- Department
+- Location
+- Configuration item
+- Business capability
+- Risk domain
+- Work type
+- Assignment group
+
+Classification should reflect how the organization delivers and measures services. Excessive categories create confusion, while categories that are too broad provide little operational value.
+
+### Impact and urgency
+
+Operational records frequently use impact and urgency to determine priority.
+
+**Impact** measures the scale of the effect. It may consider:
+
+- Number of users affected
+- Business services affected
+- Locations affected
+- Financial consequences
+- Regulatory exposure
+- Customer impact
+- Availability of a workaround
+
+**Urgency** measures how quickly action is required. It may consider:
+
+- Time sensitivity
+- Imminent deadlines
+- Rate of deterioration
+- Safety concerns
+- Contractual commitments
+- Executive or customer escalation
+
+Priority can then be calculated from the combination.
+
+| Impact | Urgency | Example priority |
+|---|---|---|
+| High | High | P1 Critical |
+| High | Medium | P2 High |
+| Medium | High | P2 High |
+| Medium | Medium | P3 Moderate |
+| Low | Medium | P4 Low |
+| Low | Low | P5 Planning |
+
+The exact matrix should reflect organizational policy. Users should not be expected to select a priority without guidance if impact and urgency can determine it consistently.
+
+### Risk-based prioritization
+
+Not every process uses incident-style priority. Change, compliance, portfolio, and security records may depend more heavily on risk.
+
+Risk evaluation can consider:
+
+- Likelihood
+- Business impact
+- Technical complexity
+- Security exposure
+- Regulatory consequences
+- Customer commitments
+- Implementation timing
+- Recovery difficulty
+- Dependency count
+- Quality of the backout plan
+
+A mature platform records both the calculated result and the information used to produce it.
+
+## 3.5 Assignment and ownership
+
+A record must have an accountable owner.
+
+Assignment typically occurs at two levels:
+
+- **Assignment group** — the team responsible for the work
+- **Assigned user** — the individual currently responsible
+
+A record can begin with a group assignment and receive an individual owner after triage.
+
+### Assignment methods
+
+ServiceFlow can support several assignment approaches:
+
+- Manual assignment
+- Category-based routing
+- Service-based routing
+- Location-based routing
+- Skill-based routing
+- Availability-based routing
+- Capacity-based routing
+- Customer-specific routing
+- Rotating or on-call assignment
+- AI-assisted assignment recommendations
+
+The assignment method should be understandable and reviewable. If the platform selects an unexpected team, administrators should be able to determine which rule produced the result.
+
+### Unassigned work
+
+Unassigned records require special visibility. ServiceFlow provides an Unassigned Team Work queue so that new work does not disappear simply because an individual owner has not been selected.
+
+The queue should help team leads answer:
+
+- How many records are unassigned?
+- Which records have the highest priority?
+- How long have they been waiting?
+- Which services are affected?
+- Which agents have capacity?
+- Are any records approaching an SLA breach?
+
+### Reassignment
+
+Reassignment is sometimes necessary, but repeated reassignment can indicate poor classification or unclear ownership.
+
+When a record is reassigned, the platform should preserve:
+
+- Previous assignment group
+- Previous assigned user
+- Time of reassignment
+- User making the change
+- Reason for the reassignment
+- Current assignment
+
+This information helps identify routing problems and training opportunities.
+
+## 3.6 Approval
+
+Some services require authorization before work can proceed.
+
+Approval may be required because of:
+
+- Cost
+- Security
+- Risk
+- Policy
+- Data sensitivity
+- Regulatory obligations
+- Resource availability
+- Business ownership
+- Contract terms
+- Change-management controls
+
+Approval should be treated as a business decision, not just a button click.
+
+### Approval information
+
+An approver should receive sufficient context:
+
+- What is being requested
+- Who requested it
+- Who will receive the service
+- Business justification
+- Cost
+- Risk
+- Required date
+- Supporting documents
+- Previous decisions
+- Consequences of approval or rejection
+
+The approver should not need to navigate through unrelated fields to understand the decision.
+
+### Approval outcomes
+
+Typical outcomes include:
+
+- Approved
+- Rejected
+- More Information Required
+- Cancelled
+- Delegated
+- Expired
+
+Each decision should include:
+
+- Approver identity
+- Decision
+- Date and time
+- Comments
+- Supporting evidence
+- Resulting workflow action
+
+If more information is required, the record should return to the appropriate participant without losing its history.
+
+### Sequential and parallel approvals
+
+Approvals may be sequential or parallel.
+
+A sequential approval might require:
+
+1. Manager approval
+2. Application owner approval
+3. Security approval
+
+A parallel approval might send the request to finance, security, and service ownership at the same time.
+
+Parallel approvals can reduce waiting time, but the workflow must define what happens when decisions conflict. The process might require unanimous approval, approval from any one participant, or approval from a specific minimum number.
+
+## 3.7 Fulfillment and resolution
+
+After validation and approval, the organization performs the work.
+
+For a service request, this stage is normally called fulfillment. For an incident, it is usually called investigation and resolution. For a change, it includes implementation. For a risk record, it may involve remediation.
+
+Although the terminology differs, the operational requirements are similar.
+
+### Fulfillment tasks
+
+A single request may produce several tasks.
+
+For example, onboarding a new employee could require:
+
+- Create an identity account.
+- Issue a laptop.
+- Grant application access.
+- Configure email.
+- Prepare building access.
+- Schedule orientation.
+- Notify the manager.
+
+The original request represents the overall need, while fulfillment tasks divide the work among responsible teams.
+
+Each task should include:
+
+- Clear instructions
+- Assignment
+- Due date
+- Dependencies
+- Required inputs
+- Completion criteria
+- Work notes
+- Outcome
+
+### Work notes and comments
+
+Internal work notes and customer-visible comments serve different audiences.
+
+**Work notes** document internal analysis, coordination, and technical actions.
+
+**Customer-visible comments** communicate progress in language appropriate for the requester.
+
+These fields should remain separate. Internal notes may contain technical details, security information, or operational discussion that should not appear in customer communications.
+
+### Pending states
+
+Work may pause while waiting for:
+
+- The requester
+- A supplier
+- An approval
+- A scheduled window
+- A dependent task
+- A replacement part
+- Additional evidence
+- A third-party response
+
+The pending reason should be explicit. A generic pending state makes it difficult to understand who must act next.
+
+Service-level calculations may pause for some pending reasons but continue for others. This behavior should be governed by documented rules.
+
+## 3.8 Service-level commitments
+
+A service-level agreement, or SLA, defines a measurable time commitment.
+
+An SLA can apply to:
+
+- Initial response
+- Assignment
+- Approval
+- Resolution
+- Fulfillment
+- Customer update
+- Restoration
+- Closure
+
+A complete SLA definition should include:
+
+- Start condition
+- Pause condition
+- Stop condition
+- Target duration
+- Business schedule
+- Warning threshold
+- Breach action
+- Escalation path
+
+### SLA states
+
+A record might appear as:
+
+- On Track
+- At Risk
+- Breached
+- Paused
+- Completed
+- Cancelled
+
+ServiceFlow includes SLA-focused queues so agents and managers can identify records requiring intervention.
+
+An SLA is most valuable before it breaches. Warning thresholds help teams act while there is still time to recover.
+
+### Business schedules
+
+A four-hour target does not always mean four consecutive clock hours.
+
+The calculation might use:
+
+- Business hours
+- Support calendars
+- Holidays
+- Customer time zones
+- Maintenance windows
+- On-call schedules
+- Contract-specific calendars
+
+A production SLA engine must evaluate these schedules consistently and preserve the calculation history.
+
+## 3.9 Communication throughout the lifecycle
+
+Users should not need to repeatedly contact a service team to discover what is happening.
+
+Communication can occur when:
+
+- A request is submitted.
+- Ownership is assigned.
+- More information is required.
+- Approval is requested.
+- A decision is recorded.
+- Work begins.
+- A target is at risk.
+- An appointment is scheduled.
+- Fulfillment is completed.
+- The record is resolved or closed.
+
+Different audiences may require different messages. A technical resolver group may need detailed error information, while an executive stakeholder may need a concise business-impact update.
+
+Communication preferences can include:
+
+- Email
+- Portal notification
+- SMS
+- Chat
+- Push notification
+- Collaboration platforms
+- In-application alerts
+
+Every message should identify the relevant record and provide a clear next action when one is required.
+
+## 3.10 Confirmation
+
+Completion by the service team does not always mean the user’s need has been satisfied.
+
+Confirmation gives the requester or customer an opportunity to verify the outcome.
+
+A confirmation step may ask:
+
+- Was the requested service delivered?
+- Is the system working as expected?
+- Was access granted correctly?
+- Did the resolution address the problem?
+- Is additional assistance required?
+
+Possible confirmation outcomes include:
+
+- Confirmed
+- Partially completed
+- Disputed
+- No response
+- Reopened
+
+If the outcome is disputed, the workflow should return the record to an appropriate active state rather than creating an unrelated request.
+
+## 3.11 Closure
+
+Closure formally completes the service lifecycle.
+
+A record should not close merely because an agent stops working on it. Closure requires evidence that the defined completion conditions have been met.
+
+Closure information may include:
+
+- Resolution or closure code
+- Resolution summary
+- Work completed
+- Actual start and completion times
+- Customer confirmation
+- Known limitations
+- Follow-up actions
+- Related knowledge article
+- Final cost
+- Success or failure assessment
+- Closing user
+- Closure timestamp
+
+Different processes require different closure criteria.
+
+### Incident closure
+
+An incident might require:
+
+- Service restored
+- Resolution recorded
+- User informed
+- Resolution code selected
+- Related problem created when appropriate
+
+### Change closure
+
+A change might require:
+
+- Implementation completed
+- Validation performed
+- Outcome recorded
+- Backout status documented
+- Post-implementation review completed
+- Actual timing captured
+- Closure code selected
+
+### Request closure
+
+A request might require:
+
+- Fulfillment tasks completed
+- Requested item delivered
+- User confirmation received or timed out
+- Final notes recorded
+- Entitlement or inventory updated
+
+Clear closure requirements improve reporting and prevent incomplete records from being treated as successful outcomes.
+
+## 3.12 Measurement and improvement
+
+Closure is the end of an individual record, but it should also contribute to service improvement.
+
+Lifecycle data can answer questions such as:
+
+- Which services receive the most demand?
+- Where do requests wait the longest?
+- Which approval stages create delays?
+- Which assignment groups receive incorrectly routed work?
+- Which incidents recur?
+- Which changes cause service disruption?
+- Which catalog items are abandoned?
+- Which records frequently require more information?
+- Which services breach commitments?
+- Which resolutions produce the highest satisfaction?
+
+These questions require reliable timestamps, states, ownership, and outcomes.
+
+### Useful lifecycle measures
+
+Common measures include:
+
+- Submission volume
+- First-response time
+- Assignment time
+- Approval duration
+- Fulfillment duration
+- Resolution time
+- Reassignment count
+- Reopen rate
+- SLA attainment
+- Change success rate
+- Customer satisfaction
+- Customer effort
+- Backlog age
+- Percentage of records requiring additional information
+
+Metrics should lead to action. A dashboard that shows approval delays is valuable only if service owners can identify the affected process and improve it.
+
+## 3.13 An end-to-end example
+
+Consider an employee requesting a development laptop.
+
+### Submission
+
+The employee selects the hardware service and provides:
+
+- Requested-for user
+- Business justification
+- Device type
+- Required software
+- Cost center
+- Delivery location
+- Needed-by date
+
+### Validation
+
+The platform confirms that:
+
+- Required fields are complete.
+- The employee profile exists.
+- The delivery location is valid.
+- The request falls within the available catalog.
+- The cost center is active.
+
+### Classification and priority
+
+The record is classified as a hardware request. Its required date and onboarding relationship determine the priority.
+
+### Approval
+
+Because the estimated cost exceeds a defined threshold, the request is sent to the employee’s manager.
+
+The manager approves the request and records a comment.
+
+### Fulfillment
+
+The workflow creates tasks for:
+
+- Inventory reservation
+- Device configuration
+- Software installation
+- Security-policy validation
+- Delivery
+
+Each task is assigned to the appropriate team.
+
+### Communication
+
+The employee receives updates when the request is approved, when the device is prepared, and when delivery is scheduled.
+
+### Confirmation
+
+After receiving the laptop, the employee confirms that the device and applications are working.
+
+### Closure
+
+The request closes with:
+
+- Device asset identifier
+- Delivery date
+- Fulfillment notes
+- Customer confirmation
+- Final cost
+- Closure code
+
+### Measurement
+
+The completed record contributes to measures for fulfillment duration, approval time, asset availability, and user satisfaction.
+
+This example shows how one service record connects intake, validation, approval, tasks, assets, communication, confirmation, and reporting.
+
+## 3.14 Designing lifecycle stages responsibly
+
+A lifecycle should be detailed enough to support control but simple enough for users to understand.
+
+Too few stages create ambiguity. Too many stages make records difficult to manage and encourage users to select inaccurate states.
+
+A useful stage should represent a meaningful operational condition.
+
+For each stage, define:
+
+- Purpose
+- Entry criteria
+- Required information
+- Responsible role
+- Allowed actions
+- Notifications
+- SLA behavior
+- Exit criteria
+- Next possible stages
+
+The lifecycle should also account for exceptions:
+
+- Cancellation
+- Rejection
+- Duplicate records
+- Reopening
+- Failed fulfillment
+- Backout
+- Expired approval
+- Missing information
+- System errors
+
+A well-designed process includes both the expected journey and the paths used when something goes wrong.
+
+## Chapter summary
+
+The service lifecycle transforms an initial need into a controlled and measurable outcome.
+
+Its major stages are:
+
+- Submission
+- Validation
+- Classification and prioritization
+- Assignment
+- Approval
+- Fulfillment or resolution
+- Confirmation
+- Closure
+- Measurement and improvement
+
+ServiceFlow makes this lifecycle visible through structured records, business-specific forms, assignments, workflow states, approval controls, SLA indicators, communications, attachments, and operational reporting.
+
+The next chapter begins the examination of individual user experiences, starting with employee self-service and the role of portals, catalogs, knowledge, and request tracking.
+
