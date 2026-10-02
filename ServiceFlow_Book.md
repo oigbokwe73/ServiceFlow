@@ -4422,3 +4422,1100 @@ Its core capabilities include:
 A successful customer-service platform prevents organizational complexity from becoming the customer’s burden.
 
 The next chapter examines ServiceFlow administration and profiles, including user identity, preferences, local storage, dataset management, record ownership, session behavior, and platform configuration.
+
+# Chapter 7  
+# Administration and User Profiles
+
+A service-management platform depends on more than forms and workflows. It also needs reliable information about users, permissions, preferences, data sources, sessions, and configuration.
+
+Administration determines how the platform is organized and maintained. User profiles determine how the platform adapts to each logged-in person.
+
+ServiceFlow combines these responsibilities through its Administration, My Profile, and Sync Center pages. Together, they support user management, profile customization, local records, document storage, dataset caching, session behavior, and server synchronization.
+
+The current implementation uses a local-first identity model suitable for a playground and demonstration environment. It also illustrates the requirements that would need to move to a secure backend before enterprise deployment.
+
+## 7.1 The purpose of platform administration
+
+Administration provides controlled ways to configure and support the platform.
+
+Administrative responsibilities may include:
+
+- Managing users
+- Maintaining profile information
+- Defining roles
+- Managing groups
+- Configuring services
+- Maintaining reference data
+- Reviewing stored datasets
+- Monitoring synchronization
+- Managing local caches
+- Configuring forms
+- Publishing pages
+- Managing workflows
+- Reviewing activity
+- Supporting security controls
+
+A well-designed administration experience should centralize these responsibilities without placing unnecessary complexity in ordinary user workspaces.
+
+Administrators need broad visibility, but administrative controls should still be organized by purpose.
+
+## 7.2 The Administration page
+
+The ServiceFlow Administration page uses a sidebar-and-content layout.
+
+The administrative sidebar provides access to forms and management areas, while the main panel displays the selected function. This allows the administrator to remain within one workspace while switching between related activities.
+
+Typical administrative areas can include:
+
+- Users
+- Groups
+- Roles
+- Services
+- Categories
+- Assignment rules
+- Notification settings
+- Data sources
+- Integration settings
+- Workflow configuration
+- Platform preferences
+- Audit information
+
+### Administrative navigation
+
+The administration sidebar should:
+
+- Highlight the active section
+- Remain stable when the user edits a form
+- Support keyboard navigation
+- Work on mobile and desktop layouts
+- Preserve the selected area where appropriate
+- Avoid resetting unsaved information
+
+Consistent navigation is especially important when an administrator works across several related forms.
+
+## 7.3 User records
+
+A user record represents a person who can interact with the platform or participate in a service process.
+
+A user record may include:
+
+- Unique identifier
+- Name
+- Email address
+- Job title
+- Department
+- Manager
+- Location
+- Phone number
+- Time zone
+- Language
+- Employment status
+- Role
+- Group membership
+- Notification preferences
+- Active status
+
+ServiceFlow includes a large user dataset with varied job titles. This supports realistic assignments, approvals, requester selection, and administration testing.
+
+### Unique identifiers
+
+The current local experience uses the normalized email address as the profile identifier.
+
+For example:
+
+```text
+alex.morgan@serviceflow.example
+```
+
+Normalization converts the value into a predictable format, usually by trimming spaces and converting it to lowercase.
+
+This prevents separate local profiles from being created for values such as:
+
+```text
+Alex.Morgan@ServiceFlow.Example
+alex.morgan@serviceflow.example
+```
+
+In a production environment, the platform would normally use a stable identity-provider identifier. Email addresses can change, so they should not always serve as permanent enterprise keys.
+
+## 7.4 Profile creation
+
+When a user logs in, ServiceFlow loads the profile associated with the entered email address.
+
+If a saved profile exists, the platform uses it. If no profile exists, the platform can initialize a default profile containing basic values.
+
+The profile may include:
+
+```json
+{
+  "email": "alex.morgan@serviceflow.example",
+  "name": "Alex Morgan",
+  "role": "Platform administrator",
+  "department": "Technology",
+  "location": "New York HQ",
+  "timezone": "America/New_York",
+  "theme": "light",
+  "density": "Comfortable",
+  "startPage": "home"
+}
+```
+
+The profile should be stored separately from platform-wide sample data.
+
+### Profile identity
+
+The logged-in profile influences:
+
+- Displayed name and role
+- Local-storage keys
+- Cached datasets
+- Saved records
+- Attachments
+- Navigation preferences
+- Theme
+- Start page
+- Activity information
+- Synchronization ownership
+
+This separation allows multiple users of the same browser to maintain different local experiences.
+
+## 7.5 Profile customization
+
+The My Profile page allows the logged-in user to update personal and experience settings.
+
+Editable profile fields can include:
+
+- Display name
+- Job title or role
+- Department
+- Location
+- Phone number
+- Manager
+- Time zone
+- Language
+- Biography
+- Theme
+- Display density
+- Preferred start page
+- Notification preferences
+
+When the user saves the profile, ServiceFlow stores the updated values under the normalized email address.
+
+### Local profile precedence
+
+If a default profile and a locally edited profile both exist, the local values take priority.
+
+This follows the same principle used for business records:
+
+> The user’s local update should not be replaced by an older default or published value.
+
+### Theme
+
+Theme preferences can control visual presentation, such as light or dark mode.
+
+A theme change should:
+
+1. Update the page immediately.
+2. Save the preference.
+3. Apply it on future visits.
+4. Display a confirmation toast.
+
+Theme support should preserve sufficient contrast and accessibility in every mode.
+
+### Display density
+
+Display density controls how much information appears within the available space.
+
+Possible settings include:
+
+- Comfortable
+- Compact
+
+A comfortable layout uses more spacing and may be easier to scan. A compact layout can help agents work with larger tables.
+
+Density should not reduce touch-target sizes below accessible limits.
+
+### Preferred start page
+
+A user may choose the workspace that should open after login.
+
+Examples include:
+
+- Command Center
+- Employee Center
+- Agent Workspace
+- My Open Work
+- Change Requests
+- Reports
+- Administration
+
+The selected page should be validated against the user’s access rights in a production environment.
+
+## 7.6 User roles
+
+Roles describe the responsibilities or capabilities assigned to a user.
+
+Examples include:
+
+- Employee
+- Service desk agent
+- Change manager
+- Knowledge manager
+- Customer-service agent
+- HR agent
+- Platform administrator
+- Security analyst
+- Portfolio manager
+- Approver
+
+A role can influence:
+
+- Available navigation
+- Record visibility
+- Editable fields
+- Assignment eligibility
+- Approval authority
+- Administrative actions
+- Reporting access
+
+### Current ServiceFlow behavior
+
+The ServiceFlow playground displays role information and can adapt portions of the user experience. However, browser-side role behavior is not equivalent to enterprise authorization.
+
+If a hidden page or button can still be accessed by modifying browser code or a URL, the control is not secure.
+
+### Production authorization
+
+A production platform should enforce access on the server through:
+
+- Roles
+- Groups
+- Record-level rules
+- Table permissions
+- Field permissions
+- Attachment permissions
+- API authorization
+- Administrative scopes
+
+The server should evaluate access for every protected operation.
+
+## 7.7 Groups and assignment
+
+Groups organize users around responsibilities.
+
+Examples include:
+
+- Service Desk
+- Network Operations
+- Cloud Platform
+- Enterprise Applications
+- HR Operations
+- Customer Care
+- Security Operations
+- Field Service
+- Change Management
+
+A group record can include:
+
+- Group name
+- Description
+- Manager
+- Members
+- Supported services
+- Locations
+- Schedule
+- Escalation path
+- Active status
+
+Groups support assignment, approvals, notifications, on-call coverage, and reporting.
+
+### Assigned-user dropdowns
+
+Forms that assign work should use a user list consistent with the selected group when possible.
+
+When a dataset contains more than ten possible users, searchable combobox behavior helps the user find the correct person.
+
+The dropdown should not display an unnecessary record count beneath the control. It should provide matching options directly within the selection experience.
+
+## 7.8 Local profile storage
+
+ServiceFlow associates local data with the user’s email address.
+
+A local-storage key follows a profile-specific pattern:
+
+```text
+serviceflow:user:<email>:<data-type>
+```
+
+Conceptually:
+
+```text
+serviceflow:user:alex.morgan@serviceflow.example:profile
+serviceflow:user:alex.morgan@serviceflow.example:draft:changes
+serviceflow:user:alex.morgan@serviceflow.example:records:incidents
+serviceflow:user:alex.morgan@serviceflow.example:sidebarState
+```
+
+This prevents records belonging to one logged-in profile from automatically appearing in another profile’s local workspace.
+
+### Suitable LocalStorage content
+
+LocalStorage works well for:
+
+- Profile preferences
+- Small drafts
+- Navigation state
+- Local record overrides
+- Activity summaries
+- Workflow configuration
+- Synchronization queue metadata
+
+It is not well suited for large datasets or file content.
+
+## 7.9 Local record management
+
+The My Profile page can display records and settings saved under the current user.
+
+This gives the user visibility into local information that might otherwise remain hidden in browser storage.
+
+The profile manager can show:
+
+- Record label
+- Data category
+- Last update
+- Storage source
+- Removal action
+
+The user can remove one saved item without clearing the complete profile.
+
+### Removing an individual record
+
+When the user removes a saved record, the platform should:
+
+1. Identify the exact local-storage entry.
+2. Remove only the selected record.
+3. Preserve unrelated records.
+4. Refresh cached views.
+5. Display a toast notification.
+
+If the removed record was overriding a published record, the published version may become visible again.
+
+### Clearing profile data
+
+The user can also clear local workspace data for the complete profile.
+
+This can remove:
+
+- Drafts
+- Locally created records
+- Local overrides
+- Activity information
+- Navigation preferences
+- Cached datasets
+- Cached attachments
+
+The operation should affect only the active profile.
+
+Because clearing data can be destructive, the interface should explain the scope and request confirmation.
+
+## 7.10 IndexedDB dataset storage
+
+Large structured datasets are stored in IndexedDB.
+
+IndexedDB is more appropriate than LocalStorage for:
+
+- Hundreds or thousands of records
+- Structured datasets
+- Cached API responses
+- Offline lookup data
+- Dataset metadata
+- Refresh timestamps
+
+ServiceFlow creates profile-scoped dataset keys so that cached data remains associated with the logged-in user.
+
+### Read-through caching
+
+When a page requests data, ServiceFlow can follow this sequence:
+
+1. Check in-memory data.
+2. Check the profile’s IndexedDB cache.
+3. Request published or server data.
+4. Store a successful response in IndexedDB.
+5. Return the merged result.
+6. Use cached data if the network is unavailable.
+
+This approach improves performance and supports offline demonstrations.
+
+### Data freshness
+
+Cached data needs freshness information.
+
+Useful metadata includes:
+
+- Dataset name
+- Record count
+- Cached time
+- Source URL
+- Profile
+- Version
+- Last successful refresh
+- Refresh status
+
+Without freshness information, the user cannot determine whether cached records are current.
+
+## 7.11 Refreshing profile data
+
+The profile experience provides an option to refresh datasets.
+
+A refresh operation should:
+
+1. Identify the profile’s cached datasets.
+2. Request current information from configured sources.
+3. Validate the response.
+4. Replace the appropriate cache entry.
+5. Preserve local record overrides.
+6. Update freshness metadata.
+7. Display the result.
+
+### Preserve local priority
+
+Refreshing published data should not discard local edits.
+
+The merge should continue to follow this order:
+
+1. Load refreshed published data.
+2. Apply locally created records.
+3. Apply matching local overrides.
+4. Display the merged records.
+
+This allows the user to receive updated shared information without losing unfinished work.
+
+### Refresh failures
+
+If a refresh fails, the platform should:
+
+- Keep the previous cache
+- Explain that current data could not be retrieved
+- Show the last successful refresh time
+- Allow the user to retry
+- Avoid presenting an empty table as a successful result
+
+## 7.12 Browser Cache API for documents
+
+Documents require a different storage mechanism from structured datasets.
+
+ServiceFlow stores permitted uploads through the browser Cache API. Supported files include:
+
+- PDF
+- Word documents
+- JSON
+- XML
+- Images
+
+Each cached document contains metadata such as:
+
+```json
+{
+  "id": "FILE-1790907448642",
+  "page": "changes",
+  "recordId": "CHG-00731",
+  "name": "implementation-plan.pdf",
+  "type": "application/pdf",
+  "size": 184225,
+  "uploadedBy": "alex.morgan@serviceflow.example",
+  "uploadedAt": "2026-10-02T14:30:00Z"
+}
+```
+
+### Profile isolation
+
+Each profile uses a separate cache namespace. A file stored under one user’s profile is not listed under another profile.
+
+### Record isolation
+
+Profile isolation alone is insufficient. Files must also be associated with the exact record.
+
+ServiceFlow therefore filters documents using the record identifier.
+
+A file is displayed only when:
+
+```text
+Stored profile = logged-in profile
+AND
+Stored record ID = current record ID
+```
+
+This prevents a document attached to one change, incident, case, or request from appearing on another.
+
+### Draft record identifiers
+
+A new unsaved form does not yet have a final record number. ServiceFlow generates a stable draft attachment identifier.
+
+For example:
+
+```text
+DRAFT-6fc1fc56-2045-4055-90df-90116969114f
+```
+
+Files uploaded before submission are attached to this draft identifier. The identifier is serialized with the form so the association can be restored later.
+
+### Legacy unscoped files
+
+Files without a valid record identifier are not shown broadly. This avoids exposing old page-level uploads across unrelated records.
+
+An administrative migration process could later assign those files to the correct records or remove them.
+
+## 7.13 File validation
+
+Before storing a document, ServiceFlow validates:
+
+- File extension
+- Media type
+- File size
+- Browser Cache API availability
+
+If the file is unsupported, the platform rejects it and displays a toast notification.
+
+The file chooser continues displaying the selected filename, while the uploaded-files panel provides:
+
+- Filename
+- Size
+- View action
+- Remove action
+
+### Production file controls
+
+A production platform should add:
+
+- Malware scanning
+- Content validation
+- Encryption
+- Access-control checks
+- Retention rules
+- Versioning
+- Download auditing
+- Secure server storage
+- Data-classification labels
+- Legal hold
+- Secure deletion
+
+Browser storage is appropriate for the playground, but it is not a replacement for governed enterprise document management.
+
+## 7.14 Session management
+
+ServiceFlow uses a ten-minute sliding inactivity session.
+
+The session is renewed when the platform detects:
+
+- Keyboard activity
+- Touch activity
+
+The session should not expire while the user is actively entering information.
+
+When the inactivity period expires:
+
+1. The active session is cleared.
+2. The user is returned to the login page.
+3. Protected workspace content is hidden.
+4. A new login is required.
+
+### Sliding expiration
+
+Sliding expiration means the timeout is calculated from the user’s most recent activity.
+
+For example:
+
+```text
+9:00 — User logs in
+9:07 — User types in a form
+9:17 — New expiration time
+```
+
+Without the activity at 9:07, the session would have expired at 9:10.
+
+### Production session security
+
+A production session model should also support:
+
+- Server-issued session tokens
+- Secure cookies
+- Token expiration
+- Session revocation
+- Device management
+- Concurrent-session rules
+- Multifactor authentication
+- Suspicious-login detection
+- Reauthentication for sensitive actions
+
+A browser timestamp alone is not sufficient for secure authentication.
+
+## 7.15 Login experience
+
+The login page creates the local user context.
+
+A good login experience should:
+
+- Avoid flashing between the login and workspace pages
+- Validate the email address
+- Load the correct profile
+- Establish the session
+- Apply profile preferences
+- Open the preferred start page
+- Restore appropriate navigation state
+- Display clear failure messages
+
+### Avoiding page flashing
+
+Login flashing occurs when workspace content becomes visible before the application determines whether the session is valid.
+
+The application should resolve authentication state before rendering protected content.
+
+Conceptually:
+
+```text
+Application starts
+       ↓
+Session check
+   ↙       ↘
+Valid      Invalid
+ ↓           ↓
+Show app   Show login
+```
+
+The interface should not briefly display both states.
+
+## 7.16 Sidebar state
+
+ServiceFlow preserves sidebar state as users move between separately hosted pages.
+
+Stored sidebar information may include:
+
+- Active page
+- Scroll position
+- Mobile open or closed state
+- Saved time
+
+When the destination page loads, the platform restores the navigation context.
+
+This creates a more continuous experience even though each sidebar destination has its own published URL.
+
+### Why state preservation matters
+
+The platform contains many pages. A user working near the bottom of the navigation should not be returned to the top of the sidebar after every selection.
+
+Small continuity improvements can significantly reduce frustration in a large application.
+
+## 7.17 Activity logging
+
+ServiceFlow records selected user actions locally.
+
+Examples include:
+
+- Login
+- Page viewed
+- Profile updated
+- Record saved
+- Attachment uploaded
+- Approval decision
+- Dataset refreshed
+- Theme changed
+- Workflow exported
+- Synchronization requested
+
+An activity entry can contain:
+
+- Action
+- Target
+- Timestamp
+- User
+- Page
+- Record identifier
+
+### Audit versus activity
+
+An activity log is not automatically an audit log.
+
+A trustworthy enterprise audit trail should be:
+
+- Server-side
+- Append-only
+- Protected from ordinary users
+- Timestamped consistently
+- Associated with verified identities
+- Retained according to policy
+- Searchable
+- Exportable for authorized investigations
+
+Local activity is useful for the playground but can be modified or cleared by someone with access to the browser.
+
+## 7.18 Synchronization management
+
+The Sync Center provides visibility into local changes intended for a backend service.
+
+A synchronization item can include:
+
+- Data type
+- Record identifier
+- Operation
+- Created time
+- Profile
+- Attempt count
+- Status
+- Last error
+- Next retry
+
+Possible statuses include:
+
+- Pending
+- Synchronizing
+- Synchronized
+- Failed
+- Conflict
+- Cancelled
+
+### Synchronization sequence
+
+A typical sequence is:
+
+1. User saves a record.
+2. The record is stored locally.
+3. A pending synchronization item is created.
+4. The client sends JSON to the server.
+5. The server validates and stores the record.
+6. The server returns a result.
+7. The local item is marked synchronized.
+8. The displayed record is refreshed.
+
+If the request fails, the local record remains available and the synchronization item records the failure.
+
+### Conflict detection
+
+A conflict occurs when the server record changes after the local version was loaded.
+
+Possible resolution strategies include:
+
+- Server wins
+- Local wins
+- Most recent update wins
+- Field-level merge
+- Manual comparison
+- Create a new version
+
+For important service records, silent last-write-wins behavior can lose information. Version numbers and update timestamps help detect conflicts.
+
+## 7.19 Data-source administration
+
+Administrators need to understand where platform data comes from.
+
+A data-source definition may contain:
+
+- Name
+- Business purpose
+- Read URL
+- Edit URL
+- Content type
+- Authentication method
+- Refresh interval
+- Expected schema
+- Record identifier
+- Owner
+- Last successful load
+- Error status
+
+ServiceFlow uses published JSON datasets during development and hosted operation.
+
+API calls should be centralized through a shared service rather than scattered across feature modules. This improves consistency for:
+
+- Error handling
+- Fallback behavior
+- Authentication
+- Response parsing
+- Retries
+- Logging
+- Cache integration
+
+## 7.20 Page publishing administration
+
+Every ServiceFlow page has a publication record containing:
+
+- Page key
+- Name
+- Local HTML path
+- Read URL
+- Edit URL
+- Response file
+
+The Read URL is used for navigation and verification. The Edit URL is retained for future updates.
+
+Using the existing Edit URL prevents the platform from creating replacement pages every time a change is published.
+
+### Publication workflow
+
+A controlled publication process should:
+
+1. Build the page from shared source files.
+2. Validate the generated HTML.
+3. Read the saved publication response.
+4. Update the existing hosted page.
+5. Preserve its Read URL.
+6. Save the latest response.
+7. Update the publication manifest.
+8. Verify the hosted page.
+
+A two-pass publication process can ensure all pages contain the final Read URLs for cross-page navigation.
+
+### Publication manifest
+
+The manifest provides an inventory of hosted assets.
+
+It should include:
+
+- Platform name
+- Endpoint
+- Publication time
+- Page count
+- Updated pages
+- Navigation mode
+- Page records
+- Read URLs
+- Edit URLs
+- Response-file locations
+
+This makes future updates deterministic and auditable.
+
+## 7.21 Administrative data tables
+
+Administrative tables should follow the same interaction standards as operational tables.
+
+Every table should support:
+
+- Search
+- Filtering
+- Sortable columns
+- Pagination
+- Scrolling
+- CSV export
+- Record links
+- Edit actions
+
+A user table might include:
+
+- Name
+- Email
+- Job title
+- Department
+- Manager
+- Location
+- Role
+- Status
+- Edit link
+
+The Edit link should open the correct record in the administrative form using query parameters.
+
+### Editing a user
+
+When an administrator opens a user record:
+
+1. The user identifier is read from the URL.
+2. Published and local user data are merged.
+3. The complete record populates the form.
+4. The local version takes priority.
+5. The administrator makes changes.
+6. Required fields are validated.
+7. The form is serialized to JSON.
+8. The updated record is saved locally.
+9. The table displays the updated information.
+10. The change can be synchronized.
+
+## 7.22 Administrative notifications
+
+Every administrative action should provide feedback.
+
+Examples include:
+
+- User saved
+- Profile updated
+- Dataset refreshed
+- Cache cleared
+- Record removed
+- Publication completed
+- Synchronization failed
+- Required information missing
+- Unsupported file rejected
+
+Toast notifications provide immediate status without forcing the administrator to dismiss a modal after every action.
+
+Destructive actions require stronger confirmation and a clear explanation of scope.
+
+## 7.23 Security boundaries
+
+The local-first model is useful for demonstration, but important security boundaries must be understood.
+
+Browser-side code cannot securely enforce:
+
+- Authentication
+- Authorization
+- Record access
+- Field restrictions
+- Administrative privileges
+- Audit integrity
+- Data retention
+- Attachment governance
+- API credentials
+
+A user with browser access can inspect and modify local code or storage.
+
+A production implementation must move critical decisions to trusted server components.
+
+### Server-enforced controls
+
+Required controls include:
+
+- Identity-provider integration
+- Multifactor authentication
+- Role-based access
+- Record-level access
+- Field-level access
+- API authorization
+- Encryption
+- Server-side validation
+- Audit history
+- Session revocation
+- Data retention
+- Secure attachment storage
+- Secret management
+
+The user interface may hide unavailable actions for usability, but the backend must enforce the actual restriction.
+
+## 7.24 Delegated administration
+
+Large organizations may not want one central team to manage every configuration.
+
+Delegated administration allows selected users to manage a limited scope.
+
+Examples include:
+
+- HR administrators managing HR categories
+- Regional administrators managing local users
+- Service owners managing their catalog items
+- Group managers managing team membership
+- Knowledge owners managing their knowledge base
+- Customer administrators managing contacts for one account
+
+Delegation should define:
+
+- Administrative scope
+- Allowed actions
+- Restricted fields
+- Approval requirements
+- Expiration
+- Audit behavior
+
+This distributes responsibility without granting unnecessary platform-wide control.
+
+## 7.25 An administrative example
+
+Consider an administrator onboarding a new support agent.
+
+### Create the user
+
+The administrator enters:
+
+- Name
+- Email
+- Job title
+- Department
+- Manager
+- Location
+- Time zone
+- Role
+- Active status
+
+### Assign responsibilities
+
+The user is added to the Service Desk group and assigned the Service Desk Agent role.
+
+### Configure the profile
+
+The user’s default start page is set to My Open Work. Display density is set to Compact, and email notifications are enabled.
+
+### Save locally
+
+The form is validated and serialized to JSON. The user record is stored under the administrator’s local profile and appears immediately in the user table.
+
+### Synchronize
+
+The record is added to the synchronization queue. The server validates the unique email address, stores the new user, and returns a successful result.
+
+### First login
+
+The new agent logs in. ServiceFlow loads the profile, applies the preferred start page, and opens My Open Work.
+
+This example connects administration, profiles, groups, roles, local persistence, synchronization, and the user experience.
+
+## 7.26 Improving administration
+
+Administrative experiences should be reviewed using the same service-design principles applied to employee and customer journeys.
+
+Administrators need:
+
+- Clear ownership
+- Consistent forms
+- Reliable search
+- Bulk actions
+- Change history
+- Preview before publication
+- Validation
+- Recovery options
+- Environment separation
+- Documentation
+- Testing
+- Notifications
+
+Future ServiceFlow enhancements could include:
+
+- Bulk user import
+- Role and group editors
+- Configuration versioning
+- Approval for sensitive changes
+- Scheduled dataset refresh
+- Configuration comparison
+- Rollback
+- Automated tests
+- Health scans
+- Feature flags
+- Environment promotion
+- Delegated administration
+
+## Chapter summary
+
+Administration and profiles provide the operational foundation for the ServiceFlow experience.
+
+Their core capabilities include:
+
+- User records
+- Email-associated local profiles
+- Profile customization
+- Roles and groups
+- Searchable assignment fields
+- Profile-scoped LocalStorage
+- Individual record removal
+- Profile cache clearing
+- IndexedDB datasets
+- Dataset refresh
+- Browser Cache API documents
+- Profile and record attachment isolation
+- Ten-minute sliding inactivity sessions
+- Login-state management
+- Sidebar-state preservation
+- Local activity records
+- Synchronization queues
+- Data-source configuration
+- Deterministic page publication
+- Administrative tables and forms
+- Security boundaries
+- Delegated administration
+
+These capabilities make the platform personal, configurable, and maintainable while establishing a path from a browser-based playground to a governed enterprise service platform.
+
+The next chapter begins the detailed examination of records and forms by exploring how to design effective intake experiences for different business categories.
