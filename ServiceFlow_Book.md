@@ -9110,3 +9110,1365 @@ Their core capabilities include:
 - Operational performance measures
 
 The next chapter examines Workflow Designer and shows how ServiceFlow converts process requirements into visual steps, conditions, assignments, outcomes, and reusable JSON definitions.
+# Chapter 11  
+# Workflow Designer
+
+Forms collect information. Workflows turn that information into coordinated action.
+
+A workflow determines what happens after a record is created or changed. It can validate information, evaluate conditions, assign work, request approval, wait for an event, call another system, send a notification, or update the record.
+
+ServiceFlow’s Workflow Designer provides a visual environment for arranging these actions into connected steps. Each step has its own configuration, and the complete definition can be saved locally and exported as JSON.
+
+The designer demonstrates the experience required to build workflows. A production platform would extend this experience with a secure server-side execution engine, versioning, testing, monitoring, and governance.
+
+## 11.1 The purpose of workflow design
+
+A workflow converts a business process into an executable sequence.
+
+A well-designed workflow answers:
+
+- What starts the process?
+- Which record or event is involved?
+- What information is available?
+- Which conditions affect the path?
+- Who must act?
+- Which approvals are required?
+- What happens when the process succeeds?
+- What happens when it fails?
+- How long should the process wait?
+- How is the outcome recorded?
+
+Without workflow automation, these decisions often depend on email, memory, or manual coordination.
+
+Workflow design helps organizations create repeatable behavior.
+
+## 11.2 Workflow definition
+
+A workflow definition describes the process before it runs.
+
+ServiceFlow captures definition information such as:
+
+- Workflow name
+- Record table
+- Trigger event
+- Trigger condition
+- Version
+- Description
+- Steps
+- Step order
+- Step configuration
+- Connections
+- Outcomes
+
+An example definition might be:
+
+```json
+{
+  "name": "Privileged Access Approval",
+  "table": "request",
+  "trigger": {
+    "event": "record.created",
+    "condition": "accessType = Privileged"
+  },
+  "version": "1.0",
+  "steps": []
+}
+```
+
+The workflow definition is different from a workflow execution.
+
+- The definition is the reusable design.
+- The execution is one running instance of that design for a specific record.
+
+## 11.3 The visual designer
+
+ServiceFlow places the Visual Workflow Steps section above the workflow-definition records.
+
+This arrangement emphasizes the process model before the supporting data table.
+
+The designer displays steps as connected nodes. Each node shows information such as:
+
+- Step name
+- Step type
+- Owner
+- Selection state
+
+Connectors indicate the direction of movement from one step to the next.
+
+```text
+Start → Validate → Approval → Fulfillment → Notify → End
+```
+
+### Wrapped layout
+
+Large workflows can contain many steps. A single horizontal line would create excessive scrolling.
+
+The ServiceFlow designer wraps steps across the available width and supports vertical scrolling. This keeps more of the process visible while preserving the connection order.
+
+The layout should remain understandable on:
+
+- Desktop displays
+- Smaller laptops
+- Tablets
+- Narrow browser windows
+
+### Selecting a step
+
+Selecting a node opens its configuration in the step form.
+
+The selected node receives a visible state so that the user knows which step is being edited.
+
+Only the selected step’s information should appear in the editor.
+
+## 11.4 Step types
+
+Different steps perform different kinds of work.
+
+Common workflow step types include:
+
+- Start
+- Action
+- Approval
+- Decision
+- Notification
+- Wait
+- Script
+- Integration
+- Subflow
+- End
+
+### Start
+
+The Start step represents entry into the workflow.
+
+It can describe:
+
+- Triggering event
+- Source record
+- Initial data
+- Starting condition
+
+Every workflow should have a clearly defined starting point.
+
+### Action
+
+An Action step performs a business operation.
+
+Examples include:
+
+- Create a task
+- Assign a record
+- Update a field
+- Add a work note
+- Calculate a value
+- Create a related record
+- Reserve inventory
+
+### Approval
+
+An Approval step requests a decision from a user or group.
+
+Configuration may include:
+
+- Approver
+- Approval group
+- Approval rule
+- Due time
+- Escalation
+- Rejection path
+- Additional-information path
+
+### Decision
+
+A Decision step evaluates conditions and selects a path.
+
+Example:
+
+```text
+Is estimated cost greater than $1,000?
+├── Yes → Manager approval
+└── No  → Fulfillment
+```
+
+### Notification
+
+A Notification step sends information to a defined audience.
+
+It may specify:
+
+- Recipients
+- Channel
+- Template
+- Subject
+- Message
+- Trigger
+- Quiet-hours behavior
+
+### Wait
+
+A Wait step pauses execution until:
+
+- A date arrives
+- A duration expires
+- A field changes
+- A task completes
+- An external event occurs
+- A response is received
+
+### Script
+
+A Script step executes controlled custom logic.
+
+Scripts can provide flexibility, but excessive scripting reduces maintainability. Shared actions and declarative conditions are preferable when they can represent the requirement.
+
+### Integration
+
+An Integration step communicates with another system.
+
+It may:
+
+- Send an API request
+- Read external data
+- Create a record elsewhere
+- Invoke an automation
+- Receive a webhook
+- Update an external system
+
+### Subflow
+
+A Subflow calls a reusable workflow component.
+
+Examples include:
+
+- Manager approval
+- Create fulfillment tasks
+- Notify stakeholders
+- Validate customer entitlement
+- Provision user access
+
+### End
+
+The End step records the workflow’s final outcome.
+
+Possible outcomes include:
+
+- Completed
+- Rejected
+- Cancelled
+- Failed
+- Timed out
+
+A workflow can have multiple end states.
+
+## 11.5 Adding steps
+
+The designer provides controls for adding supported step types.
+
+When the user adds a step, ServiceFlow:
+
+1. Generates a unique step identifier.
+2. Assigns a default name.
+3. Sets the selected step type.
+4. Adds it to the workflow definition.
+5. Connects it after the current last step.
+6. Saves the updated definition locally.
+7. Selects the new step.
+8. Displays a toast notification.
+
+A new step might begin as:
+
+```json
+{
+  "id": "step-1748721123",
+  "name": "Approval",
+  "type": "Approval",
+  "owner": "",
+  "condition": "",
+  "instructions": "",
+  "timeout": "",
+  "outcome": "Continue"
+}
+```
+
+The user can then customize it.
+
+## 11.6 Customized step configuration
+
+Every visual step has its own configuration.
+
+ServiceFlow supports fields such as:
+
+- Name
+- Type
+- Owner
+- Condition
+- Instructions
+- Timeout
+- Outcome
+
+### Name
+
+The name should describe the business purpose.
+
+Weak:
+
+> Approval 1
+
+Better:
+
+> Request manager approval
+
+### Type
+
+The type determines the step’s behavior.
+
+A production designer would use the type to show additional fields specific to that action.
+
+For example:
+
+- Approval shows approver rules.
+- Notification shows recipient and template fields.
+- Integration shows connection and request fields.
+- Wait shows timing and resume conditions.
+
+### Owner
+
+The owner identifies the user, group, or role responsible for the step.
+
+Examples include:
+
+- Service Desk
+- Requester’s manager
+- Application owner
+- Security Operations
+- Change manager
+- Assigned agent
+
+Dynamic ownership is often more reusable than a fixed name.
+
+### Condition
+
+The condition determines whether the step should run.
+
+Examples include:
+
+```text
+priority = P1 Critical
+```
+
+```text
+estimatedCost > 1000
+```
+
+```text
+environment = Production AND risk IN (High, Critical)
+```
+
+Conditions should use controlled fields and predictable operators.
+
+### Instructions
+
+Instructions explain what the participant or action must accomplish.
+
+Example:
+
+> Review the business justification, requested access level, duration, and attached approval evidence. Reject requests that exceed policy or return them for additional information.
+
+### Timeout
+
+The timeout defines how long the step may remain active.
+
+Examples include:
+
+- 30 minutes
+- 4 business hours
+- 2 days
+- Until scheduled start
+- No timeout
+
+The workflow must also define what happens when the timeout occurs.
+
+### Outcome
+
+The outcome controls what happens after the step completes.
+
+Examples include:
+
+- Continue
+- Escalate
+- Cancel
+- Notify
+- Reject
+- Retry
+- Return for information
+
+Dropdown values should use clean, readable text without corrupted or unnecessary special characters.
+
+## 11.7 Editing a step
+
+All edits occur in the Visual Workflow Steps experience.
+
+When a user selects a step, the designer loads only that step’s saved values into the configuration form.
+
+When Save Step is selected:
+
+1. The form is serialized.
+2. The selected step is located by its identifier.
+3. Its properties are updated.
+4. The complete workflow definition is stored locally.
+5. The visual node is rerendered.
+6. The same step remains selected.
+7. A confirmation toast appears.
+
+The edit should not create a duplicate step.
+
+### Local persistence
+
+The workflow is associated with the logged-in profile. Another user can maintain a different local definition in the same browser.
+
+In a production platform, workflows would normally be stored in a shared server repository with roles and version controls.
+
+## 11.8 Reordering steps
+
+ServiceFlow allows the selected step to move left or right in the process order.
+
+Conceptually:
+
+```text
+Before:
+Start → Validate → Fulfill → Approve → End
+
+After moving Approve left:
+Start → Validate → Approve → Fulfill → End
+```
+
+When a step moves:
+
+1. Its position changes in the step array.
+2. The workflow is saved.
+3. Nodes are rerendered.
+4. Connectors reflect the new order.
+5. A toast confirms the update.
+
+### Reordering considerations
+
+Moving a step can change business behavior.
+
+For example, moving fulfillment before approval could allow work to begin without authorization.
+
+A production designer should validate:
+
+- Required predecessors
+- Invalid cycles
+- Missing paths
+- Data dependencies
+- Approval order
+- End-state reachability
+
+## 11.9 Removing steps
+
+Removing a step changes both the workflow and its connections.
+
+The designer should:
+
+1. Confirm which step is selected.
+2. Remove it from the definition.
+3. Remove its incoming and outgoing connection.
+4. Connect surrounding steps when appropriate.
+5. Clear the editor.
+6. Save the updated workflow.
+7. Display a toast notification.
+
+A production environment should warn the user when the step is referenced by:
+
+- Another branch
+- A subflow
+- A report
+- A test
+- An active workflow version
+
+## 11.10 Connectors
+
+Connectors show how control moves between steps.
+
+In ServiceFlow’s linear visual designer, each step points to the next step. The exported JSON includes a `nextStepId`.
+
+Example:
+
+```json
+{
+  "id": "step-validate",
+  "name": "Validate request",
+  "type": "Action",
+  "nextStepId": "step-approve"
+}
+```
+
+The final step has no next step:
+
+```json
+{
+  "id": "step-end",
+  "name": "Complete request",
+  "type": "End",
+  "nextStepId": null
+}
+```
+
+### Conditional connectors
+
+A more advanced designer can support labeled branches.
+
+```text
+Validate entitlement
+├── Valid → Continue
+├── Missing information → Request information
+└── Not entitled → Reject
+```
+
+Each connector would have:
+
+- Source step
+- Destination step
+- Condition
+- Label
+- Priority
+- Default-path indicator
+
+### Parallel connectors
+
+Some workflows require simultaneous paths.
+
+```text
+Approved
+├── Create identity account
+├── Prepare laptop
+└── Configure building access
+          ↓
+     Join all tasks
+```
+
+A parallel workflow needs both split and join behavior. The join can wait for all branches or proceed when a defined condition is satisfied.
+
+## 11.11 Triggers
+
+A workflow begins when a trigger matches.
+
+ServiceFlow examples include:
+
+- `record.created`
+- `record.updated`
+- `sla.warning`
+- `approval.completed`
+
+A complete trigger includes:
+
+- Table or record type
+- Event
+- Condition
+- Scope
+- Active status
+
+### Record-created trigger
+
+A request workflow may begin when a catalog request is created.
+
+```text
+Table: request
+Event: record.created
+Condition: service = Privileged Access
+```
+
+### Record-updated trigger
+
+An incident workflow may begin when the priority changes to P1 Critical.
+
+```text
+Table: incident
+Event: record.updated
+Condition: priority changed to P1 Critical
+```
+
+### Scheduled trigger
+
+A production engine can also support:
+
+- Daily
+- Weekly
+- Monthly
+- Specific date
+- Business-calendar schedule
+- Repeating interval
+
+### External trigger
+
+An external system can start a workflow through:
+
+- API
+- Webhook
+- Message queue
+- Integration event
+- Monitoring alert
+
+Triggers should be authenticated and protected against duplicate delivery.
+
+## 11.12 Workflow conditions
+
+Conditions control whether a workflow or step runs.
+
+A condition has:
+
+- Field
+- Operator
+- Value
+- Optional grouping
+
+Example:
+
+```text
+environment = Production
+AND
+risk IN (High, Critical)
+AND
+state = Assess
+```
+
+Common operators include:
+
+- Equals
+- Does not equal
+- Contains
+- Starts with
+- Is empty
+- Is not empty
+- Greater than
+- Less than
+- Changed
+- Changed from
+- Changed to
+- Is one of
+
+### Condition groups
+
+Groups support complex logic.
+
+```text
+(
+  priority = P1 Critical
+  OR priority = P2 High
+)
+AND state != Closed
+```
+
+The visual designer should make grouping explicit to avoid ambiguous logic.
+
+## 11.13 Workflow variables and data
+
+Steps need access to record information and previous results.
+
+Workflow data may include:
+
+- Triggering record
+- Requester
+- Assigned user
+- Approval decision
+- Created task
+- API response
+- Calculated value
+- Current date
+- Step result
+
+A production designer can expose these as selectable data values.
+
+For example:
+
+```text
+Send notification to:
+Trigger record → Requested For → Manager
+```
+
+Or:
+
+```text
+Set task due date to:
+Current date + 3 business days
+```
+
+### Data validation
+
+The designer should verify that:
+
+- Referenced fields exist.
+- Values have compatible types.
+- Required values are available.
+- Removed steps are not referenced.
+- Sensitive fields are protected.
+
+## 11.14 Approvals in workflows
+
+Approval is one of the most common workflow actions.
+
+A reusable approval step can define:
+
+- Approver source
+- Approval mode
+- Due date
+- Reminder
+- Escalation
+- Rejection behavior
+- Delegation
+- Comment requirement
+
+### Approver sources
+
+Approvers can be selected from:
+
+- Specific user
+- Group
+- Requester’s manager
+- Service owner
+- Application owner
+- Cost-center owner
+- Record field
+- Scripted rule
+
+### Approval modes
+
+Modes can include:
+
+- Anyone approves
+- Everyone approves
+- Percentage approves
+- First response
+- Sequential approval
+- Parallel approval
+
+### Rejection behavior
+
+A rejection may:
+
+- End the workflow
+- Return the request for revision
+- Escalate
+- Request an exception
+- Continue along a rejection path
+
+The behavior should be visible in the process design.
+
+## 11.15 Waits and timers
+
+Some workflows must pause.
+
+Examples include:
+
+- Wait for approval.
+- Wait until the implementation window.
+- Wait for customer response.
+- Wait for all fulfillment tasks.
+- Wait two business days before sending a reminder.
+
+A wait step needs:
+
+- Resume condition
+- Timeout
+- Business schedule
+- Timeout outcome
+- Cancellation condition
+
+### Avoid indefinite waits
+
+Every long-running wait should have monitoring and an exception path.
+
+A record should not remain invisible because a response never arrives.
+
+Possible timeout actions include:
+
+- Send reminder
+- Escalate
+- Reassign
+- Cancel
+- Close
+- Continue with default behavior
+
+## 11.16 Notifications
+
+Workflow notifications can be triggered by:
+
+- Record creation
+- Assignment
+- Approval request
+- Approval decision
+- Pending information
+- SLA warning
+- Completion
+- Failure
+
+A notification step should define:
+
+- Audience
+- Channel
+- Template
+- Subject
+- Body
+- Record link
+- Conditions
+
+Messages should provide enough context to understand the event and required action.
+
+Sensitive information should not be included in insecure channels.
+
+## 11.17 Integration actions
+
+A workflow can coordinate work across systems.
+
+An integration action may include:
+
+- Endpoint
+- Method
+- Authentication
+- Headers
+- Request body
+- Timeout
+- Retry policy
+- Expected response
+- Error handling
+
+Example use cases include:
+
+- Create an identity account
+- Reserve hardware
+- Open a supplier case
+- Update a CRM record
+- Trigger a deployment
+- Retrieve asset information
+- Send a collaboration message
+
+### Secure integration design
+
+Credentials must not be stored directly in browser-delivered JavaScript.
+
+A production platform should use:
+
+- Server-side connections
+- Secret vault
+- Credential rotation
+- OAuth
+- Managed identity
+- Access policies
+- Audit logging
+
+## 11.18 Failure handling
+
+Every automated workflow can fail.
+
+Failures may result from:
+
+- Invalid data
+- Missing approval
+- Unavailable API
+- Permission error
+- Timeout
+- Network interruption
+- Script error
+- Conflicting record update
+
+A step should define what happens when it fails.
+
+Options include:
+
+- Retry
+- Retry with delay
+- Escalate
+- Create task
+- Notify owner
+- Pause
+- Cancel
+- Run compensating action
+- Continue on an alternate path
+
+### Retry policies
+
+A retry policy can define:
+
+- Maximum attempts
+- Delay
+- Increasing delay
+- Eligible errors
+- Final action
+
+Repeatedly retrying a permanent validation error wastes resources. The platform should distinguish temporary from permanent failures.
+
+## 11.19 Compensating actions
+
+Some actions cannot be rolled back automatically. Instead, the workflow performs a compensating action.
+
+For example:
+
+1. Create cloud account.
+2. Assign software license.
+3. Add security group.
+4. License assignment fails.
+
+Compensating actions might:
+
+- Remove the cloud account
+- Release reserved resources
+- Revoke partial access
+- Notify an administrator
+- Create cleanup tasks
+
+Compensation should be designed alongside the primary workflow.
+
+## 11.20 Saving workflows locally
+
+ServiceFlow stores the workflow steps under the logged-in user’s profile.
+
+Local saving supports:
+
+- Experimentation
+- Training
+- Draft design
+- Reordering
+- Step editing
+- JSON export
+- Browser-based demonstrations
+
+The user receives toast confirmation after adding, editing, moving, or removing a step.
+
+### Local priority
+
+When a locally saved workflow has the same identifier as a published definition, the local version should take priority in the user’s view.
+
+This is consistent with other ServiceFlow records.
+
+## 11.21 Exporting workflow JSON
+
+The Export Workflow action generates a formatted JSON representation.
+
+The output can be:
+
+- Viewed
+- Selected
+- Copied
+- Downloaded
+
+An example export is:
+
+```json
+{
+  "name": "Privileged Access Approval",
+  "table": "request",
+  "trigger": {
+    "event": "record.created",
+    "condition": "accessType = Privileged"
+  },
+  "exportedAt": "2026-10-02T15:30:00.000Z",
+  "exportedBy": "alex.morgan@serviceflow.example",
+  "steps": [
+    {
+      "id": "step1",
+      "name": "Start",
+      "type": "Start",
+      "owner": "",
+      "condition": "",
+      "instructions": "Workflow begins when the trigger matches.",
+      "timeout": "",
+      "outcome": "Continue",
+      "nextStepId": "step2"
+    },
+    {
+      "id": "step2",
+      "name": "Manager approval",
+      "type": "Approval",
+      "owner": "Requester manager",
+      "condition": "estimatedCost > 1000",
+      "instructions": "Review business need and cost.",
+      "timeout": "2 business days",
+      "outcome": "Continue",
+      "nextStepId": "step3"
+    },
+    {
+      "id": "step3",
+      "name": "Complete",
+      "type": "End",
+      "owner": "",
+      "condition": "",
+      "instructions": "",
+      "timeout": "",
+      "outcome": "Completed",
+      "nextStepId": null
+    }
+  ]
+}
+```
+
+### Copying JSON
+
+Copy makes it easy to:
+
+- Review the definition
+- Share it with another developer
+- Include it in documentation
+- Submit it to an API
+- Compare versions
+
+If clipboard access is unavailable, ServiceFlow selects the JSON so the user can copy it manually.
+
+### Downloading JSON
+
+The downloaded file creates a portable workflow artifact.
+
+A production import process should validate the definition before accepting it.
+
+## 11.22 Workflow versioning
+
+Workflow definitions change over time.
+
+A production platform should preserve versions such as:
+
+```text
+1.0 — Initial release
+1.1 — Added manager reminder
+2.0 — Added security approval
+```
+
+Each version should include:
+
+- Version number
+- Status
+- Created by
+- Created date
+- Published by
+- Published date
+- Change summary
+- Parent version
+
+### Draft and published versions
+
+A useful lifecycle is:
+
+- Draft
+- In Review
+- Published
+- Retired
+
+Active records should normally continue using the workflow version under which they began unless a controlled migration occurs.
+
+## 11.23 Workflow testing
+
+A workflow should be tested before publication.
+
+Tests should cover:
+
+- Trigger matches
+- Trigger does not match
+- Required data missing
+- Approval granted
+- Approval rejected
+- More information requested
+- Timeout
+- Integration failure
+- Retry
+- Cancellation
+- Successful completion
+
+### Test data
+
+The playground can use sample records to simulate workflow behavior.
+
+For example, an access workflow can be tested using:
+
+- Standard access
+- Privileged access
+- Missing manager
+- Expired request
+- High cost
+- Rejected approval
+
+### Expected results
+
+Each test should define:
+
+- Input
+- Path
+- Actions
+- Output
+- Final state
+
+Testing should verify both the expected path and exception behavior.
+
+## 11.24 Workflow execution history
+
+A production runtime should record every workflow execution.
+
+Execution history can include:
+
+- Definition and version
+- Triggering record
+- Start time
+- Current state
+- Completed time
+- Step history
+- Inputs
+- Outputs
+- Errors
+- Retries
+- Acting users
+- Final outcome
+
+### Step-level logs
+
+Step logs help answer:
+
+- Did the step run?
+- Which condition was evaluated?
+- Which data was used?
+- What result was returned?
+- How long did it take?
+- Why did it fail?
+- Was it retried?
+
+Without execution history, automated processes become difficult to support.
+
+## 11.25 Monitoring workflows
+
+Workflow monitoring can identify:
+
+- Failed executions
+- Long-running workflows
+- Waiting approvals
+- Repeated retries
+- Integration failures
+- Bottlenecks
+- High-volume triggers
+- Unused workflows
+- Timeout patterns
+
+Useful measures include:
+
+- Executions
+- Completion rate
+- Failure rate
+- Average duration
+- Step duration
+- Approval duration
+- Retry count
+- Timeout count
+- Records waiting
+- Automation savings
+
+Metrics should link back to affected executions and records.
+
+## 11.26 Workflow governance
+
+Workflow automation can affect customers, employees, access, finances, and production systems. It therefore requires governance.
+
+Governance can include:
+
+- Ownership
+- Naming standards
+- Documentation
+- Review
+- Testing
+- Approval
+- Versioning
+- Access control
+- Environment promotion
+- Retirement
+- Audit history
+
+### Environment promotion
+
+A mature workflow lifecycle uses separate environments:
+
+```text
+Development → Test → Staging → Production
+```
+
+The same validated workflow definition should move between environments through a controlled process.
+
+Manual recreation increases the risk of configuration differences.
+
+## 11.27 Reusable subflows
+
+Repeated process logic should be implemented once and reused.
+
+Common subflows include:
+
+- Manager approval
+- Security review
+- Create fulfillment tasks
+- Send completion notification
+- Validate entitlement
+- Escalate overdue work
+- Close inactive request
+
+Reusability improves consistency and maintenance.
+
+A subflow update should be tested against every process that uses it.
+
+## 11.28 An end-to-end workflow example
+
+Consider a workflow for privileged application access.
+
+### Trigger
+
+The workflow starts when a new request is created with:
+
+```text
+Access type = Privileged
+```
+
+### Step 1: Validate request
+
+The workflow confirms:
+
+- Requested user exists.
+- Application is active.
+- Business justification is complete.
+- Expiration date is provided.
+- Manager is identified.
+
+If information is missing, the workflow requests additional information.
+
+### Step 2: Manager approval
+
+The requester’s manager reviews the business need and duration.
+
+Outcomes:
+
+- Approved
+- Rejected
+- More Information Required
+
+### Step 3: Application-owner approval
+
+The application owner evaluates the requested role.
+
+### Step 4: Security approval
+
+Security reviews privileged-access risk and evidence.
+
+### Step 5: Create fulfillment task
+
+The workflow assigns a task to Identity and Access Management.
+
+### Step 6: Provision access
+
+The fulfillment team grants access and records the result.
+
+### Step 7: Notify requester
+
+The employee receives confirmation with the activation and expiration dates.
+
+### Step 8: Schedule removal
+
+A timer waits until the expiration date and creates an access-removal task.
+
+### Step 9: Complete
+
+The workflow records the final state as Completed.
+
+### Exception behavior
+
+If provisioning fails:
+
+1. Retry the integration.
+2. Create a manual task after the retry limit.
+3. Notify the workflow owner.
+4. Keep the request active.
+5. Record the failure.
+
+This example shows validation, sequential approvals, task creation, notification, timers, integration, retry, and completion.
+
+## 11.29 Workflow design checklist
+
+Before publishing a workflow, verify:
+
+### Definition
+
+- Name is clear.
+- Description explains the purpose.
+- Record type is correct.
+- Trigger is specific.
+- Version is assigned.
+- Owner is identified.
+
+### Steps
+
+- Every step has a meaningful name.
+- Step types are appropriate.
+- Owners are defined.
+- Instructions are clear.
+- Timeouts are configured.
+- Outcomes are explicit.
+
+### Connections
+
+- Every non-final step has a valid destination.
+- Branch conditions are mutually understandable.
+- Default paths exist where required.
+- Parallel paths rejoin correctly.
+- End states are reachable.
+
+### Data
+
+- Required values are available.
+- Field types are compatible.
+- Sensitive data is protected.
+- Removed steps are not referenced.
+- Integration inputs are validated.
+
+### Exceptions
+
+- Failures have defined behavior.
+- Retries are limited.
+- Timeouts are handled.
+- Cancellation is supported.
+- Compensating actions exist where necessary.
+
+### Governance
+
+- Tests pass.
+- Review is complete.
+- Version history is preserved.
+- Publication is authorized.
+- Monitoring is configured.
+- Ownership and support are documented.
+
+## Chapter summary
+
+Workflow Designer transforms service requirements into connected, configurable steps.
+
+Its core capabilities include:
+
+- Workflow definitions
+- Visual nodes and connectors
+- Wrapped layouts with vertical scrolling
+- Customized step configuration
+- Step creation
+- Editing
+- Reordering
+- Removal
+- Triggers
+- Conditions
+- Approvals
+- Decisions
+- Notifications
+- Waits and timers
+- Integration actions
+- Failure handling
+- Compensating actions
+- Local profile persistence
+- JSON preview
+- Copy and download
+- Versioning
+- Testing
+- Execution history
+- Monitoring
+- Governance
+- Reusable subflows
+
+The ServiceFlow designer provides the visible authoring experience. Turning that design into enterprise automation requires a server-side workflow runtime that can execute, secure, monitor, and govern each workflow definition.
+
+The next chapter examines the core enterprise services connected by those workflows, including requests, approvals, knowledge, assets, the configuration-management database, human resources, and service-level management.
