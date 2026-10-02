@@ -11711,3 +11711,2466 @@ Their major capabilities include:
 - Cross-department orchestration
 
 The next chapter examines operational intelligence, including IT Operations and AIOps, notifications, the SLA Engine, workflow runtime, event processing, alert correlation, and automated remediation.
+# Chapter 13  
+# Operations and Intelligence
+
+Modern services depend on applications, infrastructure, cloud resources, networks, integrations, databases, and external providers. A failure in any one of these components can affect employees, customers, and business operations.
+
+Traditional service management often begins after a person reports a problem. Operational intelligence begins earlier. It collects technical signals, identifies abnormal behavior, connects events to services, and initiates action before the impact becomes severe.
+
+ServiceFlow groups these capabilities across:
+
+- IT Operations and AIOps
+- Event and alert management
+- Service health
+- SLA Engine
+- Notifications
+- Workflow Runtime
+- Automated remediation
+- Operational analytics
+
+Together, they establish a path from detection to recovery.
+
+## 13.1 From reactive support to proactive operations
+
+A reactive operating model follows this sequence:
+
+```text
+Service fails
+    ↓
+User reports the issue
+    ↓
+Agent creates an incident
+    ↓
+Technical team investigates
+    ↓
+Service is restored
+```
+
+A proactive model changes the starting point:
+
+```text
+Telemetry detects abnormal behavior
+    ↓
+Related signals are correlated
+    ↓
+Affected service is identified
+    ↓
+Incident or remediation workflow begins
+    ↓
+Teams intervene before or during impact
+```
+
+The proactive model does not eliminate human reports. It adds technical awareness and automation.
+
+## 13.2 The IT Operations and AIOps workspace
+
+ServiceFlow’s IT Operations and AIOps page uses an operational intake model similar to Change Requests while reflecting its own business category.
+
+The workspace can capture information such as:
+
+- Operational capability
+- Service
+- Environment
+- Event source
+- Alert condition
+- Severity
+- Service impact
+- Assignment
+- Correlation behavior
+- Remediation plan
+- Monitoring evidence
+- Review information
+
+A realistic operations record should explain both the technical signal and the business service it may affect.
+
+### Lifecycle
+
+An operations workflow might use:
+
+**Detect → Correlate → Assess → Respond → Recover → Review**
+
+Each stage represents a distinct operational objective.
+
+## 13.3 Observability signals
+
+Operational intelligence begins with telemetry.
+
+The three common signal types are:
+
+- Metrics
+- Logs
+- Traces
+
+Additional signals can include:
+
+- Events
+- Health checks
+- User-experience monitoring
+- Synthetic tests
+- Security findings
+- Cloud-provider notifications
+- Configuration changes
+
+### Metrics
+
+Metrics are numerical measurements collected over time.
+
+Examples include:
+
+- CPU utilization
+- Memory use
+- Error rate
+- Response time
+- Queue depth
+- Transaction volume
+- Disk capacity
+- Availability
+- Active sessions
+
+Metrics are effective for trend analysis, thresholds, and anomaly detection.
+
+### Logs
+
+Logs contain timestamped records produced by systems and applications.
+
+Examples include:
+
+- Authentication failure
+- Application exception
+- Database timeout
+- Deployment message
+- Access denial
+- Integration failure
+
+Logs provide detailed evidence but can be high-volume and inconsistent.
+
+### Traces
+
+Distributed traces follow a transaction across services.
+
+A trace might show:
+
+```text
+Web request
+  → API gateway
+  → Order service
+  → Payment service
+  → Database
+```
+
+Traces help locate where latency or failure occurs in a distributed application.
+
+## 13.4 Events
+
+An event reports that something occurred.
+
+Examples include:
+
+- CPU threshold exceeded
+- Service process stopped
+- Certificate nearing expiration
+- Deployment completed
+- Backup failed
+- Device unreachable
+- Error rate increased
+- Storage capacity low
+
+An event does not automatically require human action.
+
+A monitoring environment may generate thousands or millions of events. The platform must determine which events are significant.
+
+## 13.5 Alerts
+
+An alert represents an event or condition requiring attention.
+
+The transformation from event to alert can use:
+
+- Threshold
+- Duration
+- Repetition
+- Severity
+- Service importance
+- Suppression rule
+- Maintenance schedule
+- Anomaly score
+- Correlation result
+
+An alert record may include:
+
+- Alert number
+- Source
+- Resource
+- Configuration item
+- Service
+- Severity
+- State
+- First occurrence
+- Last occurrence
+- Count
+- Description
+- Assignment group
+- Correlation group
+- Related incident
+
+### Alert lifecycle
+
+A typical lifecycle is:
+
+**Open → Acknowledged → Investigating → Resolved → Closed**
+
+The alert may close automatically when the technical condition clears, but the related incident may remain open until service restoration is verified.
+
+## 13.6 Noise reduction
+
+Monitoring tools can generate many alerts for one service failure.
+
+Consider a failed network device. Monitoring may report:
+
+- Device unreachable
+- Interface down
+- Server unavailable
+- Application timeout
+- Database connection failure
+- Synthetic transaction failure
+
+Creating a separate incident for each alert would overwhelm support teams.
+
+Noise reduction combines or suppresses signals using:
+
+- Deduplication
+- Correlation
+- Topology
+- Time proximity
+- Shared CI
+- Shared service
+- Maintenance windows
+- Dependency relationships
+
+### Deduplication
+
+Deduplication combines repeated alerts representing the same condition.
+
+Instead of creating 500 separate alerts, the platform maintains one alert with an occurrence count.
+
+### Suppression
+
+Suppression hides or deprioritizes expected signals.
+
+Examples include:
+
+- Approved maintenance
+- Known test environment
+- Dependent alerts caused by a parent outage
+- Flapping below a defined threshold
+
+Suppression rules must be governed carefully. Incorrect suppression can hide real failures.
+
+## 13.7 Alert correlation
+
+Correlation identifies alerts that belong to the same operational situation.
+
+Signals can be correlated by:
+
+- Time
+- Resource
+- Configuration item
+- Service
+- Topology
+- Change
+- Error signature
+- Location
+- Statistical behavior
+
+A correlated alert group should identify:
+
+- Primary alert
+- Related alerts
+- Likely affected service
+- Suspected root component
+- Business impact
+- Confidence
+
+### Topology-based correlation
+
+CMDB relationships can show that several application failures depend on one database cluster.
+
+Rather than treating every application alert as a separate cause, the platform can identify the database as the likely shared source.
+
+This requires accurate relationships.
+
+## 13.8 Service health
+
+Service health translates technical signals into business context.
+
+A service-health record can include:
+
+- Service
+- Current health
+- Availability
+- Performance
+- Active alerts
+- Open incidents
+- Recent changes
+- Affected locations
+- Affected customers
+- Owner
+- Recovery status
+
+Possible health states include:
+
+- Healthy
+- Degraded
+- At Risk
+- Unavailable
+- Maintenance
+- Unknown
+
+### Health calculation
+
+Service health may consider:
+
+- CI health
+- Alert severity
+- Transaction success
+- Response time
+- Dependency status
+- Incident priority
+- Customer impact
+
+The calculation should be explainable. Users should be able to see which signals produced the health status.
+
+## 13.9 Configuration and service context
+
+Operational intelligence becomes more useful when alerts are linked to configuration items and services.
+
+A server alert alone tells the operations team that a technical component is unhealthy.
+
+A service relationship can also show:
+
+- Which application uses the server
+- Which business service depends on the application
+- Which customers are affected
+- Which support group owns it
+- Which changes occurred recently
+- Which incidents are related
+
+This transforms infrastructure monitoring into service-aware operations.
+
+## 13.10 Change intelligence
+
+Recent changes are often relevant during incident investigation.
+
+The platform can examine:
+
+- Changes affecting the CI
+- Changes affecting dependencies
+- Deployments
+- Configuration updates
+- Access-policy changes
+- Cloud-resource modifications
+
+A change correlation does not prove causation, but it provides a useful investigation path.
+
+### Change-risk feedback
+
+Operational results can also improve future change-risk calculations.
+
+If similar changes repeatedly cause incidents, the risk model should reflect that history.
+
+This creates a feedback loop:
+
+```text
+Change executed
+      ↓
+Operational outcome observed
+      ↓
+Incident relationship captured
+      ↓
+Risk model improved
+      ↓
+Future change assessed more accurately
+```
+
+## 13.11 AIOps
+
+AIOps applies analytics and machine learning to operational data.
+
+Potential capabilities include:
+
+- Anomaly detection
+- Alert clustering
+- Root-cause suggestions
+- Impact prediction
+- Incident correlation
+- Capacity forecasting
+- Automated remediation recommendations
+- SLA-breach prediction
+
+AIOps should support operators rather than hide the evidence behind an unexplained score.
+
+### Anomaly detection
+
+An anomaly is behavior that differs from an expected pattern.
+
+Examples include:
+
+- Response time increases outside its normal range.
+- Error volume rises despite remaining below a fixed threshold.
+- Transaction volume drops unexpectedly.
+- Storage growth accelerates.
+- A previously stable service begins flapping.
+
+Anomaly detection is useful when normal behavior varies by time or workload.
+
+### Root-cause suggestions
+
+An AI-assisted system may rank likely causes using:
+
+- Dependency topology
+- Alert timing
+- Historical incidents
+- Recent changes
+- Error signatures
+- Service behavior
+- Known errors
+
+The suggestion should include supporting evidence and a confidence level.
+
+It should not be presented as confirmed fact without validation.
+
+## 13.12 Incident creation from alerts
+
+A workflow can create an incident when an alert meets defined conditions.
+
+Example rule:
+
+```text
+If:
+  Alert severity is Critical
+  AND production service is affected
+  AND no active incident exists
+Then:
+  Create P1 incident
+  Assign service support group
+  Link alert and CI
+  Notify on-call team
+```
+
+The workflow should avoid duplicate incidents.
+
+### Incident synchronization
+
+When the incident changes:
+
+- Alert can show investigation status.
+- Monitoring can receive incident number.
+- Resolved alert can update the incident.
+- Closed incident can close related alerts when appropriate.
+
+The relationship should remain visible in both directions.
+
+## 13.13 Automated remediation
+
+Automated remediation performs a predefined recovery action.
+
+Examples include:
+
+- Restart a service
+- Increase cloud capacity
+- Clear a queue
+- Renew a certificate
+- Fail over to another instance
+- Reapply a configuration
+- Recreate a failed container
+- Disable a faulty integration
+- Roll back a deployment
+
+### Remediation safety
+
+Automation should define:
+
+- Trigger
+- Preconditions
+- Scope
+- Approval requirements
+- Maximum attempts
+- Validation
+- Stop criteria
+- Rollback
+- Notification
+- Audit history
+
+High-risk remediation should require human authorization.
+
+### Validation
+
+The action is not complete merely because the command ran successfully.
+
+Validation should confirm:
+
+- Service health improved.
+- Error rate returned to normal.
+- Transactions succeeded.
+- No new alerts appeared.
+- Customer impact ended.
+
+## 13.14 Runbook automation
+
+A runbook is a documented operational procedure.
+
+A runbook may describe:
+
+- Diagnostic steps
+- Recovery actions
+- Escalation
+- Validation
+- Communication
+- Follow-up
+
+Runbook automation converts repeatable portions into workflow steps.
+
+For example:
+
+1. Check application health.
+2. Check database connectivity.
+3. Restart application service.
+4. Run synthetic transaction.
+5. Update incident.
+6. Notify operations.
+7. Escalate if validation fails.
+
+Human decision points can remain within the automated flow.
+
+## 13.15 Human-in-the-loop operations
+
+Not every operational decision should be fully automated.
+
+Human review is important when:
+
+- Confidence is low.
+- Impact is high.
+- Data could be changed or deleted.
+- The action affects customers.
+- Security is involved.
+- Recovery is difficult.
+- The service is regulated.
+- Conflicting evidence exists.
+
+A human-in-the-loop process can present:
+
+- Detected condition
+- Suggested cause
+- Proposed action
+- Expected impact
+- Confidence
+- Supporting evidence
+- Approval controls
+
+The operator remains accountable for the decision.
+
+## 13.16 The SLA Engine
+
+The ServiceFlow SLA Engine defines and monitors time-based service commitments.
+
+Its intake form reflects the business category and can include:
+
+- SLA number
+- Name
+- Owner
+- Record type
+- Priority
+- Service
+- Entitlement
+- State
+- Start condition
+- Pause condition
+- Stop condition
+- Duration
+- Schedule
+- Warning
+- Breach action
+- Escalation group
+
+### SLA lifecycle
+
+A definition might use:
+
+**Draft → Review → Active → Monitoring → Retired**
+
+The engine applies active definitions to matching records.
+
+### SLA instance
+
+The SLA definition is reusable. An SLA instance represents its application to one record.
+
+An instance can include:
+
+- Source record
+- SLA definition
+- Start time
+- Planned end
+- Pause duration
+- Percentage elapsed
+- Warning state
+- Breach state
+- Completion time
+
+## 13.17 SLA calculation
+
+The calculation must consider more than elapsed clock time.
+
+Conceptually:
+
+```text
+Elapsed SLA time =
+business time since start
+− eligible paused time
+```
+
+The engine should apply:
+
+- Business schedule
+- Time zone
+- Holidays
+- Pause conditions
+- Stop conditions
+- Retroactive changes
+- Definition version
+
+### Warning thresholds
+
+Warnings can be based on:
+
+- Fixed time remaining
+- Percentage remaining
+- Predicted breach risk
+
+Examples include:
+
+- Warn when 50 percent remains.
+- Warn when one business hour remains.
+- Warn when predictive risk exceeds 70 percent.
+
+## 13.18 Predictive SLA management
+
+Historical data can help estimate breach risk before a fixed warning threshold is reached.
+
+Signals may include:
+
+- Current state
+- Assignment group
+- Record age
+- Reassignment count
+- Pending duration
+- Priority
+- Workload
+- Time remaining
+- Similar records
+- Required approvals
+- Customer response history
+
+A predictive model might report:
+
+```text
+Breach risk: 78 percent
+Primary factors:
+- Two reassignments
+- Waiting for approval
+- 45 minutes remaining
+- Assignment group backlog above normal
+```
+
+The explanation helps an agent decide what action to take.
+
+## 13.19 Notifications
+
+Notifications communicate platform events to users and external audiences.
+
+ServiceFlow includes a Notifications workspace that can represent:
+
+- Templates
+- Recipient rules
+- Channels
+- Trigger events
+- Delivery state
+- Escalations
+
+### Notification channels
+
+Supported channels can include:
+
+- In-application message
+- Email
+- SMS
+- Push notification
+- Microsoft Teams
+- Slack
+- Webhook
+
+The appropriate channel depends on urgency, audience, and organizational policy.
+
+## 13.20 Notification design
+
+A notification should answer:
+
+- What happened?
+- Which record is affected?
+- Why does it matter?
+- Does the recipient need to act?
+- When is action due?
+- Where can the record be opened?
+
+Example:
+
+> Approval required for REQ-32018: Privileged finance access. Review the business justification and access duration by October 5.
+
+This is more useful than:
+
+> You have a pending task.
+
+### Templates
+
+A template can contain:
+
+- Name
+- Channel
+- Subject
+- Message
+- Variables
+- Audience
+- Language
+- Active status
+
+Variables might include:
+
+```text
+${record.number}
+${record.title}
+${requester.name}
+${approval.dueDate}
+${record.url}
+```
+
+## 13.21 Notification preferences
+
+Users should be able to control supported notification preferences.
+
+Preferences can include:
+
+- Email enabled
+- Collaboration messages enabled
+- Mobile push enabled
+- Digest frequency
+- Quiet hours
+- Language
+- Escalation exceptions
+
+Critical operational messages may override some preferences according to policy.
+
+### Avoid notification fatigue
+
+Excessive notifications reduce attention.
+
+A platform can reduce fatigue through:
+
+- Event grouping
+- Digests
+- Role-based targeting
+- Severity thresholds
+- Quiet hours
+- Duplicate suppression
+- Subscription management
+
+## 13.22 Notification delivery tracking
+
+A production platform should track:
+
+- Queued
+- Sent
+- Delivered
+- Failed
+- Bounced
+- Opened when appropriate
+- Acknowledged
+
+Delivery failures can trigger:
+
+- Retry
+- Alternate channel
+- Administrator alert
+- Recipient correction
+- Escalation
+
+Sensitive content should not be exposed through insecure delivery channels.
+
+## 13.23 Workflow Runtime
+
+Workflow Designer defines the process. Workflow Runtime executes it.
+
+A runtime is responsible for:
+
+- Detecting triggers
+- Evaluating conditions
+- Creating executions
+- Running steps
+- Waiting for events
+- Managing timers
+- Calling integrations
+- Handling retries
+- Recording history
+- Completing or cancelling workflows
+
+ServiceFlow’s Workflow Runtime page represents these operational capabilities.
+
+### Execution states
+
+A workflow execution may be:
+
+- Pending
+- Running
+- Waiting
+- Completed
+- Failed
+- Cancelled
+- Paused
+
+### Step states
+
+An individual step may be:
+
+- Ready
+- Running
+- Waiting
+- Completed
+- Skipped
+- Failed
+- Retrying
+- Cancelled
+
+These states help operators understand exactly where a process is delayed.
+
+## 13.24 Event processing
+
+A runtime needs a reliable way to process events.
+
+Events may include:
+
+- Record created
+- Record updated
+- Approval completed
+- Timer expired
+- Webhook received
+- Alert opened
+- Task completed
+- Customer responded
+
+A production event should include:
+
+- Event identifier
+- Event type
+- Source
+- Timestamp
+- Record identifier
+- Payload
+- Correlation identifier
+
+### Duplicate events
+
+Distributed systems may deliver the same event more than once.
+
+The runtime should use an idempotency key or event identifier to prevent duplicate work.
+
+Without this protection, one event could create several incidents, approvals, or fulfillment tasks.
+
+## 13.25 Queues and asynchronous work
+
+Long-running operations should not block the user interface.
+
+The platform can place work into a queue for background processing.
+
+Examples include:
+
+- Sending notifications
+- Synchronizing data
+- Calling an external API
+- Generating reports
+- Processing large imports
+- Running discovery
+- Executing remediation
+
+Queue records can include:
+
+- Work item
+- Created time
+- Priority
+- Attempt count
+- Status
+- Last error
+- Next retry
+
+### Dead-letter handling
+
+A work item moves to a dead-letter queue when it repeatedly fails.
+
+Operators can then:
+
+- Review the error
+- Correct data
+- Retry
+- Cancel
+- Escalate
+
+Failed automation should remain visible and recoverable.
+
+## 13.26 Runtime failure handling
+
+Workflow failures require structured response.
+
+The runtime can support:
+
+- Automatic retry
+- Delayed retry
+- Alternate action
+- Manual task
+- Owner notification
+- Rollback or compensation
+- Execution pause
+- Cancellation
+
+The failure policy should be defined during workflow design.
+
+### Example
+
+An identity-provisioning workflow calls an external API.
+
+If the API times out:
+
+1. Retry after one minute.
+2. Retry after five minutes.
+3. Retry after fifteen minutes.
+4. Create a manual fulfillment task.
+5. Notify the workflow owner.
+6. Keep the request active.
+
+The requester should receive an appropriate status update without being exposed to unnecessary technical details.
+
+## 13.27 Operational dashboards
+
+An operations dashboard should answer:
+
+- Which services are unhealthy?
+- Which alerts are critical?
+- Which incidents are active?
+- Which workflows are failing?
+- Which SLAs are at risk?
+- Which integrations are unavailable?
+- Which remediation actions are running?
+- Where is work accumulating?
+
+Useful visualizations include:
+
+- Service-health tiles
+- Alert trends
+- Incident volume
+- SLA-risk distribution
+- Workflow failure trend
+- Mean time to restore
+- Change-related incident rate
+- Capacity forecast
+- Top affected services
+
+Dashboards should link to underlying records.
+
+## 13.28 Operational analytics
+
+Important measures include:
+
+### Detection and alerts
+
+- Mean time to detect
+- Event volume
+- Alert volume
+- Deduplication rate
+- Correlation rate
+- False-positive rate
+- Suppressed-alert count
+
+### Incident response
+
+- Mean time to acknowledge
+- Mean time to restore
+- Major-incident count
+- Reopen rate
+- Escalation rate
+
+### Service health
+
+- Availability
+- Error rate
+- Latency
+- Degraded-service duration
+- Customer-impact duration
+
+### Automation
+
+- Automated remediation count
+- Remediation success rate
+- Manual intervention rate
+- Workflow failure rate
+- Retry count
+- Time saved
+
+### SLA
+
+- At-risk count
+- Breach rate
+- Warning-to-action time
+- Pause duration
+- Breach causes
+
+Metrics should support investigation and improvement rather than exist only as summary numbers.
+
+## 13.29 An end-to-end operations example
+
+Consider a customer-ordering service running in a cloud environment.
+
+### Detection
+
+Monitoring detects a sharp increase in API response time and database connection errors.
+
+### Event processing
+
+Several infrastructure and application events enter the platform.
+
+### Correlation
+
+AIOps groups the events because they share:
+
+- Time
+- Service
+- Database dependency
+- Error signature
+
+The database connection pool is identified as the likely source.
+
+### Service health
+
+Customer Ordering changes from Healthy to Degraded.
+
+The platform identifies affected customer transactions.
+
+### Incident creation
+
+A workflow creates a P2 incident, links the alerts and configuration items, and assigns Application Support.
+
+### SLA
+
+The response SLA begins. The agent acknowledges the incident before the warning threshold.
+
+### Automated remediation
+
+A controlled runbook increases the connection-pool capacity and restarts two unhealthy application instances.
+
+### Validation
+
+Synthetic transactions succeed, response time returns to normal, and new errors stop.
+
+### Recovery
+
+The incident moves to Resolved. Service health returns to Healthy.
+
+### Follow-up
+
+A problem record investigates why traffic growth exceeded the configured capacity. A change request is created for a permanent configuration and load-testing improvement.
+
+This journey connects telemetry, events, correlation, service health, incident creation, SLA tracking, remediation, validation, problem management, and change.
+
+## 13.30 Governed operational intelligence
+
+Automation and AI should operate within clear boundaries.
+
+Governance should define:
+
+- Data sources
+- Model ownership
+- Confidence thresholds
+- Human approval requirements
+- Allowed remediation
+- Restricted systems
+- Audit history
+- Testing
+- Rollback
+- Monitoring
+- Review schedule
+
+### Explainability
+
+Recommendations should include supporting evidence.
+
+Instead of:
+
+> Restart database.
+
+Use:
+
+> Database restart recommended with 82 percent confidence. Connection failures began three minutes before dependent application alerts. No approved changes are active. The same error pattern was resolved by restart in four previous incidents.
+
+The operator can then evaluate the recommendation.
+
+### Least privilege
+
+Automation credentials should have only the access required for approved actions.
+
+A remediation workflow for restarting an application should not have unrestricted permission to modify unrelated infrastructure.
+
+## 13.31 Operations checklist
+
+Before activating an operational workflow, verify:
+
+### Data
+
+- Monitoring sources are known.
+- Events have stable identifiers.
+- Timestamps are consistent.
+- CIs and services are mapped.
+- Duplicate handling is configured.
+
+### Alerts
+
+- Thresholds are appropriate.
+- Deduplication is enabled.
+- Suppression rules are governed.
+- Assignment is defined.
+- Incident-creation criteria are clear.
+
+### Automation
+
+- Preconditions are tested.
+- Maximum retries are defined.
+- Validation is included.
+- Stop criteria exist.
+- Rollback or compensation is available.
+- High-risk actions require approval.
+
+### Communication
+
+- Technical responders are notified.
+- Service owners receive appropriate updates.
+- Customer communication is defined.
+- Notification fatigue is controlled.
+
+### Governance
+
+- Ownership is assigned.
+- Execution history is retained.
+- Credentials are protected.
+- Access follows least privilege.
+- Performance is reviewed.
+
+## Chapter summary
+
+Operations and intelligence connect technical signals to business-service outcomes.
+
+Their core capabilities include:
+
+- Metrics, logs, and traces
+- Event ingestion
+- Alert management
+- Deduplication
+- Suppression
+- Correlation
+- Service health
+- Configuration and topology context
+- Change intelligence
+- AIOps recommendations
+- Anomaly detection
+- Incident creation
+- Automated remediation
+- Runbook automation
+- Human approval
+- SLA definitions and instances
+- Predictive breach risk
+- Notification templates and delivery
+- Workflow Runtime
+- Event processing
+- Background queues
+- Retry and dead-letter handling
+- Operational dashboards
+- Performance analytics
+- Security and governance
+
+The next chapter examines the broader ServiceFlow platform capabilities, including Enterprise Foundation, Identity and Security, Integration Hub, Developer Platform, and AI Agents.
+
+# Chapter 14  
+# Platform Capabilities
+
+The visible parts of a service platform—forms, tables, dashboards, and workspaces—depend on shared capabilities operating underneath them.
+
+Without a common foundation, every business area must create its own user model, data access, security, integrations, notifications, development standards, and automation. This duplication produces inconsistent experiences and increases operational risk.
+
+ServiceFlow groups these shared responsibilities into several platform areas:
+
+- Enterprise Foundation
+- Identity and Security
+- Integration Hub
+- Developer Platform
+- AI Agents
+
+These capabilities allow different service applications to use consistent data, controls, integrations, and development practices.
+
+## 14.1 The platform approach
+
+A platform provides reusable capabilities rather than implementing every service as an isolated application.
+
+For example, incidents, changes, HR cases, and customer requests may all need:
+
+- Authentication
+- User profiles
+- Record identifiers
+- Assignment groups
+- Attachments
+- Notifications
+- Search
+- Audit history
+- Approvals
+- APIs
+- Reporting
+- Data retention
+
+A shared platform implements these capabilities once and applies them consistently.
+
+```text
+Employee Services ─┐
+Customer Services ─┤
+IT Operations ─────┤
+Risk Management ───┼→ Shared platform capabilities
+Field Service ─────┤
+Portfolio Work ────┤
+Security Work ─────┘
+```
+
+This approach improves maintainability and makes cross-department workflows possible.
+
+## 14.2 Enterprise Foundation
+
+Enterprise Foundation provides the common data and operational services required by the rest of the platform.
+
+Its responsibilities can include:
+
+- Shared record model
+- Common identifiers
+- Reference data
+- Record relationships
+- Data persistence
+- Versioning
+- Audit history
+- Background processing
+- Scheduling
+- Environment management
+- Backup and recovery
+- Data lifecycle governance
+
+ServiceFlow currently demonstrates many of these concepts in the browser. An enterprise implementation would move authoritative storage and processing to trusted backend services.
+
+## 14.3 Shared data model
+
+A shared data model defines how platform records are represented.
+
+Many records use common fields:
+
+- ID
+- Number
+- Name or title
+- Description
+- State
+- Priority
+- Owner
+- Assignment group
+- Created date
+- Created by
+- Updated date
+- Updated by
+- Version
+- Active status
+
+Business-specific records extend that common structure.
+
+For example:
+
+```text
+Base Record
+├── Incident
+├── Change Request
+├── Service Request
+├── Customer Case
+├── HR Case
+├── Asset
+├── Risk
+└── Workflow Definition
+```
+
+A shared model improves consistency without forcing every record type to have identical fields.
+
+## 14.4 Record relationships
+
+Enterprise work rarely exists in isolation.
+
+A relationship might connect:
+
+- Incident to problem
+- Problem to change
+- Change to configuration item
+- Request to fulfillment task
+- Customer case to account
+- Asset to employee
+- Risk to control
+- Project to strategic objective
+- Workflow to execution
+
+A relationship should include:
+
+- Source record
+- Relationship type
+- Target record
+- Created date
+- Created by
+- Active status
+
+### Referential integrity
+
+Referential integrity prevents relationships from pointing to records that do not exist.
+
+If a change references a configuration item, the platform should confirm that the CI is valid.
+
+A production database can enforce these rules consistently.
+
+## 14.5 Record versioning
+
+Versioning preserves the evolution of a record.
+
+A version can include:
+
+- Version number
+- Changed fields
+- Previous values
+- New values
+- Changed by
+- Changed at
+- Change reason
+
+Versioning supports:
+
+- Conflict detection
+- Audit review
+- Rollback
+- Troubleshooting
+- Compliance
+- Historical reporting
+
+ServiceFlow includes version fields in several record types. A production implementation should enforce version updates on the server.
+
+### Optimistic locking
+
+Optimistic locking prevents one user from silently overwriting another user’s recent changes.
+
+Example:
+
+```text
+User A loads version 4.
+User B loads version 4.
+User A saves version 5.
+User B attempts to save version 4.
+```
+
+The server detects that User B’s version is outdated and requests a comparison or merge.
+
+## 14.6 Background jobs and scheduling
+
+Some work should execute outside the user’s browser.
+
+Examples include:
+
+- SLA calculations
+- Approval reminders
+- Dataset synchronization
+- Scheduled reports
+- Knowledge expiration
+- Attachment scanning
+- Workflow timers
+- Data archival
+- Notification delivery
+- Integration retries
+
+A background job record can include:
+
+- Job name
+- Schedule
+- Owner
+- Last run
+- Next run
+- Status
+- Duration
+- Result
+- Error information
+
+Background processing should be monitored and recoverable.
+
+## 14.7 Event processing
+
+The foundation can provide an event queue for asynchronous work.
+
+Events might include:
+
+- Record created
+- State changed
+- Approval completed
+- SLA warning reached
+- Document uploaded
+- Synchronization failed
+- Workflow completed
+
+Consumers can respond without tightly coupling every application.
+
+For example:
+
+```text
+Change approved
+├── Update change record
+├── Notify implementer
+├── Schedule reminder
+├── Update calendar
+└── Record audit event
+```
+
+Each consumer handles its responsibility while sharing the same event.
+
+## 14.8 Environments
+
+Enterprise platforms normally separate development activities from production operations.
+
+Common environments include:
+
+- Development
+- Test
+- Staging
+- Production
+
+### Development
+
+Developers and administrators build and configure features.
+
+### Test
+
+Automated and manual tests validate behavior.
+
+### Staging
+
+Production-like validation occurs with controlled data and integrations.
+
+### Production
+
+Approved capabilities support real users and operational records.
+
+Changes should move between environments through a controlled promotion process rather than manual recreation.
+
+## 14.9 Backup and recovery
+
+Authoritative enterprise data requires backup and recovery.
+
+A strategy should define:
+
+- Backup frequency
+- Retention
+- Encryption
+- Storage location
+- Restoration testing
+- Recovery point objective
+- Recovery time objective
+- Regional resilience
+- Responsibility
+
+A backup that has never been restored in a test should not be assumed reliable.
+
+Browser-local records can support a playground, but they are not a substitute for managed enterprise backups.
+
+## 14.10 Data retention
+
+Different record types may require different retention periods.
+
+Examples include:
+
+- Incidents retained for operational history
+- HR records retained under employment policy
+- Security evidence retained for compliance
+- Attachments deleted after defined periods
+- Audit events retained longer than routine activity
+- Customer records removed under privacy requirements
+
+Retention policies should specify:
+
+- Data category
+- Retention period
+- Archive behavior
+- Deletion method
+- Legal-hold behavior
+- Owner
+- Authority
+
+## 14.11 Identity and Security
+
+Identity and Security controls who can access the platform and what they can do.
+
+The capability can include:
+
+- Authentication
+- Single sign-on
+- Multifactor authentication
+- User lifecycle
+- Roles
+- Groups
+- Access-control rules
+- Session management
+- Privileged access
+- Encryption
+- Data classification
+- Audit
+- Privacy controls
+
+Security must be enforced by trusted backend services.
+
+## 14.12 Authentication
+
+Authentication confirms the identity of the user.
+
+Enterprise options include:
+
+- Username and password
+- SAML
+- OpenID Connect
+- Microsoft Entra ID
+- Active Directory
+- Passkeys
+- Certificates
+- Multifactor authentication
+
+ServiceFlow’s email-based login establishes local profile context, but it does not verify enterprise identity.
+
+### Single sign-on
+
+Single sign-on allows users to authenticate through the organization’s identity provider.
+
+Benefits include:
+
+- Central account management
+- Consistent policies
+- Multifactor authentication
+- Session controls
+- Faster user access
+- Central revocation
+
+## 14.13 User lifecycle
+
+User access should follow the person’s relationship with the organization.
+
+Lifecycle events include:
+
+- Pre-hire
+- Hire
+- Transfer
+- Promotion
+- Leave
+- Contractor renewal
+- Termination
+- Alumni access
+
+A user lifecycle workflow can coordinate:
+
+- Account creation
+- Role assignment
+- Group membership
+- Application access
+- Device allocation
+- Access review
+- Access removal
+
+Access should be adjusted when the person changes roles, not only when the account is created or deleted.
+
+## 14.14 Roles and groups
+
+Roles grant capabilities. Groups organize responsibility and membership.
+
+Example roles include:
+
+- Requester
+- Agent
+- Approver
+- Change manager
+- Knowledge manager
+- Security analyst
+- Platform administrator
+
+Groups can represent:
+
+- Service teams
+- Departments
+- Locations
+- Approval bodies
+- On-call teams
+- Customer organizations
+
+Access should follow the principle of least privilege.
+
+Users should receive only the capabilities required to perform their responsibilities.
+
+## 14.15 Access-control rules
+
+Access control can operate at several levels:
+
+- Application
+- Page
+- Table
+- Record
+- Field
+- Attachment
+- API action
+
+### Record-level security
+
+A user may have access to some records in a table but not others.
+
+Examples include:
+
+- HR agents can view cases assigned to their HR service.
+- Customer contacts can view records for their account.
+- Regional agents can view work for their region.
+- Employees can view their own requests.
+
+### Field-level security
+
+A user may view the record while sensitive fields remain protected.
+
+Examples include:
+
+- Salary
+- Investigation notes
+- Security evidence
+- Personal health information
+- Administrative credentials
+
+### Attachment security
+
+Attachment access should be evaluated separately. Permission to see a case title should not automatically grant access to every document attached to it.
+
+## 14.16 Privileged access
+
+Administrative and security roles have elevated capabilities.
+
+Controls can include:
+
+- Temporary elevation
+- Manager approval
+- Justification
+- Session recording
+- Restricted duration
+- Reauthentication
+- Enhanced auditing
+- Emergency access procedure
+
+Permanent, unrestricted administrative access increases risk.
+
+## 14.17 Session security
+
+A secure session model can provide:
+
+- Server-issued tokens
+- Secure cookies
+- Idle timeout
+- Maximum session duration
+- Token rotation
+- Session revocation
+- Device awareness
+- Suspicious-session detection
+
+ServiceFlow uses a ten-minute sliding inactivity timer based on keyboard and touch activity. A production platform would validate session state on the server.
+
+## 14.18 Encryption
+
+Sensitive data should be protected:
+
+- In transit
+- At rest
+- In backups
+- In attachments
+- In logs where appropriate
+
+Organizations may also require:
+
+- Customer-managed keys
+- Key rotation
+- Field-level encryption
+- Secret vaults
+- Certificate management
+
+Encryption does not replace authorization. An authenticated application can still expose encrypted data after decryption if access controls are incorrect.
+
+## 14.19 Audit and security history
+
+Security-relevant actions should create protected audit events.
+
+Examples include:
+
+- Login
+- Failed login
+- Role change
+- Group membership change
+- Record access
+- Sensitive-field update
+- Attachment download
+- Administrative action
+- Data export
+- API credential use
+- Privilege elevation
+
+An enterprise audit trail should be append-only and protected from ordinary modification.
+
+## 14.20 Privacy and data protection
+
+The platform may contain personal and sensitive data.
+
+Privacy controls can include:
+
+- Data classification
+- Consent
+- Purpose limitation
+- Subject-access requests
+- Correction requests
+- Deletion requests
+- Retention
+- Masking
+- Regional storage
+- Legal hold
+
+Forms should collect only information necessary for the service.
+
+## 14.21 Integration Hub
+
+Integration Hub connects ServiceFlow with external systems.
+
+Integrations may support:
+
+- HR platforms
+- Identity systems
+- CRM
+- ERP
+- Monitoring tools
+- Cloud providers
+- Collaboration tools
+- Email
+- Calendars
+- DevOps pipelines
+- Supplier systems
+
+The objective is to coordinate work without forcing users to manually copy information between systems.
+
+## 14.22 Integration patterns
+
+Common patterns include:
+
+- Request and response
+- Event notification
+- Scheduled synchronization
+- Batch import
+- Webhook
+- Message queue
+- File transfer
+- Streaming
+
+### Request and response
+
+ServiceFlow sends a request and waits for the result.
+
+Example:
+
+```text
+Retrieve employee manager from HR system
+```
+
+### Event notification
+
+A system sends an event when something happens.
+
+Example:
+
+```text
+Deployment completed
+```
+
+### Scheduled synchronization
+
+Records are compared or transferred on a schedule.
+
+Example:
+
+```text
+Refresh active customer accounts every night
+```
+
+### Webhook
+
+ServiceFlow sends or receives an HTTP callback.
+
+Example:
+
+```text
+Receive monitoring alert
+```
+
+## 14.23 Connection definitions
+
+An integration connection can include:
+
+- Name
+- Endpoint
+- Authentication method
+- Credential reference
+- Timeout
+- Rate limit
+- Environment
+- Owner
+- Active status
+
+Credentials should be stored in a secure server-side vault, not in browser code.
+
+### Connection reuse
+
+Multiple actions can reuse a governed connection.
+
+For example, one CRM connection might support:
+
+- Read account
+- Create case
+- Update contact
+- Retrieve entitlement
+
+This improves consistency and credential management.
+
+## 14.24 Data mapping
+
+External systems rarely use identical fields.
+
+A data mapping defines how values are transformed.
+
+Example:
+
+| ServiceFlow | External system |
+|---|---|
+| `requester.email` | `requested_by` |
+| `shortDescription` | `summary` |
+| `priority` | `severity_code` |
+| `createdDate` | `created_at` |
+
+Transformations may include:
+
+- Date formatting
+- Value translation
+- Identifier lookup
+- Boolean conversion
+- Field combination
+- Default values
+
+Mappings should be versioned and tested.
+
+## 14.25 Integration reliability
+
+External systems may be slow, unavailable, or return unexpected data.
+
+An integration should define:
+
+- Timeout
+- Retry policy
+- Idempotency
+- Validation
+- Error mapping
+- Dead-letter behavior
+- Alerting
+- Monitoring
+
+### Idempotency
+
+An idempotent operation can be repeated without creating duplicate results.
+
+If a request is retried after a timeout, the external system should not create a second account or order.
+
+A unique operation identifier can help prevent duplication.
+
+## 14.26 Integration monitoring
+
+Integration monitoring should answer:
+
+- Is the connection available?
+- How many calls succeeded?
+- How many failed?
+- What is the average response time?
+- Are rate limits approaching?
+- Which records are affected?
+- Are retries increasing?
+- Is the credential expiring?
+
+Failures should link to execution and record context.
+
+## 14.27 Developer Platform
+
+Developer Platform provides the tools and standards used to extend ServiceFlow.
+
+Capabilities can include:
+
+- Application structure
+- Reusable modules
+- Shared services
+- Page generation
+- Form definitions
+- Table helpers
+- API services
+- Storage services
+- Automated tests
+- Source control
+- Environment promotion
+- Packaging
+- Documentation
+
+ServiceFlow’s implementation emphasizes modular JavaScript and reusable behavior.
+
+## 14.28 Modular frontend architecture
+
+Shared behavior should live in reusable modules rather than being copied into every page.
+
+Examples include:
+
+- API service
+- Storage service
+- Toast service
+- Table enhancement
+- Searchable dropdowns
+- Form serialization
+- Attachment management
+- Session management
+- Record merging
+- Query-parameter handling
+
+Benefits include:
+
+- Consistent behavior
+- Easier fixes
+- Reduced duplication
+- Better testing
+- Faster page creation
+
+If a dropdown problem is fixed in the shared component, every form can receive the correction.
+
+## 14.29 API service
+
+All remote calls should pass through a shared API service.
+
+The API service can handle:
+
+- GET and POST requests
+- Headers
+- JSON serialization
+- Response parsing
+- Timeouts
+- Error handling
+- Fallback data
+- Retries
+- Logging
+
+Feature modules should not independently implement the same fetch logic.
+
+### API boundaries
+
+The API service should not expose sensitive credentials to browser code.
+
+Where secure authentication is required, calls should pass through an authorized backend.
+
+## 14.30 Storage service
+
+LocalStorage access should also be centralized.
+
+A storage service can manage:
+
+- Profile-scoped keys
+- JSON parsing
+- JSON serialization
+- Defaults
+- Errors
+- Migration
+- Removal
+- Clearing
+- Storage versioning
+
+Centralization reduces inconsistencies and makes it easier to change storage behavior later.
+
+IndexedDB and Cache API behavior can be managed through corresponding shared services.
+
+## 14.31 Reusable form definitions
+
+ServiceFlow forms are generated from structured metadata.
+
+A field definition may describe:
+
+- Name
+- Label
+- Type
+- Required status
+- Options
+- Stage
+- Business category
+
+Example:
+
+```json
+{
+  "name": "risk",
+  "label": "Risk",
+  "type": "select",
+  "required": true,
+  "options": ["Low", "Medium", "High", "Critical"]
+}
+```
+
+Metadata-driven generation supports:
+
+- Consistent layouts
+- Accessible labels
+- Shared validation
+- Business-specific forms
+- Faster updates
+- Testable definitions
+
+## 14.32 Reusable table behavior
+
+All tables should support:
+
+- Search
+- Filtering
+- Sorting
+- Pagination
+- Scrolling
+- CSV export
+- Record links
+
+These features should come from shared helpers rather than page-specific implementations.
+
+The table module can accept:
+
+- Columns
+- Records
+- Search fields
+- Filter fields
+- Page size
+- Export filename
+- Record-link function
+
+## 14.33 Automated testing
+
+A developer platform should support several test levels.
+
+### Static validation
+
+Checks include:
+
+- JavaScript syntax
+- Required source markers
+- Form metadata
+- Publication inventory
+- Data counts
+- Date ranges
+
+### Unit testing
+
+Tests validate reusable functions:
+
+- Serialization
+- Merging
+- Filtering
+- Sorting
+- Validation
+- Identifier generation
+
+### Browser testing
+
+Hosted browser tests verify:
+
+- Page rendering
+- Navigation
+- Record opening
+- Dropdown geometry
+- Form hydration
+- Local saving
+- Attachment isolation
+- Session behavior
+
+### Integration testing
+
+Tests verify:
+
+- API requests
+- Authentication
+- Synchronization
+- Error handling
+- Retry behavior
+- Data contracts
+
+HTTP status alone does not prove that the application works. Tests must exercise real user behavior.
+
+## 14.34 Publication and deployment
+
+ServiceFlow publishes existing pages through their saved Edit URLs.
+
+The deployment process:
+
+1. Reads shared source files.
+2. Builds each page.
+3. Inserts current navigation URLs.
+4. Updates hosted pages.
+5. Captures responses.
+6. Updates the manifest.
+7. Verifies Read URLs.
+8. Runs hosted checks.
+
+This process preserves public addresses and makes updates repeatable.
+
+### Continuous delivery
+
+A future pipeline could automate:
+
+- Linting
+- Unit tests
+- Browser tests
+- Security scanning
+- Build
+- Approval
+- Deployment
+- Verification
+- Rollback
+
+## 14.35 AI Agents
+
+AI Agents can assist or perform service work using approved records, knowledge, workflows, and tools.
+
+Potential use cases include:
+
+- Classify records
+- Summarize incidents
+- Recommend assignment
+- Draft customer responses
+- Suggest knowledge
+- Prepare change-risk summaries
+- Generate resolution notes
+- Create workflow drafts
+- Identify missing information
+- Perform controlled fulfillment actions
+
+An agent should operate within the same security and governance boundaries as a human or integration.
+
+## 14.36 AI-assisted classification
+
+An AI agent can review a description and suggest:
+
+- Record type
+- Category
+- Subcategory
+- Service
+- Priority
+- Assignment group
+
+Example input:
+
+> Users in the Atlanta office lose VPN access after resetting their passwords.
+
+Suggested result:
+
+```json
+{
+  "recordType": "incident",
+  "category": "Network",
+  "subcategory": "VPN",
+  "service": "Remote Access",
+  "priority": "P2 High",
+  "assignmentGroup": "Network Operations"
+}
+```
+
+The platform should show confidence and allow human correction.
+
+Corrections can help evaluate and improve the system.
+
+## 14.37 Summarization
+
+Long records can be difficult to review.
+
+AI-generated summaries can highlight:
+
+- Current issue
+- Business impact
+- Work completed
+- Open blockers
+- Next action
+- Owner
+- SLA status
+
+The summary should link back to source information and clearly indicate that it was generated.
+
+## 14.38 Suggested responses and resolutions
+
+An AI agent can draft:
+
+- Customer update
+- Approval summary
+- Resolution notes
+- Change communication
+- Knowledge article
+- Post-incident summary
+
+The user should review generated content before sending or saving it when accuracy or sensitivity matters.
+
+Generated text should not invent actions that were not performed.
+
+## 14.39 AI-assisted workflow creation
+
+A user might describe a process in natural language:
+
+> When a privileged-access request is submitted, validate the expiration date, get manager and security approval, create a fulfillment task, and notify the requester.
+
+The AI agent can propose workflow steps:
+
+1. Start on request creation
+2. Validate required information
+3. Manager approval
+4. Security approval
+5. Create fulfillment task
+6. Notify requester
+7. End
+
+The proposed workflow must still be reviewed, tested, versioned, and approved.
+
+## 14.40 Autonomous actions
+
+An agent may be allowed to perform actions such as:
+
+- Update a record
+- Create a task
+- Send a notification
+- Call an integration
+- Assign work
+- Run a remediation
+
+Autonomous execution requires stronger controls than recommendation.
+
+The platform should define:
+
+- Allowed tools
+- Approved data
+- Maximum impact
+- Confidence threshold
+- Human approval requirements
+- Time and cost limits
+- Audit history
+- Stop mechanism
+
+## 14.41 AI grounding
+
+An AI agent should base its output on approved sources.
+
+Possible sources include:
+
+- Knowledge articles
+- CMDB records
+- Service definitions
+- Current incident
+- Customer entitlement
+- Workflow history
+- Policy documents
+- Approved runbooks
+
+Grounding reduces unsupported answers, but source quality remains essential.
+
+Outdated knowledge can produce confidently incorrect recommendations.
+
+## 14.42 AI governance
+
+AI governance should include:
+
+- Use-case approval
+- Data classification
+- Model selection
+- Prompt management
+- Source restrictions
+- Human review
+- Confidence thresholds
+- Output monitoring
+- Bias assessment
+- Privacy controls
+- Cost monitoring
+- Incident response
+- Audit history
+
+### Prompt and response audit
+
+For governed uses, the platform may record:
+
+- Agent
+- Model
+- Prompt template
+- Approved context
+- Tools used
+- Response
+- Human decision
+- Final action
+- Timestamp
+
+Sensitive data should be handled according to policy.
+
+## 14.43 AI safety boundaries
+
+An agent should not be permitted to:
+
+- Grant unrestricted access without authorization
+- Delete production data without controlled approval
+- Disclose restricted records
+- Bypass change management
+- Invent compliance evidence
+- Close incidents without validation
+- Send unreviewed sensitive communications
+- Use credentials outside its approved scope
+
+The platform must enforce these limits technically, not only through instructions.
+
+## 14.44 An integrated platform example
+
+Consider a request for privileged cloud access.
+
+### Enterprise Foundation
+
+The platform creates a record with a stable identifier and version.
+
+### Identity and Security
+
+The user authenticates through single sign-on. Role and record permissions control visibility.
+
+### Workflow
+
+The request triggers validation and approval.
+
+### Integration Hub
+
+The platform retrieves the manager from the HR system and sends the approved request to the cloud identity service.
+
+### AI Agent
+
+The agent summarizes the business justification and highlights missing expiration information.
+
+### Human review
+
+The requester supplies the missing date. Manager and security approvals are completed.
+
+### Fulfillment
+
+The integration grants access with the approved expiration.
+
+### Audit
+
+The platform records the request, decisions, API action, access result, and responsible identities.
+
+### Monitoring
+
+A scheduled workflow removes access at expiration and confirms completion.
+
+This example shows how shared platform capabilities support one end-to-end service outcome.
+
+## 14.45 Platform-capability checklist
+
+### Enterprise Foundation
+
+- Shared identifiers exist.
+- Relationships are governed.
+- Versioning is supported.
+- Background jobs are monitored.
+- Backup and recovery are tested.
+- Retention is defined.
+
+### Identity and Security
+
+- Authentication is server-enforced.
+- Roles follow least privilege.
+- Record and field controls exist.
+- Privileged access is limited.
+- Sessions can be revoked.
+- Audit history is protected.
+
+### Integration Hub
+
+- Connections use secure credentials.
+- Mappings are documented.
+- Timeouts and retries are defined.
+- Operations are idempotent.
+- Failures are monitored.
+- Rate limits are understood.
+
+### Developer Platform
+
+- Shared modules are used.
+- API calls are centralized.
+- Storage access is centralized.
+- Forms serialize to JSON.
+- Tables share common behavior.
+- Tests cover hosted behavior.
+- Deployments preserve URLs.
+
+### AI Agents
+
+- Use cases are approved.
+- Data sources are governed.
+- Confidence is visible.
+- Human review is defined.
+- Tools are restricted.
+- Actions are audited.
+- Stop mechanisms exist.
+
+## Chapter summary
+
+Platform capabilities allow ServiceFlow applications to operate as one governed environment rather than a collection of unrelated pages.
+
+Their major functions include:
+
+- Shared data models
+- Record relationships
+- Versioning
+- Background processing
+- Event queues
+- Environment promotion
+- Backup and retention
+- Authentication
+- Roles and groups
+- Record and field security
+- Privileged access
+- Session security
+- Encryption and privacy
+- Integration patterns
+- Secure connections
+- Data mapping
+- Retry and idempotency
+- Modular development
+- Shared API and storage services
+- Metadata-driven forms
+- Reusable tables
+- Automated testing
+- Controlled publication
+- AI classification
+- Summarization
+- Suggested responses
+- Workflow generation
+- Autonomous actions
+- Grounding and AI governance
+
+The next chapter examines governance and strategy, including Risk and Compliance, Strategic Portfolio, Field Service, reporting, KPI design, and organizational accountability.
