@@ -10472,3 +10472,1242 @@ Its core capabilities include:
 The ServiceFlow designer provides the visible authoring experience. Turning that design into enterprise automation requires a server-side workflow runtime that can execute, secure, monitor, and govern each workflow definition.
 
 The next chapter examines the core enterprise services connected by those workflows, including requests, approvals, knowledge, assets, the configuration-management database, human resources, and service-level management.
+
+# Chapter 12  
+# Core Enterprise Services
+
+A service-management platform becomes more valuable as it connects processes that would otherwise operate independently.
+
+An employee request may require approval, fulfillment tasks, asset allocation, identity changes, knowledge, and an SLA. An incident may depend on configuration information and produce a knowledge article. A customer case may require coordination with field service, finance, or engineering.
+
+ServiceFlow brings these capabilities into one platform experience.
+
+This chapter examines six core enterprise service areas:
+
+- Requests
+- Approvals
+- Knowledge
+- Assets
+- Configuration Management Database
+- Human Resources
+- Service-level management
+
+Each area has its own records and responsibilities, but they share identity, workflows, local persistence, search, reporting, notifications, and synchronization.
+
+## 12.1 Requests as coordinated demand
+
+A request represents something a user, employee, customer, or business team wants the organization to provide.
+
+Examples include:
+
+- Hardware
+- Software
+- Application access
+- Cloud resources
+- Data reports
+- Workplace services
+- Employment documents
+- Financial services
+- Security services
+- New employee onboarding
+
+A request differs from an incident.
+
+- An incident reports an unplanned service interruption.
+- A request asks for a defined service or outcome.
+
+The distinction matters because the processes, approvals, fulfillment tasks, and service commitments may be different.
+
+## 12.2 Request hierarchy
+
+A mature request model often contains several related record levels:
+
+```text
+Request
+├── Requested item
+│   ├── Fulfillment task
+│   ├── Fulfillment task
+│   └── Approval
+└── Requested item
+    ├── Fulfillment task
+    └── Approval
+```
+
+### Request
+
+The request represents the complete order or submission.
+
+It can contain:
+
+- Requester
+- Requested-for user
+- Submission date
+- Overall state
+- Total cost
+- Delivery location
+- General comments
+
+### Requested item
+
+A requested item represents one catalog item within the request.
+
+It can contain:
+
+- Service
+- Item
+- Quantity
+- Business need
+- Approval state
+- Fulfillment state
+- Needed-by date
+- Assignment group
+- Cost
+
+### Fulfillment task
+
+A fulfillment task represents a unit of work required to complete the item.
+
+Examples include:
+
+- Reserve inventory
+- Configure equipment
+- Create an account
+- Install software
+- Grant access
+- Schedule delivery
+
+This hierarchy allows one order to coordinate several services without treating them as unrelated requests.
+
+## 12.3 The Requests and Approvals workspace
+
+ServiceFlow’s Requests and Approvals page focuses on active records and decisions.
+
+The page opens directly into:
+
+- Operational KPI cards
+- Search
+- State filtering
+- Sortable records
+- Pagination
+- CSV export
+- Request details
+- Approval actions
+
+It does not display a general intake-stage ribbon because the primary user task is to review and act on existing work.
+
+### Request KPIs
+
+The workspace includes measures such as:
+
+- Rolling 30-day requests
+- Pending approvals
+- Requests in fulfillment
+- Requests at risk or breached
+
+Each metric can filter the visible queue.
+
+This turns the KPI from a passive number into a path to operational action.
+
+### Request records
+
+A request row can include:
+
+- Number
+- Requested item
+- Requester
+- Priority
+- State
+- Approval decision
+- Approver
+- Assignment group
+- Needed-by date
+- SLA status
+- Record link
+
+The table supports search, filtering, sorting, pagination, and export.
+
+## 12.4 Request details
+
+Opening a request displays additional information.
+
+Fields can include:
+
+- Requester
+- Department
+- Service
+- Description
+- Priority
+- State
+- Approval decision
+- Approver
+- Assignment group
+- Assigned user
+- Estimated cost
+- Cost center
+- Created date
+- Needed-by date
+- Fulfillment progress
+- SLA status
+- Customer confirmation
+- Decision notes
+
+This gives the approver or fulfiller the context required to act.
+
+### Record links
+
+Every table record should link back to the relevant page using the record identifier as a query parameter.
+
+A direct link supports:
+
+- Notifications
+- Bookmarks
+- Shared links
+- Audit references
+- Return navigation
+- Automated testing
+
+## 12.5 Approval management
+
+Approvals control actions that require authorization.
+
+Approval may be necessary because of:
+
+- Cost
+- Risk
+- Security
+- Data access
+- Policy
+- Service ownership
+- Contract terms
+- Resource availability
+- Regulatory obligations
+
+ServiceFlow supports decisions such as:
+
+- Approved
+- Rejected
+- More Information Required
+
+The decision is saved under the logged-in profile and merged with the published record.
+
+### Approval record
+
+A complete approval record should contain:
+
+- Request or task
+- Approver
+- Approver role
+- Requested date
+- Due date
+- Decision
+- Decision date
+- Comments
+- Delegation
+- Escalation
+- Conditions
+
+### Approval context
+
+The approver should see enough information to understand:
+
+- What is requested
+- Who needs it
+- Why it is required
+- What it costs
+- What risk it introduces
+- When it is needed
+- What supporting evidence exists
+
+The approver should not have to search across several systems to reconstruct the request.
+
+## 12.6 Approval routing
+
+Approval routing can use:
+
+- Requester’s manager
+- Department owner
+- Cost-center owner
+- Application owner
+- Service owner
+- Security group
+- Change manager
+- Customer account owner
+- Specific user
+- Dynamic workflow rule
+
+### Sequential approvals
+
+Sequential approvals occur in a defined order.
+
+Example:
+
+```text
+Manager → Application owner → Security
+```
+
+The later approver may only receive the request after the earlier decision is approved.
+
+### Parallel approvals
+
+Parallel approvals are requested simultaneously.
+
+Example:
+
+```text
+           ┌→ Finance ─┐
+Request ───┼→ Security ├→ Fulfillment
+           └→ IT Owner ┘
+```
+
+The workflow must define whether all approvals are required or whether a threshold is sufficient.
+
+### Delegation
+
+Approvers may delegate authority during an absence.
+
+Delegation should include:
+
+- Original approver
+- Delegate
+- Start date
+- End date
+- Scope
+- Created by
+- Approval restrictions
+
+Delegation should be visible in the decision history.
+
+## 12.7 Approval escalation
+
+An unanswered approval can delay the entire service journey.
+
+Escalation options include:
+
+- Reminder to approver
+- Manager notification
+- Reassignment
+- Delegate routing
+- Group approval
+- Expiration
+- Automatic rejection
+- Exception handling
+
+The escalation rule should reflect business risk. Automatically approving a privileged-access request after timeout would be inappropriate.
+
+## 12.8 Request fulfillment
+
+Once approved, the request moves into fulfillment.
+
+The fulfillment process can:
+
+- Generate tasks
+- Assign groups
+- Reserve inventory
+- Call external systems
+- Schedule appointments
+- Send notifications
+- Track dependencies
+- Update progress
+
+### Fulfillment progress
+
+Progress can be calculated from completed tasks.
+
+For example:
+
+```text
+4 of 5 tasks complete = 80 percent
+```
+
+The percentage should be accompanied by meaningful status information. A single blocked task may be more important than the calculated percentage.
+
+### Customer or employee confirmation
+
+After fulfillment, the requester can confirm:
+
+- Completed
+- Partially completed
+- Not completed
+- Additional assistance required
+
+Disputed outcomes should return the record to active work.
+
+## 12.9 Knowledge management
+
+Knowledge management turns operational experience into reusable guidance.
+
+Knowledge can support:
+
+- Employee self-service
+- Customer self-service
+- Agent resolution
+- Major-incident response
+- Known-error management
+- Change implementation
+- Administrative guidance
+- Training
+
+ServiceFlow’s Knowledge workspace provides structured article intake and a searchable record experience.
+
+## 12.10 Knowledge article structure
+
+A knowledge article can include:
+
+- Article number
+- Title
+- Summary
+- Knowledge base
+- Category
+- Audience
+- Body
+- Keywords
+- Attachments
+- Author
+- Owner
+- Version
+- Valid-from date
+- Expiration date
+- Review date
+- Related services
+- Related catalog items
+- Approval state
+- Publication status
+
+### Knowledge bases
+
+A knowledge base groups articles by purpose or audience.
+
+Examples include:
+
+- IT
+- Human Resources
+- Facilities
+- Security
+- Customer Support
+
+Access can vary by knowledge base and article.
+
+### Audience
+
+Possible audiences include:
+
+- All employees
+- Agents
+- Managers
+- Customers
+- Administrators
+- Specific groups
+
+An internal troubleshooting article may contain information that should not appear in a customer portal.
+
+## 12.11 Knowledge lifecycle
+
+A typical knowledge lifecycle is:
+
+**Draft → Technical Review → Editorial Review → Approved → Published → Retired**
+
+### Draft
+
+The author creates the article.
+
+### Technical Review
+
+A subject-matter expert validates accuracy.
+
+### Editorial Review
+
+The article is reviewed for clarity, structure, accessibility, and style.
+
+### Approved
+
+Required reviewers accept the content.
+
+### Published
+
+The article becomes available to the intended audience.
+
+### Retired
+
+The article is no longer presented as current guidance.
+
+Retirement should preserve history rather than permanently deleting the content.
+
+## 12.12 Knowledge quality
+
+A useful article should be:
+
+- Accurate
+- Clear
+- Searchable
+- Current
+- Audience-appropriate
+- Actionable
+- Owned
+- Reviewable
+
+### Article structure
+
+A troubleshooting article might contain:
+
+1. Symptoms
+2. Affected environment
+3. Cause
+4. Resolution
+5. Workaround
+6. Verification
+7. Escalation
+8. Related records
+
+A policy article might contain:
+
+1. Purpose
+2. Scope
+3. Policy statement
+4. Responsibilities
+5. Exceptions
+6. References
+7. Owner
+8. Review date
+
+### Review and expiration
+
+Every published article should have an owner and review date.
+
+Expired or unowned knowledge creates risk because users may follow outdated instructions.
+
+## 12.13 Contextual knowledge
+
+Knowledge is most effective when presented at the moment of need.
+
+ServiceFlow can recommend articles based on:
+
+- Form category
+- Short description
+- Service
+- Configuration item
+- Error message
+- Customer product
+- Record type
+- Lifecycle stage
+
+For example, an agent investigating a VPN incident might see:
+
+- Password-reset recovery
+- VPN profile repair
+- Current known errors
+- Network-service status
+- Related resolved incidents
+
+Contextual suggestions reduce search effort.
+
+## 12.14 Knowledge feedback and improvement
+
+Users should be able to provide feedback such as:
+
+- Helpful
+- Not helpful
+- Rating
+- Comment
+- Outdated content
+- Missing information
+- Broken procedure
+
+Knowledge managers can analyze:
+
+- Views
+- Search position
+- Helpful rate
+- Usage in resolved records
+- Feedback themes
+- Expired articles
+- Articles with no owner
+- Search terms without results
+
+Incident and request patterns can identify knowledge gaps.
+
+## 12.15 Asset management
+
+An asset is something of financial, contractual, or operational value that the organization manages.
+
+Examples include:
+
+- Laptop
+- Mobile device
+- Server
+- Network equipment
+- Software license
+- Vehicle
+- Tool
+- Furniture
+- Cloud subscription
+
+Asset management focuses on ownership, cost, lifecycle, inventory, and accountability.
+
+## 12.16 Asset lifecycle
+
+A typical asset lifecycle includes:
+
+**Plan → Procure → Receive → Stock → Deploy → Maintain → Retire → Dispose**
+
+### Plan
+
+The organization identifies demand and budget.
+
+### Procure
+
+The asset is ordered through an approved supplier.
+
+### Receive
+
+The asset is received and verified.
+
+### Stock
+
+The asset is stored until required.
+
+### Deploy
+
+The asset is assigned to a person, location, or service.
+
+### Maintain
+
+The asset receives repairs, upgrades, or inspections.
+
+### Retire
+
+The asset is removed from active service.
+
+### Dispose
+
+The asset is sold, recycled, returned, or destroyed according to policy.
+
+Each stage should preserve responsible ownership and evidence.
+
+## 12.17 Asset record structure
+
+An asset record can include:
+
+- Asset tag
+- Name
+- Model
+- Manufacturer
+- Serial number
+- Category
+- State
+- Substate
+- Assigned user
+- Location
+- Department
+- Cost center
+- Purchase date
+- Purchase cost
+- Supplier
+- Warranty expiration
+- Contract
+- Disposal date
+- Related configuration item
+
+The asset identifier should remain stable throughout its lifecycle.
+
+## 12.18 Inventory and stockrooms
+
+Organizations need visibility into available inventory.
+
+A stockroom record can include:
+
+- Location
+- Manager
+- Asset category
+- Quantity
+- Reserved quantity
+- Available quantity
+- Reorder threshold
+
+Request fulfillment can reserve inventory before assigning a device.
+
+For example:
+
+1. Laptop request approved.
+2. Suitable device reserved.
+3. Configuration task created.
+4. Asset assigned to employee.
+5. Stockroom quantity updated.
+
+This connects catalog demand with physical inventory.
+
+## 12.19 Software assets
+
+Software asset management includes:
+
+- Installed products
+- Licenses
+- Entitlements
+- Usage
+- Contracts
+- Renewal dates
+- Compliance position
+
+The organization should be able to compare:
+
+```text
+Purchased rights
+       versus
+Installed or assigned usage
+```
+
+This helps identify:
+
+- Over-licensing
+- Under-licensing
+- Unused subscriptions
+- Unauthorized software
+- Renewal risk
+- Cost-saving opportunities
+
+## 12.20 Configuration Management Database
+
+A Configuration Management Database, or CMDB, manages configuration items and their relationships.
+
+A configuration item represents a component required to deliver a service.
+
+Examples include:
+
+- Application
+- Database
+- Server
+- Cloud resource
+- Network device
+- Integration
+- Business service
+- Technical service
+
+The CMDB focuses on operational configuration and service relationships.
+
+## 12.21 Asset versus configuration item
+
+An asset and a configuration item may represent the same physical object but serve different purposes.
+
+### Asset perspective
+
+The asset record answers:
+
+- Who owns it?
+- What did it cost?
+- Where is it?
+- Is it under warranty?
+- What is its lifecycle state?
+- When should it be replaced?
+
+### Configuration perspective
+
+The CI record answers:
+
+- Which service depends on it?
+- What is its operational state?
+- How is it configured?
+- What components depend on it?
+- Which incidents affect it?
+- Which changes modify it?
+
+A laptop may be both an asset and a CI. A business service may be a CI without being a financial asset.
+
+## 12.22 CI classes
+
+The CMDB can organize records into classes.
+
+Example hierarchy:
+
+```text
+Configuration Item
+├── Business Service
+├── Application
+├── Database
+├── Server
+│   ├── Physical Server
+│   └── Virtual Server
+├── Network Device
+├── Cloud Resource
+└── End-User Device
+```
+
+Classes support fields and rules appropriate to each type.
+
+A database and a laptop should not require identical attributes.
+
+## 12.23 CI relationships
+
+Relationships provide the greatest value of a CMDB.
+
+Examples include:
+
+- Application runs on server.
+- Application depends on database.
+- Business service depends on application.
+- Server connects to network device.
+- Customer service uses integration.
+- User device is assigned to employee.
+
+A relationship has:
+
+- Source CI
+- Relationship type
+- Target CI
+- Start date
+- End date
+- Source
+- Confidence
+
+### Impact analysis
+
+If a server fails, relationships can identify:
+
+- Applications running on it
+- Business services depending on those applications
+- Customers or employees affected
+- Related incidents
+- Planned changes
+
+Without relationships, the CMDB becomes only another inventory list.
+
+## 12.24 CMDB data quality
+
+CMDB value depends on accuracy.
+
+Common data-quality dimensions include:
+
+- Completeness
+- Correctness
+- Compliance
+- Freshness
+- Uniqueness
+- Relationship coverage
+- Ownership
+
+### Duplicate CIs
+
+Duplicate records can result from:
+
+- Multiple discovery sources
+- Inconsistent identifiers
+- Manual entry
+- Naming differences
+- Missing serial numbers
+- Cloud-resource recreation
+
+Identification and reconciliation rules determine whether incoming information creates a new CI or updates an existing one.
+
+### Ownership certification
+
+CI owners can periodically confirm:
+
+- Record remains active.
+- Ownership is correct.
+- Relationships are accurate.
+- Support group is current.
+- Critical fields are complete.
+
+Certification makes data quality an operational responsibility.
+
+## 12.25 Discovery and service mapping
+
+Discovery identifies infrastructure and software automatically.
+
+It may collect:
+
+- Device identity
+- Operating system
+- Installed software
+- Network information
+- Cloud metadata
+- Running processes
+- Database instances
+
+Service mapping connects technical components to business services.
+
+A map might show:
+
+```text
+Customer Ordering
+       ↓
+Web Application
+       ↓
+API Gateway
+       ↓
+Order Service
+       ↓
+Database Cluster
+```
+
+These relationships support incident impact analysis and change-risk assessment.
+
+ServiceFlow currently provides sample asset and CI records. Discovery and automated service mapping would require backend collectors and reconciliation services.
+
+## 12.26 Human Resources services
+
+HR service delivery applies service-management principles to employee support.
+
+Examples include:
+
+- Onboarding
+- Offboarding
+- Payroll questions
+- Benefits assistance
+- Employment verification
+- Leave requests
+- Employee relations
+- Personal-data updates
+- Workplace accommodations
+
+HR records may contain sensitive information and require stricter access than general service records.
+
+## 12.27 HR case structure
+
+An HR case can include:
+
+- Case number
+- Employee
+- Service
+- Subject
+- Description
+- HR category
+- Assignment group
+- Assigned HR agent
+- Priority
+- State
+- Due date
+- Employee comments
+- HR notes
+- Documents
+- Resolution
+- Closure information
+
+### Sensitive information
+
+HR cases may contain:
+
+- Compensation
+- Health information
+- Performance matters
+- Legal concerns
+- Employee relations
+- Identity documents
+
+Access should be enforced by server-side rules at the record, field, and attachment levels.
+
+Hiding fields in the browser is not sufficient.
+
+## 12.28 Employee lifecycle journeys
+
+HR processes often span several departments.
+
+### Onboarding
+
+Onboarding can coordinate:
+
+- Employee record
+- Identity account
+- Laptop
+- Application access
+- Building access
+- Payroll
+- Benefits
+- Orientation
+- Manager tasks
+
+### Offboarding
+
+Offboarding can coordinate:
+
+- Access removal
+- Asset return
+- Payroll action
+- Benefits notification
+- Data retention
+- Knowledge transfer
+- Facility access
+- Final documentation
+
+A lifecycle journey provides one coordinated experience while specialized tasks are assigned to responsible teams.
+
+## 12.29 HR document generation
+
+HR services may produce:
+
+- Employment verification
+- Offer letters
+- Policy acknowledgments
+- Leave documents
+- Benefits forms
+- Separation documents
+
+A production platform can integrate document templates and electronic signatures.
+
+Generated documents should be stored securely and associated with the correct employee and case.
+
+## 12.30 Service-level management
+
+Service-level management defines and measures commitments.
+
+A service-level agreement can represent:
+
+- Response target
+- Resolution target
+- Fulfillment target
+- Approval target
+- Customer-update target
+- Availability commitment
+
+ServiceFlow’s SLA Engine provides an intake experience for defining these rules.
+
+## 12.31 SLA definition
+
+An SLA record can include:
+
+- Number
+- Name
+- Owner
+- Record type
+- Priority
+- Service
+- Entitlement
+- State
+- Start condition
+- Pause condition
+- Stop condition
+- Duration
+- Schedule
+- Warning threshold
+- Breach action
+- Escalation group
+
+### Start condition
+
+The start condition defines when measurement begins.
+
+Example:
+
+```text
+Incident is created
+AND
+Priority is P1 Critical
+```
+
+### Pause condition
+
+The pause condition defines when time temporarily stops.
+
+Example:
+
+```text
+State = Pending
+AND
+Pending reason = Waiting for Customer
+```
+
+Not every pending state should pause the SLA.
+
+### Stop condition
+
+The stop condition defines successful completion.
+
+Example:
+
+```text
+State = Resolved
+```
+
+### Cancel condition
+
+A mature SLA engine may also need a cancel condition.
+
+Example:
+
+```text
+Incident marked Duplicate
+```
+
+## 12.32 Business schedules
+
+SLA durations should use the appropriate operating calendar.
+
+Schedules may include:
+
+- 24 hours a day, seven days a week
+- Business hours
+- Customer support hours
+- Regional holidays
+- On-call coverage
+- Contract-specific hours
+
+A four-business-hour target can produce a different deadline from a four-clock-hour target.
+
+Time zones must be applied consistently.
+
+## 12.33 SLA warnings and breaches
+
+An SLA can generate events before and after its target.
+
+### Warning
+
+A warning might occur when:
+
+- 50 percent of time remains
+- 25 percent remains
+- One hour remains
+- A calculated breach risk exceeds a threshold
+
+Warning actions can include:
+
+- Notify agent
+- Notify group lead
+- Increase visibility
+- Create escalation task
+- Reevaluate assignment
+
+### Breach
+
+A breach action can include:
+
+- Notify management
+- Escalate the record
+- Create a breach review
+- Update customer communication
+- Record a performance event
+
+The record remains active after breach. The organization must still complete the service.
+
+## 12.34 Operational-level agreements
+
+An operational-level agreement, or OLA, defines commitments between internal teams.
+
+For example:
+
+- Service Desk triage within 15 minutes
+- Network Operations accepts escalations within 30 minutes
+- Security reviews privileged access within one business day
+
+The customer-facing SLA may depend on several internal OLAs.
+
+This makes internal delays visible without exposing organizational complexity to the customer.
+
+## 12.35 Underpinning contracts
+
+Supplier commitments may support internal services.
+
+Examples include:
+
+- Hardware replacement within four hours
+- Cloud-provider availability
+- Telecom restoration target
+- Software-vendor response time
+
+These underpinning contracts should align with customer-facing commitments.
+
+An organization cannot reliably promise a two-hour restoration if its critical supplier only promises a next-business-day response.
+
+## 12.36 Connecting the services
+
+The greatest value appears when these core capabilities work together.
+
+Consider a new employee onboarding request.
+
+1. The manager submits an onboarding request.
+2. The request creates several requested items.
+3. Approvals confirm cost and access.
+4. HR validates employment information.
+5. Identity creates the account.
+6. Asset management reserves a laptop.
+7. CMDB links the device to the employee and services.
+8. Application teams fulfill access tasks.
+9. Knowledge provides setup instructions.
+10. SLA records measure task completion.
+11. The employee confirms readiness.
+12. The request closes.
+
+One business need produces coordinated work across several service domains.
+
+## 12.37 Core-service reporting
+
+Useful measures include:
+
+### Requests and approvals
+
+- Request volume
+- Approval duration
+- Rejection rate
+- Fulfillment time
+- Abandonment
+- SLA attainment
+
+### Knowledge
+
+- Article usage
+- Helpful rate
+- Expired articles
+- Knowledge-assisted resolutions
+- Search terms without results
+- Deflection
+
+### Assets and CMDB
+
+- Inventory accuracy
+- Unassigned assets
+- Warranty exposure
+- Software compliance
+- CMDB health
+- Relationship completeness
+
+### HR services
+
+- Case volume
+- Resolution time
+- Employee satisfaction
+- Onboarding readiness
+- Document completion
+- Access-control exceptions
+
+### Service levels
+
+- SLA attainment
+- At-risk records
+- Breach count
+- Pause duration
+- Breach causes
+- OLA performance
+
+Measures should link back to the underlying records so owners can investigate and act.
+
+## Chapter summary
+
+Core enterprise services extend ServiceFlow beyond individual tickets into coordinated organizational work.
+
+Their major capabilities include:
+
+- Request hierarchies
+- Requested items
+- Fulfillment tasks
+- Operational request queues
+- Approvals
+- Dynamic routing
+- Delegation and escalation
+- Knowledge lifecycle
+- Contextual knowledge
+- Asset lifecycle
+- Inventory and stockrooms
+- Software licensing
+- Configuration items
+- CI relationships
+- Impact analysis
+- CMDB data quality
+- Discovery and service mapping
+- HR cases
+- Employee lifecycle journeys
+- Secure HR documents
+- SLA definitions
+- Business schedules
+- Warnings and breaches
+- Operational-level agreements
+- Supplier commitments
+- Cross-department orchestration
+
+The next chapter examines operational intelligence, including IT Operations and AIOps, notifications, the SLA Engine, workflow runtime, event processing, alert correlation, and automated remediation.
