@@ -2469,3 +2469,928 @@ The next chapter examines Agent Workspace and the operational tools used to assi
 
 The next chapter begins the examination of individual user experiences, starting with employee self-service and the role of portals, catalogs, knowledge, and request tracking.
 
+# Chapter 5  
+# Agent Workspace
+
+Employee self-service helps people submit and track requests. Agent Workspace helps service teams complete them.
+
+Agents often manage many types of work simultaneously. They may respond to incidents, fulfill requests, investigate customer cases, review SLA risks, request additional information, and coordinate with other teams. Without a unified workspace, agents must move between queues, spreadsheets, communication tools, and record systems to understand what needs attention.
+
+ServiceFlow’s Agent Workspace brings active work, record details, assignments, notes, comments, service commitments, and resolution information into one operational experience.
+
+The workspace is designed to answer three questions:
+
+1. What work requires my attention?
+2. What information do I need to complete it?
+3. What action should happen next?
+
+## 5.1 The purpose of an agent workspace
+
+An agent workspace is more than a table of tickets.
+
+It should provide the context and actions required to move records toward resolution. The agent should be able to identify important work, understand the record, collaborate with others, document actions, and complete the next step without unnecessary navigation.
+
+A useful workspace provides:
+
+- Prioritized work queues
+- Search and filtering
+- Sortable records
+- Assignment information
+- Complete record details
+- Related service and asset context
+- SLA indicators
+- Internal work notes
+- Customer-visible comments
+- Record relationships
+- Resolution controls
+- Local saving
+- Notifications
+- Links to specialized forms
+
+The workspace should reduce administrative effort so the agent can concentrate on delivering the service.
+
+## 5.2 Operational queues
+
+Queues organize records according to responsibility and operational condition.
+
+ServiceFlow provides four principal agent views:
+
+- My Open Work
+- Unassigned Team Work
+- SLA Breach
+- Pending Responses
+
+Each queue has a different purpose.
+
+### My Open Work
+
+My Open Work contains active records assigned to the logged-in agent.
+
+This queue answers:
+
+- What am I responsible for?
+- Which records have the highest priority?
+- Which records are approaching a deadline?
+- Which records have been waiting the longest?
+- Which customers or services are affected?
+
+A useful My Open Work view can include:
+
+- Record number
+- Short description
+- Priority
+- State
+- Assignment group
+- Assigned agent
+- Business service
+- SLA target
+- Updated date
+- Record link
+
+The queue should exclude work that is already resolved or closed unless the user applies a historical filter.
+
+### Unassigned Team Work
+
+Unassigned Team Work contains records owned by a team but not yet assigned to an individual.
+
+This queue prevents new work from becoming invisible.
+
+Team leads and agents can use it to identify:
+
+- Urgent unassigned records
+- Aging work
+- Uneven distribution
+- Skills required
+- Records approaching an SLA warning
+- Services generating unusual demand
+
+Assigning a record should remove it from the unassigned queue and place it in the selected agent’s work.
+
+### SLA Breach
+
+The SLA Breach queue highlights records whose service commitments have expired.
+
+A breach queue should include enough information to support immediate action:
+
+- Record number
+- Priority
+- Service
+- Assigned group
+- Assigned agent
+- SLA target
+- Time breached
+- Customer or requester
+- Current state
+- Last update
+
+In a mature platform, this view may also include records that are at risk but have not yet breached.
+
+The goal is not simply to report failure. It is to help agents and managers recover the service and understand why the target was missed.
+
+### Pending Responses
+
+Pending Responses contains records waiting for action from a requester, customer, supplier, approver, or another team.
+
+The queue should make the pending reason visible. “Pending” by itself does not explain what must happen.
+
+Useful pending reasons include:
+
+- Waiting for requester information
+- Waiting for customer confirmation
+- Waiting for supplier
+- Waiting for approval
+- Waiting for scheduled window
+- Waiting for dependent task
+- Waiting for security review
+
+The platform should also show how long the record has been pending and whether the SLA is paused.
+
+## 5.3 Moving between queues
+
+ServiceFlow provides each major queue as a separately navigable page. This supports direct links, bookmarks, sidebar navigation, and focused operational views.
+
+When an agent selects a queue, the platform preserves the sidebar state. The agent can move between pages without losing the navigation position.
+
+A queue page should retain:
+
+- Search criteria when practical
+- Selected filters
+- Sort order
+- Pagination position
+- User identity
+- Local record updates
+- Navigation state
+
+Maintaining context is important during high-volume work. Agents should not need to reconfigure the view after every record update.
+
+## 5.4 Prioritizing work
+
+A queue should help the agent decide what to do next.
+
+Priority is one input, but it is not the only one. An effective ordering model may consider:
+
+- Priority
+- SLA status
+- Business impact
+- Customer importance
+- Record age
+- Required completion date
+- Escalation status
+- Number of affected users
+- Major-incident relationship
+- Security or regulatory risk
+- Availability of a workaround
+
+For example, a P2 incident with five minutes remaining on its response target may require attention before another P2 incident with several hours remaining.
+
+### Visual indicators
+
+The interface can use Bootstrap badges, progress bars, icons, and text labels to distinguish operational conditions.
+
+Examples include:
+
+- Red badge for breached
+- Yellow badge for at risk
+- Blue badge for in progress
+- Gray badge for pending
+- Green badge for resolved
+
+Color should never be the only indicator. Every status should also have a readable label.
+
+### Personalization
+
+Different agents may need different views.
+
+An agent could prefer to sort by:
+
+- Priority
+- SLA target
+- Updated time
+- Requester
+- Assignment group
+- Service
+
+The platform can store personal display preferences under the logged-in profile.
+
+## 5.5 Search, filtering, and sorting
+
+Agents need to locate records quickly.
+
+Every operational table should provide:
+
+- Search across displayed fields
+- State filtering
+- Column sorting
+- Pagination
+- Scrollable results
+- CSV export
+
+Search should consider fields such as:
+
+- Record number
+- Description
+- Requester
+- Customer
+- Assigned user
+- Assignment group
+- Service
+- Configuration item
+- State
+- Priority
+
+Filters can reduce the queue by:
+
+- State
+- Priority
+- Assignment group
+- Service
+- SLA status
+- Date
+- Customer
+- Location
+
+### Combining filters
+
+Search and filters should operate together.
+
+For example, an agent might:
+
+1. Open My Open Work.
+2. Filter to records in Pending state.
+3. Search for a customer name.
+4. Sort by last update.
+5. Export the visible results.
+
+The table summary should explain how many records match the current criteria.
+
+## 5.6 Opening a record
+
+Every row should provide a record link or Open action.
+
+The link carries the record identifier to the appropriate form through query parameters. The destination page then loads the matching information.
+
+A direct record URL supports:
+
+- Bookmarks
+- Notifications
+- Shared links
+- Browser navigation
+- Return visits
+- Reliable testing
+- Integration with other pages
+
+The record identifier should remain stable even when other information changes.
+
+### Record hydration
+
+When a record opens, ServiceFlow gathers information from:
+
+1. The published dataset
+2. Locally created records
+3. Local edits or overrides
+4. The current user profile
+
+If a local record has the same identifier as a published record, the local version takes priority.
+
+The form should display all available record information—not only the fields visible in the table.
+
+## 5.7 Record details
+
+The record view gives the agent the context needed to make decisions.
+
+An incident record may display:
+
+- Number
+- Caller
+- Contact method
+- Short description
+- Detailed description
+- Category
+- Subcategory
+- Business service
+- Configuration item
+- Location
+- Impact
+- Urgency
+- Priority
+- State
+- Assignment group
+- Assigned agent
+- SLA target
+- Due date
+- Related incident
+- Related problem
+- Related change
+- Comments
+- Work notes
+- Resolution code
+- Resolution notes
+- Created and updated times
+
+The exact fields depend on the business category.
+
+### Progressive disclosure
+
+Not every field needs to be equally prominent.
+
+The workspace can place critical information first:
+
+- Description
+- Priority
+- State
+- Assignment
+- SLA
+- Current customer need
+
+Additional information can appear in organized sections below.
+
+The user should be able to find details without being overwhelmed by the complete data model.
+
+## 5.8 Assignment and ownership
+
+Assignment is one of the agent’s most important actions.
+
+A record may be owned by:
+
+- An assignment group
+- An individual agent
+- Both a group and an agent
+- An external supplier
+- An automated process
+
+ServiceFlow supports assigned-user selections from a shared user dataset. Searchable controls make it easier to locate a person from a large list.
+
+### Assign to me
+
+An Assign to Me action allows the logged-in agent to take ownership of an unassigned or team-owned record.
+
+The action should:
+
+1. Set the assigned user.
+2. Preserve the assignment group.
+3. Record the date and time.
+4. Record the acting user.
+5. Save the local override.
+6. Update the visible queue.
+7. Display a toast notification.
+
+### Reassignment
+
+When transferring work, the agent should select a valid user or group and provide a reason when required.
+
+Common reasons include:
+
+- Incorrect initial routing
+- Specialized skill required
+- Workload balancing
+- Geographic responsibility
+- Customer ownership
+- Escalation
+- Shift handoff
+
+Frequent reassignment can be analyzed to improve routing rules.
+
+## 5.9 Internal work notes
+
+Work notes document activity intended for agents and internal participants.
+
+They can include:
+
+- Investigation results
+- Diagnostic actions
+- Technical observations
+- Commands or tests performed
+- Coordination with other teams
+- Workarounds
+- Implementation actions
+- Handoff information
+- Risks and blockers
+
+Work notes should be chronological and associated with the person who entered them.
+
+A production platform should normally preserve work-note history rather than allowing previous entries to be silently overwritten.
+
+### Writing useful work notes
+
+A strong work note answers:
+
+- What was examined?
+- What was found?
+- What action was taken?
+- What was the result?
+- What needs to happen next?
+- Who is responsible?
+
+For example:
+
+> Reviewed authentication logs for the affected user. The account is active, but the VPN profile still references the previous password token. Removed the stale profile and asked the user to reconnect. Waiting for confirmation.
+
+This is more useful than:
+
+> Checked VPN. Waiting.
+
+## 5.10 Customer-visible comments
+
+Customer-visible comments communicate with the requester without exposing internal operational discussion.
+
+Comments should use clear language and explain:
+
+- Current status
+- Work completed
+- Information needed
+- Expected next action
+- Estimated timing
+- Resolution
+
+A good customer comment might say:
+
+> We identified an outdated VPN profile on your device and provided steps to create a new connection. Please test the connection and let us know whether access is restored.
+
+Internal notes about diagnostic uncertainty, security indicators, or team performance should remain in work notes.
+
+## 5.11 Activity and record history
+
+A record history helps agents understand what has already happened.
+
+Useful activity events include:
+
+- Record created
+- State changed
+- Assignment changed
+- Priority changed
+- Work note added
+- Customer comment added
+- Attachment uploaded
+- Approval requested
+- Decision recorded
+- SLA warning triggered
+- Resolution recorded
+- Record reopened
+- Record closed
+
+Each event should contain:
+
+- Date and time
+- User or system
+- Action
+- Previous value when relevant
+- New value
+- Related record or workflow step
+
+ServiceFlow records selected actions locally. A production implementation would normally preserve an immutable server-side history.
+
+## 5.12 Related records
+
+Service work frequently crosses record types.
+
+An incident may relate to:
+
+- A problem
+- A known error
+- A change request
+- A configuration item
+- A knowledge article
+- A major incident
+- Another incident
+
+A customer case may relate to:
+
+- An account
+- A contact
+- An installed product
+- A contract
+- An entitlement
+- A work order
+
+Relationships prevent each record from being treated as an isolated event.
+
+### Parent and child records
+
+A major incident may act as a parent for many related incidents. The parent contains the overall investigation and communications, while child incidents represent affected users or services.
+
+Parent-child relationships help organizations:
+
+- Coordinate response
+- Reduce duplicate investigation
+- Deliver consistent updates
+- Measure total impact
+- Close related work appropriately
+
+### Related changes
+
+If resolution requires a controlled production modification, the incident or problem can link to a change request.
+
+The change maintains implementation planning, scheduling, risk, conflict, testing, and backout information. The incident remains focused on restoring the affected service.
+
+## 5.13 Attachments in agent work
+
+Agents may need to review or add supporting files.
+
+Accepted files in ServiceFlow include:
+
+- PDF
+- Word documents
+- JSON
+- XML
+- Images
+
+Files are stored locally in the browser Cache API and associated with both the logged-in profile and the exact record identifier.
+
+This means:
+
+- A file attached to one incident does not appear on another.
+- A file attached to a draft remains associated with that draft.
+- Switching record context updates the visible file list.
+- Legacy files without a valid record association are not displayed broadly.
+- The user can view, download, or remove an attached file.
+
+### Attachment context
+
+A file should have enough metadata to explain its purpose:
+
+- Filename
+- File type
+- File size
+- Upload date
+- Uploaded by
+- Source
+- Record identifier
+
+In a production platform, additional controls may include malware scanning, encryption, access policies, retention rules, versioning, and legal hold.
+
+## 5.14 SLA management inside the workspace
+
+Agents need to understand service commitments while they work.
+
+An SLA indicator can show:
+
+- Target
+- Time remaining
+- Percentage consumed
+- At-risk status
+- Breach time
+- Pause status
+- Escalation level
+
+The workspace should emphasize records requiring intervention.
+
+### Responding to risk
+
+When a record approaches breach, the agent might:
+
+- Reevaluate priority
+- Contact the requester
+- Escalate to a team lead
+- Reassign to a specialist
+- Engage another support group
+- Apply a documented workaround
+- Update stakeholders
+- Record the blocker
+
+The action should address both the service need and the communication requirement.
+
+### Breach handling
+
+A breached target should not cause the team to abandon the record. The workspace should continue tracking the work while making the breach visible.
+
+Managers can later investigate:
+
+- Was the record routed correctly?
+- Was information missing?
+- Did approval create a delay?
+- Was the target realistic?
+- Was the team adequately staffed?
+- Was the SLA paused correctly?
+- Were notifications delivered?
+
+## 5.15 Pending-response management
+
+Records waiting for a response can accumulate unnoticed.
+
+A Pending Responses workspace should help agents review:
+
+- Who must respond
+- When information was requested
+- What information is needed
+- How long the record has been waiting
+- Whether reminders were sent
+- Whether the SLA is paused
+- When the record should be escalated or closed
+
+### Reminder and closure rules
+
+The service organization may define a sequence such as:
+
+1. Initial request for information
+2. Reminder after two business days
+3. Final reminder after five business days
+4. Closure warning
+5. Administrative closure after a defined period
+
+The record should preserve each communication.
+
+If the requester responds after closure, policy may allow the record to reopen or require a new request.
+
+## 5.16 Resolution
+
+Resolution records what restored the service or completed the work.
+
+A useful resolution should include:
+
+- Resolution code
+- Resolution summary
+- Technical action
+- Workaround or permanent fix
+- Related knowledge
+- Related problem
+- Related change
+- Validation result
+- Customer notification
+- Resolution time
+
+Resolution codes support reporting. Examples include:
+
+- Solved permanently
+- Workaround provided
+- Duplicate
+- User education
+- Configuration corrected
+- Access restored
+- No fault found
+- Cancelled
+
+The resolution notes should provide more detail than the code.
+
+### Proposed resolution versus closure
+
+Many organizations separate resolution from closure.
+
+At resolution:
+
+- The agent believes the work is complete.
+- The customer is notified.
+- Confirmation may be requested.
+
+At closure:
+
+- The customer confirms the outcome or the confirmation period expires.
+- Required fields are complete.
+- The record becomes inactive.
+
+This separation provides time for the requester to test the result.
+
+## 5.17 Reopening records
+
+A record may need to reopen when:
+
+- The issue returns.
+- The resolution did not work.
+- The requested item is incomplete.
+- The wrong access was provided.
+- The customer disputes the outcome.
+- A dependent action failed.
+
+Reopening should preserve the original record history.
+
+The platform should capture:
+
+- Reopen reason
+- Reopen date
+- User reopening the record
+- Previous resolution
+- New priority when appropriate
+- New assignment
+- Updated SLA behavior
+
+A high reopen rate may indicate weak resolution quality or premature closure.
+
+## 5.18 Local saving and data precedence
+
+When an agent updates a record, ServiceFlow saves the change under the logged-in profile.
+
+The update may include:
+
+- Assigned agent
+- State
+- Work notes
+- Customer comments
+- Resolution information
+- Local timestamp
+- Acting user
+
+The local version takes priority over published data when the record identifiers match.
+
+This behavior allows an agent to see the updated record immediately without waiting for a full dataset refresh.
+
+### Synchronization status
+
+A local-first workspace should distinguish between:
+
+- Saved locally
+- Queued for synchronization
+- Synchronized
+- Synchronization failed
+- Conflict detected
+
+A record that is only stored locally should not be presented as a confirmed shared update.
+
+The Sync Center can provide visibility into pending backend operations.
+
+## 5.19 Notifications and feedback
+
+Every user-triggered action should produce visible feedback.
+
+Examples include:
+
+- Record assigned
+- Notes saved
+- Comment added
+- Attachment stored
+- Record updated
+- Resolution recorded
+- Export created
+- Required information missing
+- Synchronization failed
+
+ServiceFlow uses Bootstrap toast notifications to communicate these results.
+
+Feedback should be specific. “Saved” is less useful than “Incident INC-10482 saved locally and queued for synchronization.”
+
+## 5.20 Exporting operational data
+
+Agents and managers may need to export the visible queue for analysis or handoff.
+
+CSV export should respect the current search and filter criteria. If the user is viewing breached network incidents, the export should contain those records rather than the entire dataset.
+
+Exported data should have:
+
+- Meaningful column names
+- Predictable date formats
+- Correct escaping
+- Only permitted fields
+- A useful filename
+
+Exports should follow organizational privacy and security policies. The ability to view a record in the browser does not always imply permission to export it.
+
+## 5.21 Agent collaboration
+
+Complex records may require several participants.
+
+Collaboration capabilities can include:
+
+- Mentions
+- Watchers
+- Followers
+- Assignment groups
+- Related tasks
+- Swarming
+- Activity streams
+- Shared notes
+- Presence indicators
+- Concurrent-edit warnings
+- Collaboration-platform integration
+
+ServiceFlow currently provides local notes, comments, assignments, links, and follow actions. These demonstrate the experience layer.
+
+A production implementation would require shared server-side collaboration so updates are visible across users and devices.
+
+### Swarming
+
+Swarming allows specialists to collaborate on a record without repeatedly transferring ownership.
+
+The assigned agent remains accountable while subject-matter experts contribute.
+
+This can reduce reassignment and preserve continuity for the requester.
+
+## 5.22 An agent-workspace example
+
+Consider an incident reporting that employees cannot access the payroll portal.
+
+### Queue identification
+
+The incident appears in Unassigned Team Work as a P1 Critical record. Its SLA target is approaching.
+
+A service desk agent opens the record and selects Assign to Me.
+
+### Initial review
+
+The agent reviews:
+
+- Caller
+- Affected service
+- Description
+- Impact
+- Urgency
+- Priority
+- Configuration item
+- Related incidents
+- SLA target
+
+Several similar incidents are already open.
+
+### Correlation
+
+The agent links the incidents to a major incident. The major-incident team begins coordinated investigation and stakeholder communication.
+
+### Investigation
+
+The agent records an internal work note:
+
+> Confirmed failures from three locations. Authentication succeeds, but the payroll application returns a gateway error. Linked the incident to the active payroll major incident.
+
+### Customer communication
+
+The agent adds a customer-visible comment:
+
+> We are investigating a payroll-service interruption affecting multiple locations. Your report has been linked to the active response. The next update will be provided within 30 minutes.
+
+### Service restoration
+
+The application team restores the failed gateway. Monitoring confirms recovery.
+
+The agent records the resolution, notifies the requester, and moves the incident to Resolved.
+
+### Confirmation and closure
+
+The requester confirms access. The record closes with a permanent-resolution code and a relationship to the major incident and follow-up problem record.
+
+This example demonstrates queue management, assignment, correlation, internal notes, customer communication, resolution, and confirmation.
+
+## 5.23 Measuring agent-workspace performance
+
+Workspace metrics should help improve operations without encouraging harmful behavior.
+
+Useful measures include:
+
+- Open workload
+- Unassigned record count
+- Backlog age
+- First-response time
+- Assignment time
+- Resolution time
+- SLA attainment
+- Reassignment rate
+- Pending-response age
+- Reopen rate
+- Escalation rate
+- Customer satisfaction
+- Agent capacity
+- Records resolved with knowledge
+
+Metrics should be interpreted in context.
+
+A low average handling time is not necessarily positive if records reopen frequently. A high reassignment rate may indicate poor routing rather than poor agent performance. A large pending queue may reflect customer delays, unclear communication, or misuse of pending states.
+
+Balanced measures produce better behavior than a single productivity target.
+
+## 5.24 Designing for agent efficiency
+
+An effective Agent Workspace should minimize unnecessary effort.
+
+Useful design practices include:
+
+- Place priority and SLA information near the record title.
+- Keep primary actions visible.
+- Load complete record information during editing.
+- Preserve selected filters and navigation state.
+- Use searchable controls for large reference lists.
+- Separate internal notes from customer comments.
+- Provide direct links to related records.
+- Display only files attached to the current record.
+- Confirm every save or update.
+- Prevent silent data loss.
+- Support keyboard and touch interaction.
+- Avoid excessive modal windows.
+- Use consistent labels across workspaces.
+
+Efficiency should not come at the cost of accuracy. A fast interface that encourages incomplete records creates downstream work.
+
+## Chapter summary
+
+Agent Workspace converts operational records into organized, actionable work.
+
+Its core capabilities include:
+
+- My Open Work
+- Unassigned Team Work
+- SLA Breach
+- Pending Responses
+- Search, filtering, sorting, and pagination
+- Direct record links
+- Complete record hydration
+- Assignment and reassignment
+- Internal work notes
+- Customer-visible comments
+- Related records
+- Record-specific attachments
+- SLA management
+- Resolution and reopening
+- Local saving and data precedence
+- Toast notifications
+- CSV export
+- Collaboration
+- Operational measurement
+
+A successful workspace helps agents identify the right work, understand its context, take the next action, and preserve a reliable history.
+
+The next chapter examines Customer Experience and shows how customer profiles, cases, entitlements, communication channels, fulfillment, and feedback form a connected service journey.
