@@ -14174,3 +14174,3820 @@ Their major functions include:
 - Grounding and AI governance
 
 The next chapter examines governance and strategy, including Risk and Compliance, Strategic Portfolio, Field Service, reporting, KPI design, and organizational accountability.
+
+# Chapter 15  
+# Governance and Strategy
+
+Service management must do more than process individual records. It must help the organization decide which risks to address, which investments to fund, which controls to operate, and which outcomes to measure.
+
+Operational teams focus on current work. Governance and strategy connect that work to broader organizational objectives.
+
+ServiceFlow represents these responsibilities through:
+
+- Risk and Compliance
+- Strategic Portfolio
+- Field Service
+- Reporting and KPIs
+- Audit and accountability
+
+Together, these capabilities help the organization move from isolated activity to coordinated decision-making.
+
+## 15.1 The purpose of governance
+
+Governance defines how decisions are made and controlled.
+
+It answers questions such as:
+
+- Who owns the decision?
+- Which policy applies?
+- What evidence is required?
+- Who can approve an exception?
+- How is risk evaluated?
+- How is compliance demonstrated?
+- How are investments prioritized?
+- How is performance measured?
+- Who is accountable for the outcome?
+
+Governance should enable responsible action. Excessive control can delay necessary work, while insufficient control can expose the organization to financial, operational, security, or regulatory harm.
+
+A successful governance model applies controls in proportion to risk.
+
+## 15.2 Connecting strategy to operations
+
+An organizational objective may require work across several service areas.
+
+For example:
+
+```text
+Strategic objective:
+Improve customer-order reliability
+        ↓
+Portfolio initiative:
+Modernize order-management platform
+        ↓
+Projects and changes:
+Replace integration and database components
+        ↓
+Operational work:
+Incidents, problems, tasks, risks, and tests
+        ↓
+Measured outcomes:
+Availability, order success, satisfaction, and cost
+```
+
+Without these relationships, teams may complete many tasks without demonstrating whether the organization achieved the intended outcome.
+
+ServiceFlow’s governance and strategy pages provide a structure for connecting objectives, investments, risks, delivery, and results.
+
+## 15.3 Risk and Compliance
+
+Risk management identifies uncertainty that could affect organizational objectives.
+
+Risks can arise from:
+
+- Cybersecurity
+- Operations
+- Finance
+- Privacy
+- Third parties
+- Business continuity
+- Regulation
+- Technology
+- Projects
+- Customer commitments
+
+The Risk and Compliance workspace uses a structured intake form similar to Change Requests while reflecting risk-management needs.
+
+## 15.4 Risk record structure
+
+A risk record can include:
+
+- Risk number
+- Name
+- Owner
+- Priority
+- State
+- Target date
+- Risk domain
+- Risk statement
+- Inherent risk
+- Likelihood
+- Business impact
+- Regulatory framework
+- Control identifier
+- Control owner
+- Control description
+- Residual risk
+- Evidence frequency
+- Evidence repository
+- Remediation plan
+- Remediation owner
+- Review date
+- Attachments
+- Audit information
+
+The record should describe a specific uncertainty and its potential effect.
+
+## 15.5 Writing a risk statement
+
+A useful risk statement commonly follows this structure:
+
+> Because of **cause**, there is a possibility that **event** may occur, resulting in **impact**.
+
+Example:
+
+> Because privileged access reviews are performed manually and inconsistently, former contractors may retain administrative access, resulting in unauthorized changes or exposure of sensitive data.
+
+This is more actionable than:
+
+> Privileged access risk.
+
+The structured statement helps identify appropriate controls and remediation.
+
+## 15.6 Inherent and residual risk
+
+### Inherent risk
+
+Inherent risk is the level of risk before considering controls.
+
+It reflects the underlying exposure of the activity.
+
+### Residual risk
+
+Residual risk is the remaining risk after controls are considered.
+
+Conceptually:
+
+```text
+Inherent risk
+      ↓
+Control effectiveness
+      ↓
+Residual risk
+```
+
+Residual risk is rarely zero.
+
+A risk owner must determine whether the remaining exposure is acceptable or requires additional action.
+
+## 15.7 Likelihood and impact
+
+Risk ratings commonly combine likelihood and impact.
+
+Likelihood may use:
+
+- Rare
+- Unlikely
+- Possible
+- Likely
+- Almost certain
+
+Impact may consider:
+
+- Financial loss
+- Service interruption
+- Customer harm
+- Regulatory consequence
+- Reputation
+- Safety
+- Data exposure
+- Strategic delay
+
+A risk matrix can convert the combination into a rating.
+
+| Likelihood | Low impact | Medium impact | High impact |
+|---|---:|---:|---:|
+| Rare | Low | Low | Medium |
+| Possible | Low | Medium | High |
+| Likely | Medium | High | Critical |
+
+The exact scoring model should be documented and consistently applied.
+
+## 15.8 Risk lifecycle
+
+A risk lifecycle might include:
+
+**Draft → Assess → Control Review → Evidence → Remediation → Closed**
+
+### Draft
+
+The risk is documented and assigned.
+
+### Assess
+
+Likelihood, impact, and inherent risk are evaluated.
+
+### Control Review
+
+Existing controls are identified and their effectiveness reviewed.
+
+### Evidence
+
+Evidence is collected to demonstrate that controls operate as intended.
+
+### Remediation
+
+Additional actions reduce unacceptable residual risk.
+
+### Closed
+
+The risk is no longer applicable, has been mitigated, or has been formally accepted according to policy.
+
+Risk closure should not be used to hide unresolved exposure.
+
+## 15.9 Controls
+
+A control is an activity designed to reduce risk or demonstrate compliance.
+
+Examples include:
+
+- Manager approval
+- Multifactor authentication
+- Access review
+- Change authorization
+- Backup testing
+- Vulnerability scanning
+- Segregation of duties
+- Supplier assessment
+- Incident-response exercise
+
+A control record can contain:
+
+- Control ID
+- Name
+- Description
+- Owner
+- Frequency
+- Scope
+- Test method
+- Evidence requirement
+- Status
+- Last test
+- Next test
+
+### Control types
+
+Controls may be:
+
+- Preventive
+- Detective
+- Corrective
+
+A preventive control attempts to stop an undesirable event. A detective control identifies it. A corrective control restores an acceptable condition.
+
+## 15.10 Control testing
+
+Control testing determines whether a control is designed and operating effectively.
+
+A test should define:
+
+- Control
+- Population
+- Sample
+- Procedure
+- Evidence
+- Tester
+- Test date
+- Result
+- Exception
+- Remediation
+
+Possible outcomes include:
+
+- Effective
+- Partially effective
+- Ineffective
+- Not tested
+- Not applicable
+
+A control should not be marked effective merely because a policy document exists.
+
+## 15.11 Compliance frameworks
+
+Organizations may map controls to frameworks such as:
+
+- NIST Cybersecurity Framework
+- ISO 27001
+- SOC 2
+- PCI DSS
+- HIPAA
+- Internal policy
+
+One control may support multiple requirements.
+
+For example, access review can support several security and privacy obligations.
+
+Mapping avoids duplicating equivalent controls for every framework.
+
+## 15.12 Evidence management
+
+Compliance requires evidence.
+
+Evidence may include:
+
+- Access-review report
+- Approval record
+- System configuration
+- Screenshot
+- Test result
+- Training completion
+- Backup log
+- Policy acknowledgment
+- Audit report
+- Incident exercise
+
+ServiceFlow can store allowed evidence files under the exact risk or control record.
+
+Each item should include:
+
+- Evidence type
+- Period covered
+- Collected by
+- Collection date
+- Source
+- Record identifier
+- Review status
+
+### Evidence protection
+
+Compliance evidence may contain sensitive information. Production storage should enforce:
+
+- Authorization
+- Encryption
+- Retention
+- Download auditing
+- Legal hold
+- Secure deletion
+
+## 15.13 Issues and remediation
+
+A failed control or audit finding can create an issue.
+
+An issue record can include:
+
+- Finding
+- Source
+- Severity
+- Business impact
+- Owner
+- Remediation plan
+- Due date
+- Status
+- Evidence
+- Validation
+
+The lifecycle might be:
+
+**Open → Assigned → Remediation → Validation → Closed**
+
+Closure requires evidence that the corrective action works.
+
+## 15.14 Risk acceptance
+
+Not every risk can or should be eliminated.
+
+Risk acceptance may be appropriate when:
+
+- Mitigation cost exceeds benefit.
+- Exposure is temporary.
+- No practical control exists.
+- The activity is necessary.
+- Risk remains within approved tolerance.
+
+Acceptance should record:
+
+- Risk
+- Residual rating
+- Business justification
+- Approver
+- Expiration
+- Review date
+- Conditions
+
+Risk acceptance should expire and return for review. It should not become permanent through inactivity.
+
+## 15.15 Third-party risk
+
+Suppliers and partners can introduce risk through:
+
+- Data access
+- System integration
+- Service dependency
+- Financial condition
+- Geographic exposure
+- Subcontractors
+- Regulatory obligations
+
+A third-party assessment can cover:
+
+- Security
+- Privacy
+- Continuity
+- Financial stability
+- Contract terms
+- Incident reporting
+- Data handling
+- Access controls
+- Audit rights
+
+Third-party risks should connect to contracts, services, and responsible business owners.
+
+## 15.16 Business continuity
+
+Business continuity prepares the organization to maintain or restore critical operations after disruption.
+
+Capabilities include:
+
+- Business-impact analysis
+- Recovery strategies
+- Continuity plans
+- Crisis workflows
+- Exercises
+- Improvement actions
+
+Important measures include:
+
+- Recovery time objective
+- Recovery point objective
+- Maximum tolerable downtime
+- Exercise completion
+- Recovery-test success
+
+Continuity plans should relate to the services, applications, facilities, suppliers, and people required for recovery.
+
+## 15.17 Strategic Portfolio
+
+Strategic Portfolio connects organizational goals to investments and delivery.
+
+The workspace supports areas such as:
+
+- Ideas
+- Demands
+- Projects
+- Programs
+- Products
+- Applications
+- Investments
+
+A portfolio process helps leaders decide:
+
+- Which work should begin?
+- Which work should stop?
+- Which initiatives should receive funding?
+- Do resources match priorities?
+- What outcomes are expected?
+- Are benefits being realized?
+
+## 15.18 Portfolio record structure
+
+A strategic-portfolio record can include:
+
+- Record number
+- Name
+- Owner
+- Priority
+- State
+- Target date
+- Investment type
+- Strategic objective
+- Problem or opportunity
+- Executive sponsor
+- Business unit
+- Planned budget
+- Operating cost
+- Expected benefit
+- Target return on investment
+- Planning horizon
+- Delivery lead
+- Planned start
+- Planned end
+- Dependencies
+- Success measures
+- Benefits realized
+- Audit information
+
+The record should connect investment decisions to measurable results.
+
+## 15.19 Portfolio lifecycle
+
+A portfolio item might use:
+
+**Idea → Evaluate → Prioritize → Fund → Deliver → Realize**
+
+### Idea
+
+A need or opportunity is proposed.
+
+### Evaluate
+
+The organization assesses value, feasibility, cost, risk, and alignment.
+
+### Prioritize
+
+The item is compared with competing demands.
+
+### Fund
+
+Budget and resources are authorized.
+
+### Deliver
+
+Projects, programs, products, or changes perform the work.
+
+### Realize
+
+The organization measures whether expected benefits were achieved.
+
+Completion of project tasks is not the same as realization of business value.
+
+## 15.20 Idea and demand management
+
+Ideas provide an accessible way to propose improvement.
+
+An idea can include:
+
+- Problem or opportunity
+- Proposed outcome
+- Beneficiaries
+- Strategic alignment
+- Estimated value
+- Sponsor
+- Supporting evidence
+
+Promising ideas can become formal demands.
+
+A demand record adds:
+
+- Business case
+- Cost estimate
+- Resource needs
+- Risk
+- Dependencies
+- Delivery approach
+- Expected benefits
+
+### Avoiding the idea backlog
+
+An idea process should provide timely outcomes.
+
+Possible decisions include:
+
+- Advance
+- Combine
+- Defer
+- Reject
+- Request more information
+
+Ideas should not remain indefinitely without review.
+
+## 15.21 Prioritization
+
+Portfolio prioritization compares work using consistent criteria.
+
+Possible criteria include:
+
+- Strategic alignment
+- Customer value
+- Financial benefit
+- Risk reduction
+- Regulatory need
+- Urgency
+- Cost
+- Complexity
+- Resource demand
+- Dependency
+- Time to value
+
+A scoring model can improve consistency, but it should not replace leadership judgment.
+
+The inputs and weighting should be transparent.
+
+## 15.22 Financial planning
+
+Portfolio decisions require cost information.
+
+A record may contain:
+
+- Planned budget
+- Capital cost
+- Operating cost
+- Labor cost
+- Supplier cost
+- Contingency
+- Expected savings
+- Expected revenue
+- Return on investment
+
+### Total cost of ownership
+
+The initial implementation cost may represent only part of the investment.
+
+Total cost can include:
+
+- Licensing
+- Infrastructure
+- Support
+- Maintenance
+- Training
+- Security
+- Integration
+- Data migration
+- Retirement
+
+### Forecast versus actual
+
+The platform should compare:
+
+```text
+Planned cost
+      versus
+Actual cost
+```
+
+Significant variance should be explained.
+
+## 15.23 Capacity and resource planning
+
+An organization cannot fund more work than it can deliver.
+
+Capacity planning considers:
+
+- Available people
+- Skills
+- Team commitments
+- Contractor capacity
+- Operational workload
+- Planned leave
+- Dependency availability
+
+A portfolio may identify a valuable initiative but delay it because the required specialists are unavailable.
+
+Resource planning should avoid treating people as interchangeable units. Skill, context, and collaboration matter.
+
+## 15.24 Benefits realization
+
+Benefits realization evaluates whether an investment produced the intended outcome.
+
+Examples include:
+
+- Reduced incident volume
+- Increased revenue
+- Faster fulfillment
+- Lower operating cost
+- Improved customer satisfaction
+- Reduced risk
+- Improved compliance
+- Increased availability
+
+A benefit record should include:
+
+- Measure
+- Baseline
+- Target
+- Owner
+- Measurement date
+- Actual result
+- Evidence
+
+### Benefit ownership
+
+The delivery team may complete the project, but a business owner is usually responsible for realizing the benefit.
+
+Ownership should continue after deployment.
+
+## 15.25 Field Service
+
+Field Service coordinates work that must occur at a physical location.
+
+Examples include:
+
+- Equipment repair
+- Installation
+- Inspection
+- Preventive maintenance
+- Site survey
+- Customer appointment
+- Asset replacement
+- Facilities work
+
+Field Service connects customer cases and requests to work orders, technicians, parts, schedules, and service history.
+
+## 15.26 Work orders
+
+A work order represents an onsite service outcome.
+
+It can include:
+
+- Work-order number
+- Customer or location
+- Contact
+- Service
+- Asset
+- Description
+- Priority
+- State
+- Required skill
+- Territory
+- Appointment
+- Assigned technician
+- Parts
+- Instructions
+- Completion information
+
+A work order may contain several work-order tasks.
+
+## 15.27 Field-service lifecycle
+
+A field-service lifecycle might be:
+
+**New → Qualify → Schedule → Dispatch → Work → Complete → Close**
+
+### New
+
+The need is recorded.
+
+### Qualify
+
+Entitlement, location, skills, parts, and safety requirements are evaluated.
+
+### Schedule
+
+An appointment is selected.
+
+### Dispatch
+
+The technician receives the assignment.
+
+### Work
+
+The technician performs the service.
+
+### Complete
+
+Work details, parts, evidence, and customer confirmation are recorded.
+
+### Close
+
+Administrative and financial completion occurs.
+
+## 15.28 Scheduling and dispatch
+
+Scheduling must consider:
+
+- Technician availability
+- Skills
+- Territory
+- Travel time
+- Customer availability
+- Parts
+- Priority
+- SLA
+- Estimated duration
+- Existing appointments
+
+The best technician is not always the nearest technician. Skill and parts availability may be more important.
+
+### Route optimization
+
+Route planning can reduce travel time and increase completed appointments.
+
+The system can consider:
+
+- Geographic sequence
+- Traffic
+- Appointment windows
+- Service duration
+- Technician shift
+- Priority
+- Required parts
+
+Schedules should remain adjustable when emergencies occur.
+
+## 15.29 Mobile field experience
+
+Field technicians may work where network access is unreliable.
+
+A mobile experience should support:
+
+- Offline record access
+- Offline updates
+- Navigation
+- Customer contact
+- Parts usage
+- Photos
+- Barcode scanning
+- Signatures
+- Work notes
+- Completion
+- Synchronization
+
+Local updates need conflict handling when the device reconnects.
+
+### Evidence
+
+A technician may capture:
+
+- Before-and-after photos
+- Serial number
+- Test results
+- Customer signature
+- Installed part
+- Safety checklist
+- Completion time
+
+Files should remain attached to the exact work order.
+
+## 15.30 Preventive maintenance
+
+Preventive maintenance generates scheduled work before failure occurs.
+
+A maintenance plan can define:
+
+- Asset class
+- Frequency
+- Procedure
+- Required skill
+- Parts
+- Duration
+- Checklist
+- Compliance requirement
+
+Examples include:
+
+- Quarterly inspection
+- Annual calibration
+- Filter replacement
+- Battery testing
+- Safety certification
+
+Preventive work can reduce incidents and extend asset life.
+
+## 15.31 Reporting and KPIs
+
+Reporting transforms record data into operational and strategic insight.
+
+ServiceFlow’s Reports page emphasizes visual analysis rather than large data tables. The available space is used for KPIs and detailed charts.
+
+Chart categories include:
+
+- Comparison
+- Temporal
+- Composition
+- Relational
+- Distribution
+
+Every KPI or chart should answer a defined question.
+
+## 15.32 KPI design
+
+A KPI is not simply a number on a card. It represents performance against an objective.
+
+A KPI definition should include:
+
+- Name
+- Business purpose
+- Formula
+- Source
+- Owner
+- Frequency
+- Target
+- Thresholds
+- Dimensions
+- Exclusions
+- Action when off target
+
+Example:
+
+**KPI:** Change success rate  
+**Formula:** Successful changes divided by completed changes  
+**Target:** At least 95 percent  
+**Owner:** Change manager  
+**Frequency:** Weekly  
+**Exclusions:** Cancelled changes  
+
+Consistent definitions prevent different reports from presenting conflicting results.
+
+## 15.33 Comparison charts
+
+Comparison charts show differences between categories.
+
+Examples include:
+
+- Open work by workspace
+- Incidents by assignment group
+- Requests by service
+- Changes by risk
+- Satisfaction by channel
+- SLA attainment by team
+
+Bar charts are often effective for category comparisons.
+
+The chart should link back to the relevant workspace or filtered records.
+
+## 15.34 Temporal charts
+
+Temporal charts show change over time.
+
+Examples include:
+
+- Daily incident volume
+- Weekly request demand
+- Monthly SLA attainment
+- Change failures over time
+- Customer satisfaction trend
+- Workflow executions
+
+Line and area charts are useful for trends.
+
+Time ranges and date intervals should be clearly labeled.
+
+## 15.35 Composition charts
+
+Composition charts show how a total is divided.
+
+Examples include:
+
+- Priority mix
+- Request-state distribution
+- Approval outcomes
+- Asset lifecycle states
+- Risk ratings
+
+Donut, stacked bar, or 100-percent stacked charts can show composition.
+
+Too many categories make pie-style charts difficult to interpret.
+
+## 15.36 Relational and distribution charts
+
+Relational charts examine relationships between measures.
+
+Examples include:
+
+- Resolution time versus satisfaction
+- Change risk versus failure rate
+- Workload versus SLA attainment
+- Cost versus benefit
+- Incident age distribution
+
+Scatter plots, histograms, and box plots can reveal patterns that averages hide.
+
+For example, an average resolution time may look acceptable while a small group of records remains open for an extremely long period.
+
+## 15.37 KPI drill-down
+
+A KPI should connect to the records behind it.
+
+If a card shows 14 breached SLAs, selecting it should open the SLA Breach workspace or a filtered record view.
+
+Drill-down allows users to move from:
+
+```text
+Measure → Category → Record → Action
+```
+
+Without this connection, reporting remains observational rather than operational.
+
+## 15.38 Data quality and reporting
+
+Reports are only as trustworthy as their data.
+
+Common issues include:
+
+- Missing fields
+- Duplicate records
+- Incorrect dates
+- Inconsistent states
+- Broken relationships
+- Stale data
+- Local-only updates
+- Different metric definitions
+
+Reports should display:
+
+- Data source
+- Last refresh
+- Date range
+- Applied filters
+- Known limitations
+
+Local and published records must be merged consistently to avoid counting the same record twice.
+
+## 15.39 Audit and accountability
+
+Governance depends on knowing who performed an action and why.
+
+Accountability should be visible across:
+
+- Risk decisions
+- Control tests
+- Approval decisions
+- Portfolio funding
+- Change authorization
+- Field-service completion
+- KPI ownership
+- Record updates
+
+### Audit fields
+
+Common audit fields include:
+
+- Created by
+- Created date
+- Updated by
+- Updated date
+- Version
+- Approval history
+- State history
+- Change reason
+
+A production audit record should be protected against ordinary modification.
+
+## 15.40 Separation of duties
+
+Separation of duties prevents one person from controlling every step of a sensitive process.
+
+Examples include:
+
+- Requester cannot approve their own privileged access.
+- Developer cannot independently approve and deploy a production change.
+- Control owner cannot perform the independent audit.
+- Portfolio sponsor cannot unilaterally certify benefit realization.
+- Technician cannot approve their own warranty exception.
+
+The platform can evaluate these conflicts during workflow execution.
+
+## 15.41 Exception management
+
+A process sometimes needs an exception.
+
+Examples include:
+
+- Emergency change during a blackout
+- Risk acceptance
+- Out-of-warranty replacement
+- Policy exception
+- Expedited procurement
+
+An exception should include:
+
+- Rule being bypassed
+- Business justification
+- Risk
+- Compensating control
+- Approver
+- Duration
+- Expiration
+- Review
+
+Exceptions should be visible, temporary, and measurable.
+
+## 15.42 An integrated governance example
+
+Consider a strategic initiative to improve remote-access reliability.
+
+### Strategy
+
+Leadership defines an objective to reduce remote-access disruption and employee downtime.
+
+### Portfolio
+
+A demand proposes modernization of the VPN platform.
+
+The portfolio record includes:
+
+- Sponsor
+- Budget
+- Expected reduction in incidents
+- Delivery dates
+- Dependencies
+- Success measures
+
+### Risk
+
+Risk assessment identifies:
+
+- Migration outage
+- Security configuration errors
+- Supplier dependency
+- Incomplete device compatibility
+
+Controls and remediation plans are assigned.
+
+### Delivery
+
+Projects and change requests implement the new platform.
+
+### Operations
+
+Incidents, alerts, and SLA records track operational performance during rollout.
+
+### Field work
+
+Remote-office equipment is replaced where necessary.
+
+### Reporting
+
+Dashboards compare:
+
+- Incident volume before and after
+- Connection success
+- SLA attainment
+- Employee satisfaction
+- Operating cost
+- Realized benefit
+
+### Governance
+
+Leaders determine whether the initiative achieved its expected outcome and whether remaining risks are acceptable.
+
+This example connects strategy, funding, risk, delivery, operations, and measurement.
+
+## 15.43 Governance checklist
+
+### Risk and Compliance
+
+- Risk statement is specific.
+- Owner is accountable.
+- Inherent and residual risk are assessed.
+- Controls are documented.
+- Evidence is current.
+- Remediation has an owner and due date.
+- Acceptance has an expiration.
+
+### Strategic Portfolio
+
+- Initiative supports an objective.
+- Sponsor is identified.
+- Costs are complete.
+- Benefits are measurable.
+- Capacity is available.
+- Dependencies are visible.
+- Realization is tracked after delivery.
+
+### Field Service
+
+- Work order has a clear outcome.
+- Skills and territory are considered.
+- Appointment is confirmed.
+- Parts are available.
+- Offline work is supported.
+- Evidence is attached to the correct record.
+- Customer confirmation is captured.
+
+### Reporting
+
+- KPIs have documented definitions.
+- Sources are trustworthy.
+- Date ranges are clear.
+- Charts answer specific questions.
+- Drill-down links to operational records.
+- Refresh time is visible.
+- Data limitations are disclosed.
+
+### Accountability
+
+- Decisions identify responsible users.
+- Separation of duties is enforced.
+- Exceptions are approved and temporary.
+- Audit history is protected.
+- Follow-up work has owners and dates.
+
+## Chapter summary
+
+Governance and strategy connect operational work to organizational responsibility and measurable outcomes.
+
+Their major capabilities include:
+
+- Risk statements
+- Inherent and residual risk
+- Likelihood and impact
+- Controls and control testing
+- Compliance frameworks
+- Evidence management
+- Issues and remediation
+- Risk acceptance
+- Third-party risk
+- Business continuity
+- Strategic objectives
+- Ideas and demands
+- Portfolio prioritization
+- Financial planning
+- Capacity management
+- Benefits realization
+- Field-service work orders
+- Scheduling and dispatch
+- Mobile offline work
+- Preventive maintenance
+- KPI definitions
+- Comparison charts
+- Temporal charts
+- Composition charts
+- Relational and distribution analysis
+- Drill-down
+- Data-quality awareness
+- Audit history
+- Separation of duties
+- Exception management
+
+The next chapter turns from business capabilities to technical architecture and explains how ServiceFlow’s local-first model uses profiles, LocalStorage, IndexedDB, the browser Cache API, and data-merging rules.
+
+# Chapter 16  
+# Local-First Architecture
+
+ServiceFlow is designed as a browser-based, local-first service-management playground.
+
+Users can sign in, load sample data, edit records, save drafts, upload documents, customize profiles, and continue working without relying on a complete enterprise backend. Published datasets provide shared starting information, while local browser storage preserves each user’s changes.
+
+This architecture makes ServiceFlow useful for demonstrations, training, process design, and rapid prototyping.
+
+It also establishes an important design rule:
+
+> When a published record and a locally saved record share the same identifier, the local record takes priority in the logged-in user’s experience.
+
+This chapter explains how ServiceFlow manages identity, local records, structured datasets, documents, caching, merging, and offline behavior.
+
+## 16.1 What local-first means
+
+A local-first application treats the user’s device as an active place of work rather than a temporary display for server data.
+
+The user can perform meaningful actions locally:
+
+- Create records
+- Edit records
+- Save drafts
+- Customize preferences
+- Cache datasets
+- Upload documents
+- View previously loaded information
+- Queue changes for synchronization
+
+A server may still provide shared data and synchronization, but temporary network unavailability does not make the application unusable.
+
+### Local-first does not mean local-only
+
+A local-first architecture can still synchronize with a server.
+
+The distinction is:
+
+- **Local-only:** Data never leaves the browser.
+- **Server-first:** Most actions require an immediate server response.
+- **Local-first:** The browser saves work immediately and synchronizes when possible.
+
+ServiceFlow currently combines local persistence with published datasets and optional backend synchronization.
+
+## 16.2 Benefits of the approach
+
+A local-first architecture provides several advantages for a playground.
+
+### Immediate feedback
+
+The user sees saved changes without waiting for a remote round trip.
+
+### Offline resilience
+
+Previously cached data may remain available when the remote source cannot be reached.
+
+### Safe experimentation
+
+Users can modify records without changing a shared enterprise system.
+
+### Profile customization
+
+Each user can maintain independent preferences and local information.
+
+### Demonstration stability
+
+A training scenario can continue even when an external service is temporarily unavailable.
+
+### Faster prototyping
+
+Forms, workflows, datasets, and merge behavior can be evaluated before a complete backend is implemented.
+
+## 16.3 Architectural components
+
+ServiceFlow’s local-first model uses several browser capabilities:
+
+- In-memory cache
+- LocalStorage
+- IndexedDB
+- Cache API
+- URL query parameters
+- Published JSON datasets
+- Synchronization queue
+
+Each component serves a different purpose.
+
+```text
+Published data
+      ↓
+API and fetch layer
+      ↓
+In-memory cache
+      ↓
+IndexedDB dataset cache
+      ↓
+Local record merge
+      ↓
+Rendered workspace
+
+User edits
+      ↓
+LocalStorage
+      ↓
+Synchronization queue
+      ↓
+Optional server
+```
+
+Documents follow a separate path:
+
+```text
+Selected file
+      ↓
+Validation
+      ↓
+Browser Cache API
+      ↓
+Profile and record metadata
+      ↓
+Record-specific file list
+```
+
+## 16.4 User identity and storage scope
+
+The logged-in user’s normalized email address acts as the local identity key.
+
+Normalization typically:
+
+- Removes leading and trailing spaces
+- Converts the value to lowercase
+
+Example:
+
+```text
+Alex.Morgan@ServiceFlow.Example
+```
+
+becomes:
+
+```text
+alex.morgan@serviceflow.example
+```
+
+### Why normalization matters
+
+Without normalization, the same person might receive multiple local profiles because email capitalization differs.
+
+### Profile-scoped keys
+
+Local records use keys associated with the normalized email.
+
+Conceptually:
+
+```text
+serviceflow:user:<email>:<entity>
+```
+
+Examples:
+
+```text
+serviceflow:user:alex.morgan@serviceflow.example:profile
+serviceflow:user:alex.morgan@serviceflow.example:draft:changes
+serviceflow:user:alex.morgan@serviceflow.example:records:incidents
+serviceflow:user:alex.morgan@serviceflow.example:sidebarState
+```
+
+This keeps one user’s local records separate from another user’s records in the same browser.
+
+## 16.5 LocalStorage
+
+LocalStorage provides simple string-based browser persistence.
+
+ServiceFlow stores JSON representations of:
+
+- Profiles
+- Drafts
+- Local records
+- Local record overrides
+- Sidebar state
+- Workflow definitions
+- Activity entries
+- Synchronization metadata
+- User preferences
+
+### Serialization
+
+Before storing a value, ServiceFlow converts it to JSON.
+
+```javascript
+localStorage.setItem(key, JSON.stringify(value));
+```
+
+When reading:
+
+```javascript
+const value = JSON.parse(localStorage.getItem(key));
+```
+
+Shared storage helpers should handle parsing failures and default values.
+
+### Advantages
+
+LocalStorage is:
+
+- Simple
+- Widely supported
+- Persistent across reloads
+- Useful for small data
+- Synchronous and predictable
+
+### Limitations
+
+LocalStorage has important limitations:
+
+- Limited capacity
+- Synchronous operations
+- No structured querying
+- String-only storage
+- No built-in record transactions
+- Accessible to browser scripts from the same origin
+
+It should not store large datasets, file content, secrets, or sensitive authoritative records.
+
+## 16.6 Local records and overrides
+
+ServiceFlow distinguishes between locally created records and local edits to published records.
+
+### Locally created records
+
+A new record receives a local identifier.
+
+Example:
+
+```text
+LOCAL-1790960400000
+```
+
+The record is stored in the profile’s collection for that business category.
+
+### Local overrides
+
+When the user edits a published record, ServiceFlow stores an override using the published record’s identifier.
+
+Example:
+
+```json
+{
+  "CHG-00731": {
+    "id": "CHG-00731",
+    "state": "Scheduled",
+    "risk": "Medium",
+    "updatedBy": "alex.morgan@serviceflow.example"
+  }
+}
+```
+
+The platform applies this override when displaying the published record.
+
+### Why use identifiers
+
+The identifier allows ServiceFlow to determine whether a local record represents:
+
+- A new item
+- An updated version of an existing item
+- An unrelated item
+
+Without a stable identifier, merging would produce duplicates.
+
+## 16.7 Record merging
+
+Record merging combines published data with user-specific local information.
+
+The merge follows this order:
+
+1. Start with published records.
+2. Apply matching local overrides.
+3. Add locally created records.
+4. Preserve the newest local representation for matching identifiers.
+
+Conceptually:
+
+```javascript
+const merged = new Map();
+
+for (const record of publishedRecords) {
+  merged.set(record.id, {
+    ...record,
+    ...localOverrides[record.id]
+  });
+}
+
+for (const record of locallyCreatedRecords) {
+  merged.set(record.id, {
+    ...merged.get(record.id),
+    ...record
+  });
+}
+```
+
+The result contains one effective version of each record.
+
+### Local precedence
+
+If both versions contain the same field, the local value wins.
+
+For example:
+
+**Published**
+
+```json
+{
+  "id": "INC-10482",
+  "state": "Assigned",
+  "agent": "Jordan Lee"
+}
+```
+
+**Local**
+
+```json
+{
+  "id": "INC-10482",
+  "state": "In Progress",
+  "agent": "Alex Morgan"
+}
+```
+
+**Displayed**
+
+```json
+{
+  "id": "INC-10482",
+  "state": "In Progress",
+  "agent": "Alex Morgan"
+}
+```
+
+This prevents a background data load from reverting the user’s edit.
+
+## 16.8 Merge versus replacement
+
+Not every local record must replace the entire published record.
+
+A field-level merge allows the local object to override selected values while preserving published fields that were not modified.
+
+This is useful when the local edit contains only:
+
+- State
+- Assignment
+- Notes
+- Updated time
+- Updated user
+
+### Risks of field-level merging
+
+Field-level merging can become ambiguous when:
+
+- The server removes a field.
+- A local user intentionally clears a value.
+- Arrays require merging.
+- Related objects change.
+- The server version is newer.
+- Two users edit the same record.
+
+A production platform needs versioning and conflict detection rather than relying only on object merging.
+
+## 16.9 In-memory caching
+
+ServiceFlow uses an in-memory cache for datasets loaded during the current page session.
+
+Benefits include:
+
+- Faster repeated access
+- Fewer network requests
+- Reduced IndexedDB reads
+- Consistent data during one interaction
+
+The cache is temporary. It is cleared when the page reloads or when application logic invalidates the dataset.
+
+### Cache invalidation
+
+The application should clear an in-memory entry when:
+
+- A matching local record changes
+- The user requests a refresh
+- The dataset version changes
+- The profile changes
+- Cached information expires
+
+Stale in-memory data should not overwrite a recent local edit.
+
+## 16.10 IndexedDB
+
+IndexedDB is a browser database designed for larger structured data.
+
+ServiceFlow uses it for profile-scoped datasets.
+
+Suitable data includes:
+
+- Incident collections
+- Request records
+- Customer datasets
+- User lists
+- Catalog data
+- Workspace records
+- Publication metadata
+
+### Advantages
+
+IndexedDB supports:
+
+- Larger capacity
+- Structured objects
+- Indexed queries
+- Transactions
+- Asynchronous operations
+- Offline caching
+
+It is more suitable than LocalStorage for datasets containing hundreds or thousands of records.
+
+## 16.11 IndexedDB structure
+
+An IndexedDB implementation usually contains:
+
+- Database
+- Version
+- Object stores
+- Keys
+- Records
+- Metadata
+
+A cached dataset might include:
+
+```json
+{
+  "profile": "alex.morgan@serviceflow.example",
+  "dataset": "incidents",
+  "records": [],
+  "sourceUrl": "https://example.test/incidents",
+  "cachedAt": "2026-10-02T15:00:00Z",
+  "recordCount": 750
+}
+```
+
+### Profile-scoped dataset keys
+
+The key should include both the profile and dataset.
+
+Conceptually:
+
+```text
+alex.morgan@serviceflow.example::incidents
+```
+
+This prevents one user’s cached view from being treated as another user’s data.
+
+## 16.12 Read-through caching
+
+Read-through caching checks local storage before or while retrieving current data.
+
+A possible load sequence is:
+
+1. Check the in-memory cache.
+2. Read the profile’s IndexedDB entry.
+3. Return cached data quickly when appropriate.
+4. Request the published dataset.
+5. Validate the response.
+6. Update IndexedDB.
+7. Update the in-memory cache.
+8. Merge local records.
+9. Refresh the visible table.
+
+This sequence balances responsiveness and freshness.
+
+### Network-first variation
+
+Some pages may use network-first behavior:
+
+1. Request current data.
+2. Cache a successful response.
+3. Use IndexedDB if the request fails.
+
+This approach is appropriate when freshness is more important than initial speed.
+
+### Cache-first variation
+
+Other pages may use cache-first behavior:
+
+1. Display cached data immediately.
+2. Refresh in the background.
+3. Update the page when newer data arrives.
+
+The user should be informed when data may be stale.
+
+## 16.13 Dataset freshness
+
+Every cached dataset should include freshness metadata.
+
+Important values include:
+
+- Cached time
+- Last refresh attempt
+- Last successful refresh
+- Source
+- Record count
+- Version
+- Error status
+
+The My Profile page can display this information so the user understands what is stored locally.
+
+### Stale data
+
+A cached dataset may become stale when:
+
+- The source changes
+- Records are created elsewhere
+- Assignments change
+- SLAs progress
+- Approvals are completed
+- Reference values are updated
+
+The platform should avoid presenting old information as confirmed current.
+
+## 16.14 Refreshing data
+
+The user can request a profile-level dataset refresh.
+
+The refresh process should:
+
+1. Identify cached datasets.
+2. Clear or bypass in-memory entries.
+3. Request each configured source.
+4. Validate responses.
+5. Update IndexedDB.
+6. Preserve local records and overrides.
+7. Rerender the affected views.
+8. Display a toast notification.
+
+### Refresh does not mean erase local work
+
+A refresh should replace cached published data, not user-created records.
+
+The final displayed result still follows local precedence.
+
+### Refresh failure
+
+If a remote request fails:
+
+- Retain the previous cache.
+- Preserve local data.
+- Display the last successful refresh.
+- Allow retry.
+- Record the error.
+
+An empty response should not automatically replace a valid cache.
+
+## 16.15 Browser Cache API
+
+The browser Cache API stores request-and-response objects. ServiceFlow uses it to store allowed documents under the logged-in profile.
+
+A cache name can include the profile:
+
+```text
+serviceflow-documents-v1:alex.morgan@serviceflow.example
+```
+
+This creates a distinct document namespace for each user.
+
+### Document response
+
+The file can be stored as a response body, while metadata is placed in response headers or associated records.
+
+Metadata includes:
+
+- File ID
+- Page
+- Record ID
+- Name
+- Type
+- Size
+- Uploaded time
+- Uploaded by
+- Source
+
+The binary file remains separate from LocalStorage.
+
+## 16.16 Why documents should not use LocalStorage
+
+Storing documents as Base64 strings in LocalStorage creates several problems:
+
+- Significant size expansion
+- Small storage limit
+- Synchronous writes
+- Parsing overhead
+- Increased risk of storage failure
+- Difficult removal and retrieval
+
+The Cache API is better suited to local binary content.
+
+A production platform would normally use secure server-side document storage instead.
+
+## 16.17 Document validation
+
+Before storage, ServiceFlow validates the selected file.
+
+Accepted categories include:
+
+- PDF
+- Word
+- JSON
+- XML
+- Images
+
+The platform also enforces a local size limit.
+
+If validation fails:
+
+1. The file is not stored.
+2. The form remains available.
+3. A toast explains the problem.
+4. Other valid form values remain unchanged.
+
+### Media type and extension
+
+Both the extension and browser-reported media type should be considered.
+
+Neither is a complete security control. A production backend must inspect the actual file content.
+
+## 16.18 Document metadata
+
+A locally cached document record can resemble:
+
+```json
+{
+  "id": "FILE-1790960400000",
+  "page": "changes",
+  "recordId": "CHG-00731",
+  "name": "implementation-plan.pdf",
+  "type": "application/pdf",
+  "size": 184225,
+  "uploadedAt": "2026-10-02T15:30:00Z",
+  "uploadedBy": "alex.morgan@serviceflow.example",
+  "source": "intake-form"
+}
+```
+
+The metadata allows ServiceFlow to find and display the correct files without reading every file body.
+
+## 16.19 Record-specific document isolation
+
+Documents must be visible only on their attached records.
+
+A page-level association is not sufficient.
+
+Suppose two changes exist:
+
+```text
+CHG-00731
+CHG-00732
+```
+
+A document attached to `CHG-00731` should not appear merely because both records use the Change Requests page.
+
+The visibility rule is:
+
+```text
+Document profile = active profile
+AND
+Document page = active page
+AND
+Document record ID = active record ID
+```
+
+The record match must be exact.
+
+### No permissive fallback
+
+The application should not use rules such as:
+
+```text
+Show the file if the current record has no ID.
+```
+
+That behavior could expose all unscoped files on a page.
+
+If a file does not have a valid record identifier, it remains isolated until it is explicitly assigned or removed.
+
+## 16.20 Draft attachment identifiers
+
+New records need attachment scope before receiving a final business number.
+
+ServiceFlow generates a unique draft identifier:
+
+```text
+DRAFT-6fc1fc56-2045-4055-90df-90116969114f
+```
+
+The hidden attachment identifier becomes part of the form data.
+
+When the form is serialized:
+
+```json
+{
+  "title": "Update cloud ownership tags",
+  "state": "New",
+  "_attachmentRecordId": "DRAFT-6fc1fc56-2045-4055-90df-90116969114f"
+}
+```
+
+The relationship survives local save and later editing.
+
+### Final record numbers
+
+A production server can either:
+
+- Continue using the draft attachment identifier internally, or
+- Migrate documents to the final authoritative record ID
+
+The migration should be transactional so files are not lost or exposed.
+
+## 16.21 Viewing and removing files
+
+The form displays an Uploaded Files panel.
+
+Each row can include:
+
+- Icon
+- Filename
+- File size
+- View action
+- Remove action
+
+### Viewing
+
+ServiceFlow retrieves the cached response, creates a temporary browser URL, and opens or downloads the file.
+
+The temporary URL should be revoked after use.
+
+### Removing
+
+Removing a document deletes the exact Cache API entry.
+
+The application then:
+
+- Refreshes the current record’s file list
+- Records local activity
+- Displays a toast notification
+
+Removing one file should not clear the entire profile cache.
+
+## 16.22 URL query parameters
+
+Query parameters carry record context between pages.
+
+A record link can include:
+
+- Workspace
+- Record ID
+- Mode
+
+Conceptually:
+
+```text
+?workspace=changes&recordId=CHG-00731&mode=edit
+```
+
+When the page loads, ServiceFlow reads these parameters and locates the matching record.
+
+### Benefits
+
+Query-based record links support:
+
+- Direct navigation
+- Bookmarks
+- Notifications
+- Record sharing
+- Browser refresh
+- Automated testing
+- Correct form hydration
+
+The platform should validate parameters before using them.
+
+## 16.23 Form hydration
+
+Form hydration populates controls from the selected record.
+
+The process should:
+
+1. Identify the form.
+2. Load the effective record.
+3. Iterate through record fields.
+4. Match fields to controls.
+5. Preserve file inputs.
+6. Add missing select options when appropriate.
+7. Set values.
+8. Restore edit mode.
+9. Restore attachment scope.
+10. Activate the correct lifecycle step.
+
+### Asynchronous hydration
+
+Published data may load after the page initially renders.
+
+Other components may also initialize asynchronously:
+
+- Searchable dropdowns
+- Cached documents
+- User lists
+- Tab behavior
+- Local drafts
+
+These processes must coordinate so defaults do not overwrite hydrated values.
+
+## 16.24 Preventing delayed reversion
+
+A delayed reversion occurs when a form loads the correct record and then returns to default values shortly afterward.
+
+Possible causes include:
+
+- Draft restoration after record hydration
+- Dropdown initialization replacing options
+- Dataset refresh rerendering the form
+- Step initialization forcing the first state
+- Mutation observers repeating setup
+- Late sample-data application
+
+The correct precedence should be explicit:
+
+```text
+Default values
+      ↓
+Saved draft when creating
+      ↓
+Published record when editing
+      ↓
+Local override
+      ↓
+Current unsaved user input
+```
+
+A lower-priority source must not overwrite a higher-priority source.
+
+## 16.25 Local activity logging
+
+ServiceFlow records selected actions under the user profile.
+
+Examples include:
+
+- Record saved
+- File uploaded
+- File removed
+- Page viewed
+- Workflow updated
+- Approval recorded
+- Cache refreshed
+- Synchronization requested
+
+An entry may include:
+
+```json
+{
+  "action": "Intake attachment stored",
+  "target": "CHG-00731",
+  "user": "alex.morgan@serviceflow.example",
+  "timestamp": "2026-10-02T15:45:00Z"
+}
+```
+
+This supports user feedback and troubleshooting.
+
+It should not be treated as a tamper-resistant audit trail.
+
+## 16.26 Local cleanup
+
+Local data accumulates over time.
+
+The profile experience should support:
+
+- Remove one saved record
+- Remove one cached document
+- Clear dataset cache
+- Refresh datasets
+- Clear all local workspace data for the profile
+
+### Exact scope
+
+A cleanup operation should identify its target precisely.
+
+Examples include:
+
+- One record by identifier
+- One document by file ID
+- One dataset by profile and dataset name
+- One profile namespace
+
+It should not delete unrelated browser data.
+
+### User confirmation
+
+Clearing substantial local data should require confirmation and explain:
+
+- What will be removed
+- Whether synchronized records remain on the server
+- Whether the operation can be undone
+- Which profile is affected
+
+## 16.27 Offline behavior
+
+A local-first application should define what works offline.
+
+Possible offline capabilities include:
+
+- Open cached pages
+- View cached datasets
+- Search local records
+- Edit cached records
+- Create drafts
+- Upload local documents
+- Queue synchronization
+
+Unavailable capabilities may include:
+
+- Retrieve current server data
+- Complete remote approvals
+- Call integrations
+- Send external notifications
+- Verify current authorization
+
+The user should be able to distinguish offline results from confirmed server state.
+
+## 16.28 Synchronization queue
+
+When the user saves a record intended for the backend, ServiceFlow can create a synchronization item.
+
+Example:
+
+```json
+{
+  "id": "SYNC-1790960400000",
+  "entity": "changes",
+  "recordId": "CHG-00731",
+  "operation": "update",
+  "status": "pending",
+  "attempts": 0,
+  "createdAt": "2026-10-02T16:00:00Z",
+  "profile": "alex.morgan@serviceflow.example"
+}
+```
+
+The queue separates local saving from remote completion.
+
+### Sync statuses
+
+Possible statuses include:
+
+- Pending
+- Sending
+- Synchronized
+- Failed
+- Conflict
+- Cancelled
+
+The Sync Center can display these items and allow retry where appropriate.
+
+## 16.29 Synchronization conflict
+
+A conflict occurs when the local and server records change independently.
+
+Example:
+
+1. User loads version 4.
+2. Another user updates the server to version 5.
+3. The first user edits the local version.
+4. Synchronization attempts to update version 4.
+
+The server should reject the stale update or request conflict resolution.
+
+### Conflict options
+
+The user might:
+
+- Keep server version
+- Keep local version with authorization
+- Compare fields
+- Merge selected changes
+- Save as a new record
+- Cancel the local update
+
+The decision should be recorded.
+
+## 16.30 Local-first security limitations
+
+Browser storage has important security limitations.
+
+A user with device access may be able to:
+
+- Inspect LocalStorage
+- Read IndexedDB
+- Inspect Cache API entries
+- Modify local records
+- Remove activity entries
+- Change browser-delivered code
+
+Therefore, browser storage should not be treated as authoritative for:
+
+- Authentication
+- Authorization
+- Regulatory audit
+- Highly sensitive records
+- Enterprise backup
+- Shared transactional state
+- Permanent document retention
+
+### Appropriate playground use
+
+The local-first model is appropriate for:
+
+- Training
+- Demonstration
+- Prototyping
+- Process design
+- Individual drafts
+- Sample records
+- Offline exploration
+
+Production deployment requires server-side controls.
+
+## 16.31 Data privacy on shared devices
+
+Profile-scoped keys separate data logically, but they do not fully protect information on a shared device.
+
+Additional measures can include:
+
+- Logout cleanup
+- Browser-profile separation
+- Device encryption
+- Managed browser policies
+- Restricted caching
+- Short sessions
+- Reauthentication
+- Server-side access checks
+
+Sensitive data should not remain indefinitely on unmanaged devices.
+
+## 16.32 Storage quotas
+
+Browser storage capacity varies.
+
+The application should handle quota failures gracefully.
+
+Possible responses include:
+
+- Reject oversized uploads
+- Warn when storage is nearly full
+- Allow cache cleanup
+- Preserve smaller records
+- Avoid partial writes
+- Explain which storage area is affected
+
+A failed document upload should not erase the form.
+
+## 16.33 Storage migration
+
+Local data formats evolve as the application changes.
+
+A storage migration can update:
+
+- Key names
+- Record schemas
+- Attachment metadata
+- Version fields
+- Dataset structure
+
+A migration should:
+
+1. Detect the old version.
+2. Validate the data.
+3. Transform safely.
+4. Preserve a recovery path when practical.
+5. Mark completion.
+6. Avoid repeated migration.
+
+ServiceFlow can migrate legacy attachments away from Base64 LocalStorage into the Cache API.
+
+Legacy files without reliable record identifiers should remain isolated.
+
+## 16.34 Testing local-first behavior
+
+Testing should cover more than the presence of storage code.
+
+### Profile isolation test
+
+1. Log in as User A.
+2. Save a record.
+3. Log in as User B.
+4. Confirm User A’s local record is not displayed.
+
+### Local precedence test
+
+1. Load a published record.
+2. Edit it locally.
+3. Reload the page.
+4. Confirm the local values remain visible.
+
+### Attachment-isolation test
+
+1. Open Record A.
+2. Upload a file.
+3. Confirm the file appears.
+4. Switch to Record B.
+5. Confirm the file disappears.
+6. Return to Record A.
+7. Confirm the file reappears.
+
+### Cache-refresh test
+
+1. Load a dataset.
+2. Confirm it is stored in IndexedDB.
+3. Refresh the profile data.
+4. Confirm the cache timestamp changes.
+5. Confirm local edits remain.
+
+### Offline test
+
+1. Load the application and data.
+2. Disable network access.
+3. Reopen the cached workspace.
+4. Edit a record.
+5. Confirm the update is stored locally.
+6. Reconnect and synchronize.
+
+## 16.35 Local-first architecture example
+
+Consider an agent editing a customer case.
+
+### Initial load
+
+The page loads 500 published cases and stores the dataset in the agent’s IndexedDB profile cache.
+
+### Record opening
+
+The agent selects `CASE-8832`. The record ID appears in the URL.
+
+### Merge
+
+ServiceFlow checks for a local override. None exists, so the published case fills the form.
+
+### Editing
+
+The agent changes the state, adds a work note, and uploads an image.
+
+### Local save
+
+The record is serialized to JSON and stored in LocalStorage as an override.
+
+The image is stored in the Cache API using:
+
+- Agent profile
+- Customer page
+- `CASE-8832`
+
+### Table refresh
+
+The case table displays the updated local state.
+
+### Offline continuation
+
+The network becomes unavailable. The agent can still reopen the cached case and view its locally attached image.
+
+### Synchronization
+
+When connectivity returns, the record enters the synchronization queue.
+
+The server accepts the update and returns a new version.
+
+### Cache update
+
+ServiceFlow refreshes the published dataset while preserving the now-confirmed record state.
+
+This example demonstrates the complete local-first journey.
+
+## 16.36 Local-first design checklist
+
+### Identity
+
+- Email is normalized.
+- Every local key is profile-scoped.
+- Profile switching clears in-memory data.
+- Logout removes active session context.
+
+### Records
+
+- Forms serialize to JSON.
+- Identifiers are stable.
+- Local records are distinguished from overrides.
+- Local values take priority.
+- Creation and update metadata are preserved.
+
+### IndexedDB
+
+- Dataset keys include profile and name.
+- Freshness metadata is stored.
+- Failed refresh preserves prior cache.
+- Local records survive refresh.
+- Users can inspect and clear cached data.
+
+### Documents
+
+- Files are validated.
+- Binary content is not stored in LocalStorage.
+- Cache names are profile-scoped.
+- Metadata includes the record ID.
+- Visibility requires an exact record match.
+- Draft records receive stable attachment identifiers.
+- Users can view and remove files.
+
+### Synchronization
+
+- Local save does not depend on immediate network success.
+- Pending operations are visible.
+- Retries are controlled.
+- Version conflicts are detected.
+- Failed synchronization preserves local work.
+
+### Security
+
+- Browser data is not treated as authoritative.
+- Sensitive access is enforced on the server.
+- Shared-device risks are documented.
+- Storage cleanup is available.
+- Production documents use governed storage.
+
+## Chapter summary
+
+ServiceFlow’s local-first architecture allows users to work with records, datasets, profiles, and documents directly in the browser.
+
+Its principal capabilities include:
+
+- Email-scoped user identity
+- Profile-specific storage keys
+- LocalStorage for preferences and lightweight records
+- Local record overrides
+- Deterministic record merging
+- Local data precedence
+- In-memory caching
+- IndexedDB dataset storage
+- Read-through caching
+- Dataset freshness metadata
+- Profile refresh controls
+- Cache API document storage
+- Exact record-level file visibility
+- Draft attachment identifiers
+- Query-based record links
+- Complete form hydration
+- Protection against delayed reversion
+- Local activity records
+- Selective cleanup
+- Offline work
+- Synchronization queues
+- Conflict handling
+- Storage migration
+- Browser-based verification
+
+This architecture provides an effective playground and prototyping environment. The next chapter explains how ServiceFlow can synchronize local work with a shared backend while preserving reliability, security, and conflict awareness.
+
+# Chapter 17  
+# Server Synchronization
+
+Local-first storage gives ServiceFlow resilience, speed, and a safe environment for experimentation. However, enterprise service management requires records to be shared across users, devices, teams, and business processes.
+
+An incident created on one computer must be available to the assigned agent on another. An approval decision must update the requester’s record. A customer-service note must be visible to authorized participants. Documents may need governed server storage, retention, auditing, and security controls.
+
+Synchronization connects the local experience to this shared environment.
+
+A reliable synchronization model must address more than sending JSON to an endpoint. It must manage identity, validation, retries, duplicates, conflicts, versions, permissions, attachments, and user feedback.
+
+## 17.1 The purpose of synchronization
+
+Synchronization moves information between the user’s local workspace and an authoritative server.
+
+It supports:
+
+- Shared records
+- Cross-device access
+- Multi-user collaboration
+- Server-side workflows
+- Central reporting
+- Secure attachment storage
+- Audit history
+- Backup and recovery
+- Integration with other systems
+
+The browser remains useful for local responsiveness, but the server becomes the trusted system of record.
+
+## 17.2 Local and authoritative state
+
+A synchronized application contains at least two representations of a record:
+
+- Local state
+- Server state
+
+The local state may include unsaved or pending edits. The server state represents the latest accepted shared version.
+
+Possible relationships include:
+
+| Local state | Server state | Meaning |
+|---|---|---|
+| No local copy | Record exists | Load from server |
+| Local draft | No record | Not yet synchronized |
+| Local edit | Older server version | Ready to synchronize |
+| Local edit | Newer server version | Conflict |
+| Matching versions | Matching record | Synchronized |
+| Locally deleted | Server exists | Deletion pending |
+| Local exists | Server deleted | Conflict or stale record |
+
+The interface should communicate which condition applies.
+
+## 17.3 Synchronization principles
+
+A reliable implementation should follow several principles.
+
+### Local work should not disappear
+
+If a remote call fails, the user’s locally saved information must remain available.
+
+### The server validates every operation
+
+Browser validation improves the experience, but the server must independently validate data and permissions.
+
+### Every operation should be identifiable
+
+A unique operation ID helps prevent duplicate processing.
+
+### Conflicts should be visible
+
+The platform should not silently overwrite changes from another user.
+
+### Synchronization should be observable
+
+Users and administrators need to know which operations succeeded, failed, or remain pending.
+
+### Sensitive information should be protected
+
+Credentials and authorization decisions belong on trusted server components.
+
+## 17.4 Synchronization architecture
+
+A basic synchronization architecture contains:
+
+- Local storage
+- Synchronization queue
+- Shared API service
+- Authentication layer
+- Backend API
+- Validation layer
+- Database
+- Event or workflow engine
+- Audit service
+
+```text
+ServiceFlow form
+      ↓
+Local save
+      ↓
+Sync queue
+      ↓
+Shared API service
+      ↓
+Authentication and authorization
+      ↓
+Backend API
+      ↓
+Validation and persistence
+      ↓
+Events, workflows, and audit
+```
+
+The local save occurs before the remote operation so a network failure does not erase the user’s work.
+
+## 17.5 The synchronization queue
+
+The synchronization queue records operations that need to reach the server.
+
+An item can include:
+
+```json
+{
+  "operationId": "SYNC-1790960400000",
+  "entity": "changes",
+  "recordId": "CHG-00731",
+  "operation": "update",
+  "baseVersion": 7,
+  "payload": {},
+  "status": "pending",
+  "attempts": 0,
+  "createdAt": "2026-10-02T16:00:00Z",
+  "updatedAt": "2026-10-02T16:00:00Z",
+  "profile": "alex.morgan@serviceflow.example"
+}
+```
+
+### Queue operations
+
+Common operations include:
+
+- Create
+- Update
+- Delete
+- Attach
+- Detach
+- Approve
+- Transition
+- Comment
+
+Using explicit operation types helps the server apply appropriate validation and authorization.
+
+## 17.6 Synchronization statuses
+
+A queue item can move through these states:
+
+**Pending → Sending → Synchronized**
+
+Exception states include:
+
+- Failed
+- Conflict
+- Cancelled
+- Blocked
+
+### Pending
+
+The item is waiting to be processed.
+
+### Sending
+
+The client is transmitting the operation.
+
+### Synchronized
+
+The server accepted and committed the operation.
+
+### Failed
+
+The operation failed but may be retried.
+
+### Conflict
+
+The server rejected the operation because the record changed or no longer exists.
+
+### Cancelled
+
+The user or system intentionally stopped the operation.
+
+### Blocked
+
+The item cannot proceed until another issue is resolved, such as authentication or a dependency failure.
+
+## 17.7 Creating records
+
+A locally created record may initially use a temporary identifier.
+
+Example:
+
+```text
+LOCAL-1790960400000
+```
+
+During synchronization:
+
+1. The client sends the record and temporary identifier.
+2. The server validates the request.
+3. The server creates the authoritative record.
+4. The server generates the final identifier.
+5. The response returns the final identifier and version.
+6. The client replaces local references safely.
+7. Related documents and queue items are updated.
+
+Example response:
+
+```json
+{
+  "success": true,
+  "temporaryId": "LOCAL-1790960400000",
+  "recordId": "REQ-32018",
+  "version": 1,
+  "updatedAt": "2026-10-02T16:02:14Z"
+}
+```
+
+### Identifier migration
+
+The platform must update references to the temporary ID in:
+
+- Local record
+- Attachment metadata
+- Related records
+- Queue items
+- Current URL
+- Activity history
+
+The migration should occur as one controlled operation.
+
+## 17.8 Updating records
+
+An update should include the record identifier and the server version on which the edit was based.
+
+Example request:
+
+```json
+{
+  "operationId": "SYNC-1790960401000",
+  "recordId": "INC-10482",
+  "baseVersion": 4,
+  "changes": {
+    "state": "In Progress",
+    "agent": "Alex Morgan",
+    "workNotes": "Validated the VPN profile and requested a reconnect."
+  }
+}
+```
+
+The server checks:
+
+- User identity
+- Permission
+- Record existence
+- Current version
+- Field validity
+- State-transition rules
+- Business rules
+
+If valid, it saves version 5.
+
+## 17.9 Full records versus patches
+
+An update can send either:
+
+- Complete record
+- Changed fields only
+
+### Complete record
+
+Advantages:
+
+- Simple payload
+- Easy validation
+- Suitable for small forms
+
+Risks:
+
+- Larger payload
+- Greater chance of overwriting unrelated changes
+- Difficult conflict merging
+
+### Patch
+
+Advantages:
+
+- Sends only changed fields
+- Reduces unintended overwrite
+- Easier field-level conflict analysis
+
+Risks:
+
+- More complex client tracking
+- Requires precise patch semantics
+
+For multi-user systems, field-level patches are often safer.
+
+## 17.10 Server validation
+
+The server should not trust browser-submitted values.
+
+It must validate:
+
+- Required fields
+- Data types
+- Allowed values
+- Record relationships
+- User permissions
+- State transitions
+- Date order
+- Version
+- Attachment ownership
+- Business rules
+
+For example, the server should reject a change request when:
+
+- Planned end is before planned start.
+- The configuration item does not exist.
+- The user lacks update permission.
+- The current record version is newer.
+- The requested state transition is invalid.
+- Required approval is missing.
+
+The response should provide understandable error information without revealing sensitive internals.
+
+## 17.11 Authentication
+
+Every backend call must identify the user or authorized client.
+
+Suitable enterprise mechanisms include:
+
+- OAuth 2.0
+- OpenID Connect
+- SAML-backed session
+- Managed identity
+- Signed service token
+- Secure session cookie
+
+A static API key embedded in browser JavaScript is not a secure user-authentication mechanism because anyone receiving the page can inspect it.
+
+### API gateway or backend proxy
+
+A safer pattern is:
+
+```text
+Browser
+   ↓ authenticated request
+ServiceFlow backend
+   ↓ secured service call
+External platform
+```
+
+The browser never receives the external system’s long-lived credential.
+
+## 17.12 Authorization
+
+Authentication answers “Who is this?” Authorization answers “What may this identity do?”
+
+Authorization should evaluate:
+
+- Role
+- Group
+- Record ownership
+- Business unit
+- Customer account
+- Location
+- Field sensitivity
+- Operation
+- Record state
+- Delegation
+
+A user may be allowed to read a request but not approve it. An agent may update work notes but not security fields. A customer may see their own case but not internal notes.
+
+Authorization must be enforced on every backend operation.
+
+## 17.13 API request structure
+
+A consistent API envelope can simplify backend processing.
+
+Example:
+
+```json
+{
+  "operationId": "SYNC-1790960401000",
+  "operation": "update",
+  "entity": "incident",
+  "recordId": "INC-10482",
+  "baseVersion": 4,
+  "submittedAt": "2026-10-02T16:10:00Z",
+  "payload": {
+    "state": "In Progress",
+    "agent": "Alex Morgan"
+  }
+}
+```
+
+The response might contain:
+
+```json
+{
+  "success": true,
+  "operationId": "SYNC-1790960401000",
+  "recordId": "INC-10482",
+  "version": 5,
+  "serverTime": "2026-10-02T16:10:02Z"
+}
+```
+
+A predictable contract supports testing, retries, and audit.
+
+## 17.14 Idempotency
+
+A synchronization request may be transmitted more than once.
+
+For example:
+
+1. The server saves the record.
+2. The response is lost.
+3. The client assumes failure.
+4. The client retries.
+
+Without protection, the retry might create duplicate records or repeated actions.
+
+The operation ID should act as an idempotency key.
+
+When the server receives a repeated operation ID, it returns the original result instead of applying the operation again.
+
+Idempotency is especially important for:
+
+- Record creation
+- Approval decisions
+- Financial actions
+- Fulfillment tasks
+- Notifications
+- External integrations
+
+## 17.15 Retry behavior
+
+Temporary failures may be retried.
+
+Retryable conditions can include:
+
+- Network timeout
+- Temporary server error
+- Rate limiting
+- Short service interruption
+
+Non-retryable conditions can include:
+
+- Invalid data
+- Permission denied
+- Unknown record
+- Invalid state transition
+- Version conflict
+
+### Backoff
+
+Retries should wait progressively longer.
+
+Example:
+
+```text
+Attempt 1: immediate
+Attempt 2: after 5 seconds
+Attempt 3: after 30 seconds
+Attempt 4: after 2 minutes
+Attempt 5: after 10 minutes
+```
+
+The client should not repeatedly overload an unavailable service.
+
+### Retry limit
+
+After the maximum attempt count, the item should remain visible as failed.
+
+The user or administrator can inspect and retry after correction.
+
+## 17.16 Conflict detection
+
+Version comparison provides a reliable conflict signal.
+
+The server stores:
+
+```text
+Current version: 8
+```
+
+The client submits:
+
+```text
+Base version: 7
+```
+
+The server rejects the update with a conflict response.
+
+Example:
+
+```json
+{
+  "success": false,
+  "code": "VERSION_CONFLICT",
+  "recordId": "CHG-00731",
+  "clientVersion": 7,
+  "serverVersion": 8
+}
+```
+
+### Why timestamps are not enough
+
+Device clocks may differ. Timestamps may also have inconsistent precision.
+
+A server-managed version number or revision token is more reliable.
+
+## 17.17 Conflict resolution
+
+Conflict handling should reflect the record’s importance.
+
+### Server wins
+
+Discard the local edit and load the server version.
+
+Suitable when local changes are unimportant or easily recreated.
+
+### Local wins
+
+Force the local version to replace the server version.
+
+This should require authorization because it can erase another user’s work.
+
+### Field-level merge
+
+Compare changed fields and combine nonconflicting updates.
+
+Example:
+
+- User A changes assignment.
+- User B adds a work note.
+
+Both changes may be preserved.
+
+### Manual review
+
+Present the differences to a user.
+
+| Field | Local | Server |
+|---|---|---|
+| State | In Progress | Pending |
+| Assigned agent | Alex Morgan | Jordan Lee |
+| Work notes | VPN test complete | Waiting for customer |
+
+The user chooses the correct values.
+
+### Create a new version
+
+Preserve both versions and create a new revision after review.
+
+This is useful for knowledge, policies, and workflow definitions.
+
+## 17.18 State-transition conflicts
+
+Some conflicts involve process state, not only field values.
+
+For example:
+
+1. Agent A resolves an incident.
+2. Agent B adds investigation notes based on an older In Progress version.
+3. The second update attempts to return the record to In Progress.
+
+The platform should not automatically reverse the resolution.
+
+State transitions require business-rule validation.
+
+## 17.19 Synchronizing approvals
+
+Approvals need additional protections.
+
+An approval operation should include:
+
+- Approval record
+- Decision
+- Comment
+- Approver identity
+- Delegation context
+- Version
+- Operation ID
+
+The server must confirm:
+
+- User is an authorized approver.
+- Approval is still pending.
+- Delegation is valid.
+- Decision is allowed.
+- Request version is current.
+- User is not violating separation of duties.
+
+A repeated approval operation should return the existing decision rather than recording it twice.
+
+## 17.20 Synchronizing comments and work notes
+
+Activity-stream entries should usually be append-only.
+
+Instead of replacing the complete notes field, the client sends a new entry:
+
+```json
+{
+  "operation": "appendWorkNote",
+  "recordId": "INC-10482",
+  "payload": {
+    "text": "Validated the new VPN profile with the requester."
+  }
+}
+```
+
+The server adds:
+
+- Entry ID
+- Verified user
+- Server timestamp
+- Record version
+
+This prevents one user’s note from overwriting another’s.
+
+## 17.21 Attachment synchronization
+
+Local attachments are initially stored in the browser Cache API.
+
+Server synchronization requires a controlled upload process.
+
+### Attachment sequence
+
+1. Confirm the parent record exists on the server.
+2. Request an authorized upload session.
+3. Upload the file.
+4. Perform malware and content validation.
+5. Store the document in governed storage.
+6. Create attachment metadata.
+7. Associate it with the exact record.
+8. Return the server attachment ID.
+9. Update local metadata.
+10. Mark the upload synchronized.
+
+### Attachment metadata
+
+Server metadata can include:
+
+- Attachment ID
+- Record ID
+- Filename
+- Media type
+- Size
+- Hash
+- Uploaded by
+- Uploaded time
+- Classification
+- Storage location
+- Scan result
+- Version
+
+## 17.22 Attachment security
+
+The server must verify access during both upload and download.
+
+It should confirm:
+
+- User can access the record.
+- User can attach files.
+- File type is permitted.
+- File size is within limits.
+- Content passes scanning.
+- Classification is allowed.
+- Retention policy is applied.
+
+A download link should not permanently expose the underlying storage location.
+
+Short-lived authorized links or streamed responses are safer.
+
+## 17.23 Record and attachment migration
+
+A local draft may use:
+
+```text
+DRAFT-6fc1fc56
+```
+
+After server creation, the record becomes:
+
+```text
+CHG-00731
+```
+
+The synchronization process must migrate document associations from the draft scope to the authoritative record.
+
+A safe sequence is:
+
+1. Create server record.
+2. Receive final ID.
+3. Update local record mapping.
+4. Upload each draft attachment against the final ID.
+5. Confirm all uploads.
+6. Update local attachment metadata.
+7. Preserve failed attachments for retry.
+8. Replace the current URL when appropriate.
+
+Partial failure must not cause documents to appear on the wrong record.
+
+## 17.24 Pull synchronization
+
+Synchronization is not only about sending local changes. The browser also needs to receive server updates.
+
+A pull operation may request:
+
+- All records
+- Records updated since a timestamp
+- Records after a revision token
+- One record
+- One page of results
+- Events since a cursor
+
+### Incremental synchronization
+
+Incremental synchronization reduces data transfer.
+
+Example request:
+
+```text
+Get incidents changed after revision 18420.
+```
+
+The server returns:
+
+- Updated records
+- Deleted-record markers
+- New revision token
+
+The client updates IndexedDB and reapplies local pending changes.
+
+## 17.25 Deleted records
+
+Deletion requires careful handling.
+
+A server may use a tombstone:
+
+```json
+{
+  "recordId": "INC-10482",
+  "deleted": true,
+  "version": 9
+}
+```
+
+The client then knows the record was intentionally removed rather than simply omitted.
+
+### Local edits to deleted records
+
+If the user has unsynchronized local edits for a server-deleted record, the platform should create a conflict.
+
+Options may include:
+
+- Discard local edit
+- Restore record with authorization
+- Create a new record
+- Export local information
+- Request administrator review
+
+## 17.26 Synchronization ordering
+
+Some operations depend on others.
+
+Example:
+
+```text
+Create request
+      ↓
+Upload attachment
+      ↓
+Create fulfillment task
+      ↓
+Add task comment
+```
+
+The queue should not upload an attachment before the server request exists.
+
+Dependencies can be represented with:
+
+- Parent operation ID
+- Required record mapping
+- Sequence number
+- Blocking status
+
+## 17.27 Batch synchronization
+
+The client may send several operations together.
+
+Benefits include:
+
+- Fewer network calls
+- Better performance
+- Shared transaction context
+
+Risks include:
+
+- Larger failures
+- More complex retry behavior
+- Partial success
+- Ordering difficulty
+
+The API should clearly report results for every item.
+
+Example:
+
+```json
+{
+  "results": [
+    {
+      "operationId": "SYNC-001",
+      "success": true
+    },
+    {
+      "operationId": "SYNC-002",
+      "success": false,
+      "code": "VERSION_CONFLICT"
+    }
+  ]
+}
+```
+
+## 17.28 Transactions
+
+Related updates may need to succeed or fail together.
+
+For example:
+
+- Approve request
+- Create fulfillment tasks
+- Update request state
+- Record audit event
+
+If only some actions succeed, the process becomes inconsistent.
+
+A server transaction can ensure that all required database changes commit together.
+
+External integrations cannot always participate in the same transaction. In those cases, workflows and compensating actions are required.
+
+## 17.29 Server-generated events
+
+After accepting an update, the server can publish an event.
+
+Example:
+
+```json
+{
+  "eventType": "request.approved",
+  "recordId": "REQ-32018",
+  "version": 6,
+  "occurredAt": "2026-10-02T17:00:00Z"
+}
+```
+
+Consumers may:
+
+- Create tasks
+- Send notifications
+- Update analytics
+- Invoke integrations
+- Start workflows
+- Record audit events
+
+This keeps the synchronous API response fast while downstream work continues asynchronously.
+
+## 17.30 Real-time updates
+
+Users may need to see updates without manually refreshing.
+
+Options include:
+
+- Polling
+- Server-sent events
+- WebSockets
+- Push notifications
+
+Real-time updates can communicate:
+
+- Assignment change
+- New comment
+- Approval decision
+- Workflow progress
+- SLA warning
+- Record closure
+
+### Concurrent-edit indicators
+
+The interface can warn:
+
+> Jordan Lee is also viewing this incident.
+
+Or:
+
+> This record changed since you opened it.
+
+Presence is helpful, but server-side version checks remain necessary.
+
+## 17.31 Offline synchronization
+
+When the network is unavailable:
+
+- Local saves continue.
+- Queue items remain pending.
+- Cached data remains available.
+- Remote actions are disabled or deferred.
+- The user receives an offline indicator.
+
+When connectivity returns:
+
+1. Authentication is revalidated.
+2. Pending items are reviewed.
+3. Dependencies are resolved.
+4. Operations are transmitted.
+5. Conflicts are surfaced.
+6. Caches are refreshed.
+7. Results are displayed.
+
+The client should not assume that the user’s authorization remained unchanged while offline.
+
+## 17.32 Sync Center
+
+The Sync Center provides visibility into pending and completed operations.
+
+It can display:
+
+- Operation
+- Entity
+- Record
+- Created time
+- Status
+- Attempt count
+- Last error
+- Next retry
+- Action
+
+Available actions may include:
+
+- Retry
+- Cancel
+- Open record
+- Review conflict
+- Remove completed item
+- Refresh status
+
+### User-facing messages
+
+Useful messages include:
+
+- Saved locally
+- Waiting for connection
+- Synchronizing
+- Synchronized successfully
+- More information required
+- Permission denied
+- Conflict requires review
+- Server temporarily unavailable
+
+The user should not need to inspect browser developer tools to understand synchronization state.
+
+## 17.33 Synchronization audit
+
+The server should record:
+
+- Operation ID
+- User
+- Device or client
+- Record
+- Operation
+- Base version
+- Resulting version
+- Timestamp
+- Outcome
+- Error
+- Correlation ID
+
+This history supports troubleshooting and compliance.
+
+Sensitive values should be masked in logs.
+
+## 17.34 Monitoring synchronization
+
+Operational measures include:
+
+- Pending queue size
+- Successful operations
+- Failed operations
+- Conflict rate
+- Average synchronization delay
+- Retry count
+- Oldest pending item
+- Attachment-upload failures
+- Authorization failures
+- API latency
+
+Alerts can notify support when:
+
+- Failure rate rises
+- Queue age exceeds a threshold
+- Authentication fails broadly
+- A dependency is unavailable
+- Dead-letter volume increases
+
+## 17.35 Data reconciliation
+
+Periodic reconciliation compares local or integration data with the server.
+
+It can identify:
+
+- Missing records
+- Duplicate records
+- Version mismatch
+- Orphaned attachments
+- Invalid relationships
+- Incomplete operations
+- Stale cache entries
+
+Reconciliation should produce a report and controlled remediation actions.
+
+It should not automatically overwrite records without understanding the cause of the difference.
+
+## 17.36 API evolution
+
+Backend APIs change over time.
+
+Versioning options include:
+
+- URL version
+- Header version
+- Schema version
+- Capability negotiation
+
+Example:
+
+```text
+/api/v1/records
+/api/v2/records
+```
+
+The client should know which version it uses, and the server should provide a migration period.
+
+Breaking changes should not be introduced without coordination.
+
+## 17.37 Security considerations
+
+Synchronization crosses the boundary between the browser and trusted services.
+
+Controls should include:
+
+- HTTPS
+- Authentication
+- Authorization
+- Input validation
+- Output encoding
+- Rate limiting
+- Request-size limits
+- CSRF protection where relevant
+- Secret management
+- Audit
+- Monitoring
+- Data classification
+- Attachment scanning
+
+### Do not trust profile values
+
+A browser can submit:
+
+```json
+{
+  "role": "Platform administrator"
+}
+```
+
+The server must ignore self-declared authorization and use the verified identity and centrally managed role.
+
+### Do not expose long-lived credentials
+
+Credentials delivered to the browser can be inspected.
+
+Use short-lived user tokens or a backend intermediary.
+
+## 17.38 Backend data model
+
+A production ServiceFlow backend might include tables or collections for:
+
+- Users
+- Groups
+- Roles
+- Records
+- Record versions
+- Relationships
+- Comments
+- Work notes
+- Attachments
+- Approvals
+- Workflow definitions
+- Workflow executions
+- SLA instances
+- Audit events
+- Sync operations
+
+Each record type can extend shared fields while maintaining its own business schema.
+
+## 17.39 Availability and recovery
+
+The synchronization service itself requires resilience.
+
+Capabilities include:
+
+- Multiple service instances
+- Health monitoring
+- Database replication
+- Backup
+- Queue durability
+- Regional failover
+- Disaster recovery
+- Capacity scaling
+
+Local-first behavior reduces the immediate impact of an outage, but it does not replace backend recovery.
+
+A prolonged outage can create a large pending queue that must be processed safely when service returns.
+
+## 17.40 Testing synchronization
+
+Testing should cover expected and exceptional paths.
+
+### Create test
+
+- Create locally.
+- Synchronize.
+- Receive final ID.
+- Update local references.
+- Confirm server record.
+
+### Update test
+
+- Edit a published record.
+- Send base version.
+- Receive new version.
+- Confirm local and server match.
+
+### Conflict test
+
+- Load one version in two clients.
+- Save from Client A.
+- Save from Client B.
+- Confirm conflict is detected.
+
+### Retry test
+
+- Simulate a temporary network error.
+- Confirm local save remains.
+- Confirm retry waits appropriately.
+- Confirm eventual success does not duplicate the record.
+
+### Authorization test
+
+- Attempt an unauthorized update.
+- Confirm the server rejects it.
+- Confirm the local item is marked appropriately.
+- Confirm protected data is not returned.
+
+### Attachment test
+
+- Upload a local attachment.
+- Synchronize the parent record.
+- Upload the file securely.
+- Confirm only authorized users can access it.
+- Confirm it remains tied to the correct record.
+
+### Offline test
+
+- Disconnect.
+- Create and edit records.
+- Reconnect.
+- Synchronize in dependency order.
+- Resolve conflicts.
+- Confirm no data loss.
+
+## 17.41 An end-to-end synchronization example
+
+Consider an agent resolving an incident while temporarily offline.
+
+### Local edit
+
+The agent updates:
+
+- State to Resolved
+- Resolution code
+- Resolution notes
+- Customer comment
+
+A screenshot is attached.
+
+### Local save
+
+ServiceFlow saves the record override and screenshot under the agent’s profile.
+
+Two queue items are created:
+
+1. Update incident
+2. Upload attachment
+
+The attachment operation depends on the incident update.
+
+### Reconnection
+
+The browser detects connectivity and revalidates the session.
+
+### Record update
+
+The client sends the incident operation with base version 6.
+
+The server confirms the current version is still 6, validates the state transition, saves version 7, and records an audit event.
+
+### Attachment upload
+
+The client requests an upload authorization, sends the file, and receives a server attachment ID.
+
+The server scans the file and associates it with the incident.
+
+### Workflow action
+
+The resolution event starts a confirmation workflow and notifies the requester.
+
+### Local update
+
+The queue items are marked Synchronized. IndexedDB receives the latest server record, while the local override is retired or updated to the accepted version.
+
+This sequence demonstrates local resilience, dependency ordering, server validation, version control, document security, workflow execution, and user feedback.
+
+## 17.42 Synchronization checklist
+
+### Client
+
+- Save locally before remote transmission.
+- Use unique operation IDs.
+- Queue every remote operation.
+- Preserve failed work.
+- Display synchronization state.
+- Respect dependency order.
+- Revalidate identity after offline periods.
+
+### API
+
+- Require authenticated requests.
+- Enforce authorization.
+- Validate every payload.
+- Support idempotency.
+- Return structured errors.
+- Apply rate limits.
+- Version the contract.
+
+### Records
+
+- Use stable identifiers.
+- Track server versions.
+- Detect conflicts.
+- Preserve append-only activity.
+- Validate state transitions.
+- Maintain relationships.
+
+### Attachments
+
+- Create the server record first.
+- Authorize upload.
+- Scan content.
+- Enforce size and type limits.
+- Store governed metadata.
+- Check access during download.
+- Preserve exact record association.
+
+### Reliability
+
+- Retry only temporary failures.
+- Use controlled backoff.
+- Limit attempts.
+- Provide dead-letter handling.
+- Monitor queue size and age.
+- Reconcile incomplete operations.
+
+### Security
+
+- Keep credentials off the client.
+- Use encrypted transport.
+- Apply least privilege.
+- Mask sensitive logs.
+- Protect audit history.
+- Support session revocation.
+
+## Chapter summary
+
+Server synchronization transforms ServiceFlow from an individual browser experience into a shared service-management platform.
+
+Its essential capabilities include:
+
+- Local and server state management
+- Synchronization queues
+- Create, update, and delete operations
+- Temporary-to-final identifier migration
+- Full-record and patch updates
+- Server-side validation
+- Authentication and authorization
+- Idempotency
+- Retry and backoff
+- Version-based conflict detection
+- Manual and field-level conflict resolution
+- Append-only comments and work notes
+- Governed attachment synchronization
+- Pull and incremental synchronization
+- Deletion markers
+- Dependency ordering
+- Batch operations
+- Transactions
+- Server-generated events
+- Real-time updates
+- Offline recovery
+- Sync Center visibility
+- Audit
+- Monitoring
+- Reconciliation
+- API versioning
+- Resilient backend infrastructure
+
+The next chapter examines the path from the current ServiceFlow playground to an enterprise platform, including security, shared data, workflow execution, governance, availability, and phased implementation.
